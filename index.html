@@ -1,0 +1,3433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privé Design System v2.1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   PRIVÉ DESIGN SYSTEM — LIVE STYLEGUIDE v2.1.0
+   Source: DESIGN.md
+   Last updated: 2026-04-22
+
+   Audit fixes applied:
+   - CTA contrast: #C96518 for interactive (WCAG AA)
+   - Muted text: #6E6E6E (5.13:1 on white)
+   - Focus-visible global styles
+   - Complete accent + navy shade scales (50–900)
+   - All missing components added
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Core ── */
+  --primary: #192E49;
+  --on-primary: #FFFFFF;
+  --text-heading: #192E49;
+  --text-body: #2E2E2E;
+  --text-muted: #6E6E6E;
+  --background: #FFFFFF;
+  --surface: #F5F1EC;
+  --border: #E0E0E0;
+  --border-strong: #ABABAB;
+
+  /* ── Accent (display — large fills, backgrounds, decorative) ── */
+  --accent: #E87722;
+  --accent-light: #FFF3ED;
+
+  /* ── Accent CTA (interactive — buttons, links, white text on it) ── */
+  --accent-cta: #C96518;
+  --accent-cta-hover: #A85310;
+
+  /* ── Accent shade scale ── */
+  --accent-50: #FFF3ED;
+  --accent-100: #FFE0C8;
+  --accent-200: #FFCBA3;
+  --accent-300: #FFB17A;
+  --accent-400: #F49345;
+  --accent-500: #E87722;
+  --accent-600: #C96518;
+  --accent-700: #A85310;
+  --accent-800: #8A420D;
+  --accent-900: #6E340A;
+
+  /* ── Navy shade scale ── */
+  --navy-50: #E8EDF3;
+  --navy-100: #C5D0DE;
+  --navy-200: #9FB2C8;
+  --navy-300: #7893B1;
+  --navy-400: #5A7BA0;
+  --navy-500: #3D638F;
+  --navy-600: #2E4C72;
+  --navy-700: #213A5A;
+  --navy-800: #192E49;
+  --navy-900: #0E1B2D;
+
+  /* ── Specialty ── */
+  --accent-gold: #B8956A;
+  --success: #5A7A6F;
+  --success-bg: #DEE4E2;
+  --error: #B3332B;
+  --error-bg: #FAF1F0;
+  --warning: #D4950B;
+  --warning-bg: #FDF6E3;
+
+  /* ── Typography ── */
+  --font-heading: 'Jost', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* ── Spacing ── */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+
+  /* ── Radii ── */
+  --radius-storefront: 0px;
+  --radius-internal: 14px;
+  --radius-card: 8px;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  --shadow-accent: 0 4px 12px rgba(201,101,24,0.25);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--text-body);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Global focus-visible ── */
+:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ═══════════════════════════════════════
+   STICKY NAV
+   ═══════════════════════════════════════ */
+.nav {
+  background: var(--primary);
+  padding: 0 40px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.nav__logo {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--on-primary);
+  white-space: nowrap;
+}
+.nav__links {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.nav__link {
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: color 0.2s, background-color 0.2s;
+}
+.nav__link:hover { color: var(--on-primary); background: rgba(255,255,255,0.08); }
+.nav__link--active, .nav__link[style*="var(--on-primary)"] { color: var(--on-primary); }
+.nav__link:focus-visible { outline-color: var(--accent); outline-offset: -2px; }
+
+@media (max-width: 900px) {
+  .nav { padding: 0 16px; gap: 12px; }
+  .nav__links { gap: 2px; }
+}
+
+/* ═══════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════ */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+@media (max-width: 600px) {
+  .container { padding: 0 var(--space-md); }
+}
+.section {
+  padding: var(--space-2xl) 0;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-of-type { border-bottom: none; }
+.section__label {
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-cta);
+  margin-bottom: var(--space-xs);
+}
+.section__title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+.section__desc {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+.subsection {
+  margin-top: var(--space-xl);
+}
+.subsection__title {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: var(--space-md);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Scroll anchoring ── */
+.section[id], .hero[id], section[id] {
+  scroll-margin-top: 72px;
+}
+
+/* ═══════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════ */
+.hero {
+  padding: var(--space-2xl) 0 var(--space-2xl);
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+}
+.hero__logo {
+  line-height: 0;
+  margin-bottom: 16px;
+}
+.hero__logo img {
+  width: 320px;
+  height: auto;
+}
+.hero__tagline {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text-body);
+  max-width: 480px;
+  margin-bottom: 24px;
+}
+.hero__meta {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  gap: 32px;
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 64px 0 48px; }
+  .hero__logo img { width: 200px; }
+}
+
+/* ═══════════════════════════════════════
+   COLOR SWATCHES
+   ═══════════════════════════════════════ */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+.swatch {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.swatch:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.swatch__fill {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+}
+.swatch__fill--dark { color: #FFFFFF; }
+.swatch__fill--light { color: var(--text-body); }
+.swatch__contrast {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+.swatch__contrast--pass { background: rgba(90,122,111,0.9); color: #fff; }
+.swatch__contrast--fail { background: rgba(179,51,43,0.9); color: #fff; }
+.swatch__info { padding: 12px 14px; }
+.swatch__name {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 2px;
+}
+.swatch__hex {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.swatch__role {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Shade strip */
+.shade-strip {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.shade-strip__seg {
+  flex: 1;
+  padding: 14px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.02em;
+  min-height: 72px;
+}
+.shade-strip__seg span { opacity: 0.7; }
+
+/* Dead color */
+.swatch--dead {
+  opacity: 0.3;
+  position: relative;
+}
+.swatch--dead::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(179,51,43,0.15) 8px,
+    rgba(179,51,43,0.15) 9px
+  );
+  pointer-events: none;
+}
+
+/* Color blind sim */
+.colorblind-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.colorblind-card {
+  flex: 1;
+  min-width: 280px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--space-sm);
+}
+.colorblind-card__title {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 12px;
+}
+.colorblind-strip { display: flex; height: 40px; }
+.colorblind-strip > div { flex: 1; }
+.filter-protanopia { filter: url('#protanopia'); }
+.filter-deuteranopia { filter: url('#deuteranopia'); }
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════ */
+.type-specimen {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(224,224,224,0.5);
+}
+.type-specimen:last-child { border-bottom: none; }
+.type-specimen__sample {
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.type-specimen__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+.type-specimen__meta span::before {
+  content: attr(data-label) ": ";
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+/* Size scale viz */
+.size-scale { display: flex; flex-direction: column; gap: 8px; }
+.size-scale__row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.size-scale__label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  width: 80px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Do/Don't typography */
+.do-dont-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.do-dont-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+}
+.do-dont-card--do { border-top: 3px solid var(--success); }
+.do-dont-card--dont { border-top: 3px solid var(--error); }
+.do-dont-card__label {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.do-dont-card--do .do-dont-card__label { color: var(--success); }
+.do-dont-card--dont .do-dont-card__label { color: var(--error); }
+.do-dont-card__example {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.do-dont-card--dont .do-dont-card__example {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+@media (max-width: 700px) {
+  .do-dont-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════
+   SPACING
+   ═══════════════════════════════════════ */
+.spacing-demo {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.spacing-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.spacing-block__bar {
+  background: var(--accent-200);
+  border: 1px solid var(--accent-400);
+  width: 48px;
+}
+.spacing-block__label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.shadow-demo {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.shadow-card {
+  width: 160px;
+  height: 100px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+.shadow-card:hover { transform: translateY(-2px); }
+
+/* ═══════════════════════════════════════
+   COMPONENTS
+   ═══════════════════════════════════════ */
+.component-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+.component-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.component-group {
+  margin-bottom: 48px;
+}
+.component-group__title {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 28px;
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.15s, background-color 0.15s, opacity 0.15s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn--primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.btn--primary:hover { box-shadow: var(--shadow-lg); }
+.btn--secondary {
+  background: var(--surface);
+  color: var(--primary);
+}
+.btn--secondary:hover { box-shadow: var(--shadow-md); }
+.btn--cta {
+  background: var(--accent-cta);
+  color: var(--on-primary);
+}
+.btn--cta:hover {
+  background: var(--accent-cta-hover);
+  box-shadow: var(--shadow-accent);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--border);
+}
+.btn--ghost:hover { border-color: var(--primary); }
+.btn--text {
+  background: transparent;
+  color: var(--accent-cta);
+  padding: 0 8px;
+}
+.btn--text:hover { text-decoration: underline; }
+.btn--icon {
+  width: 48px;
+  padding: 0;
+  background: var(--surface);
+  color: var(--primary);
+}
+.btn--icon:hover { box-shadow: var(--shadow-md); }
+.btn--sm { height: 36px; padding: 0 20px; font-size: 0.625rem; }
+.btn--lg { height: 56px; padding: 0 36px; font-size: 0.75rem; }
+.btn--loading { pointer-events: none; opacity: 0.7; }
+.btn--loading::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn--destructive {
+  background: var(--error);
+  color: var(--on-primary);
+}
+.btn--destructive:hover { box-shadow: 0 4px 12px rgba(179,51,43,0.3); }
+.btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 2px;
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.badge--new { background: var(--primary); color: var(--on-primary); }
+.badge--limited { background: var(--accent-gold); color: #000; }
+.badge--exclusive { background: var(--accent); color: var(--on-primary); }
+.badge--classic { background: var(--surface); color: var(--text-body); }
+.badge--sale { background: var(--error); color: var(--on-primary); }
+.badge--oos { background: var(--border); color: var(--text-muted); }
+.badge--gender {
+  background: var(--background);
+  color: var(--text-body);
+  border: 1px solid var(--border);
+}
+
+/* ── Product Card ── */
+.card-demo {
+  width: 300px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--background);
+  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.card-demo:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card-demo__img {
+  width: 100%;
+  height: 340px;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.card-demo__img-placeholder {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--border-strong);
+}
+.card-demo__badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+}
+.card-demo__wishlist {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.card-demo__wishlist:hover { border-color: var(--error); }
+.card-demo__wishlist svg { width: 18px; height: 18px; color: var(--text-muted); }
+.card-demo__body { padding: 16px; }
+.card-demo__brand {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.card-demo__name {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 8px;
+}
+.card-demo__mood {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--text-body);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.card-demo__specs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.card-demo__pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.card-demo__price {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-heading);
+}
+.card-demo__price--sale {
+  color: var(--error);
+}
+.card-demo__price--original {
+  font-size: 0.875rem;
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+.card-demo__stock {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  margin-bottom: 12px;
+}
+.card-demo__stock-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.card-demo__stock--in .card-demo__stock-dot { background: var(--success); }
+.card-demo__stock--in { color: var(--success); }
+.card-demo__stock--low .card-demo__stock-dot { background: var(--warning); }
+.card-demo__stock--low { color: var(--warning); }
+.card-demo__stock--out .card-demo__stock-dot { background: var(--error); }
+.card-demo__stock--out { color: var(--error); }
+
+/* ── Star Rating ── */
+.star-rating {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+}
+.star-rating svg {
+  width: 18px;
+  height: 18px;
+}
+.star-rating__count {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+/* ── Price Display ── */
+.price-display {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.price-display__current {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-heading);
+}
+.price-display__current--sale { color: var(--error); }
+.price-display__original {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+.price-display__per-ml {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+/* ── Size Selector ── */
+.size-selector {
+  display: flex;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.size-selector__option {
+  padding: 10px 20px;
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-body);
+  background: var(--background);
+  border: none;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.size-selector__option:last-child { border-right: none; }
+.size-selector__option:hover { background: var(--surface); }
+.size-selector__option--active {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* ── Stock Indicator ── */
+.stock-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+}
+.stock-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.stock-indicator--in .stock-dot { background: var(--success); }
+.stock-indicator--in { color: var(--success); }
+.stock-indicator--low .stock-dot { background: var(--warning); }
+.stock-indicator--low { color: var(--warning); }
+.stock-indicator--out .stock-dot { background: var(--error); }
+.stock-indicator--out { color: var(--error); }
+
+/* ── Quantity Stepper ── */
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  height: 44px;
+}
+.qty-stepper__btn {
+  width: 44px;
+  height: 100%;
+  background: var(--surface);
+  border: none;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--text-body);
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qty-stepper__btn:hover { background: var(--border); }
+.qty-stepper__input {
+  width: 48px;
+  height: 100%;
+  border: none;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-heading);
+  background: var(--background);
+}
+.qty-stepper__input:focus { outline: none; background: var(--accent-light); }
+
+/* ── Inputs ── */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 300px;
+}
+.input-group__label {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+}
+.input-field {
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--text-body);
+  width: 100%;
+  transition: border-color 0.15s;
+}
+.input-field::placeholder { color: var(--border-strong); }
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.input-field--error { border-color: var(--error); }
+.input-field[disabled] {
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+.input-group__helper {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.input-group__helper--error { color: var(--error); }
+
+/* ── Search Bar ── */
+.search-bar {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  padding: 0 16px;
+  gap: 10px;
+  width: 360px;
+  max-width: 100%;
+  transition: border-color 0.15s;
+}
+.search-bar:focus-within { border-color: var(--primary); }
+.search-bar__icon { color: var(--text-muted); flex-shrink: 0; }
+.search-bar__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--text-body);
+  outline: none;
+}
+.search-bar__input::placeholder { color: var(--border-strong); }
+.search-bar__clear {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ── Toast / Notification ── */
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border: 1px solid;
+  border-radius: var(--radius-card);
+  max-width: 420px;
+  width: 100%;
+}
+.toast__icon { flex-shrink: 0; }
+.toast__message {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  flex: 1;
+}
+.toast__close {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.5;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.toast--success {
+  background: var(--success-bg);
+  border-color: var(--success);
+  color: var(--success);
+}
+.toast--error {
+  background: var(--error-bg);
+  border-color: var(--error);
+  color: var(--error);
+}
+.toast--info {
+  background: var(--navy-50);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+}
+.breadcrumb__link {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.breadcrumb__link:hover { color: var(--accent-cta); }
+.breadcrumb__sep { color: var(--border); font-size: 0.625rem; }
+.breadcrumb__current { color: var(--text-heading); font-weight: 500; }
+
+/* ── Modal ── */
+.modal-demo {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  max-width: 480px;
+  background: var(--background);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.modal-demo__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.modal-demo__title {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+}
+.modal-demo__close {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+.modal-demo__body {
+  padding: 24px;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--text-body);
+}
+.modal-demo__footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Skeleton Loader ── */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, #ede8e2 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 0;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Nav component demo ── */
+.nav-demo {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  height: 64px;
+  gap: 24px;
+}
+.nav-demo__logo {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+}
+.nav-demo__links {
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+}
+.nav-demo__link {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.nav-demo__link--active { color: var(--text-heading); }
+.nav-demo__icons {
+  display: flex;
+  gap: 16px;
+  margin-left: 24px;
+}
+.nav-demo__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--text-heading);
+}
+
+/* ── Footer demo ── */
+.footer-demo {
+  background: var(--primary);
+  border-radius: var(--radius-card);
+  padding: 48px 32px 32px;
+  overflow: hidden;
+}
+.footer-demo__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.footer-demo__brand {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--on-primary);
+  margin-bottom: 12px;
+}
+.footer-demo__desc {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: rgba(245,241,236,0.6);
+  line-height: 1.5;
+}
+.footer-demo__heading {
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245,241,236,0.4);
+  margin-bottom: 12px;
+}
+.footer-demo__link {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: rgba(245,241,236,0.6);
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: color 0.15s;
+}
+.footer-demo__link:hover { color: var(--on-primary); }
+.footer-demo__social {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+.footer-demo__social-icon {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(245,241,236,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(245,241,236,0.6);
+  transition: color 0.15s, border-color 0.15s;
+}
+.footer-demo__social-icon:hover {
+  color: var(--on-primary);
+  border-color: rgba(245,241,236,0.5);
+}
+.footer-demo__bottom {
+  border-top: 1px solid rgba(245,241,236,0.1);
+  padding-top: 24px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(245,241,236,0.3);
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════
+   LOGO SYSTEM
+   ═══════════════════════════════════════ */
+.logo-showcase {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+}
+.logo-showcase__bg {
+  padding: var(--space-xl) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-card);
+  transition: box-shadow 0.2s;
+}
+.logo-showcase__bg:hover { box-shadow: var(--shadow-lg); }
+.logo-showcase__bg--white { background: #FFFFFF; border: 1px solid var(--border); }
+.logo-showcase__bg--navy { background: var(--primary); }
+.logo-showcase__bg--pumpkin { background: var(--accent); }
+
+.logo-sizes {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+}
+.logo-size-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--background);
+  transition: box-shadow 0.2s;
+}
+.logo-size-item:hover { box-shadow: var(--shadow-md); }
+.logo-size-item__label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════
+   VOICE / BRAND SECTION
+   ═══════════════════════════════════════ */
+.personality-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+.personality-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+  transition: box-shadow 0.2s;
+}
+.personality-card:hover { box-shadow: var(--shadow-md); }
+.personality-card__trait {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 4px;
+}
+.personality-card__anti {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.personality-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-body);
+}
+
+/* Tone spectrum */
+.tone-spectrum {
+  position: relative;
+  height: 8px;
+  background: linear-gradient(to right, var(--primary), var(--surface));
+  margin: 32px 0 48px;
+}
+.tone-spectrum__labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.tone-spectrum__marker {
+  position: absolute;
+  top: -8px;
+  left: 35%;
+  width: 24px;
+  height: 24px;
+  background: var(--accent);
+  border: 3px solid var(--background);
+  box-shadow: 0 0 0 1px var(--accent);
+  border-radius: 50%;
+}
+.tone-spectrum__marker-label {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════
+   CODE BLOCKS & TOKENS
+   ═══════════════════════════════════════ */
+.code-section {
+  position: relative;
+  margin-bottom: 32px;
+}
+.code-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0f0f1a;
+  padding: 10px 20px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-bottom: none;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+.code-section__title {
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-heading);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.copy-btn:hover { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2); }
+.copy-btn:focus-visible { outline-color: var(--accent); }
+.code-block {
+  background: #13131f;
+  color: #d4d4d4;
+  padding: 20px 24px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  white-space: pre;
+  tab-size: 2;
+}
+.code-block .c { color: #6a9955; }  /* comment */
+.code-block .k { color: #9cdcfe; }  /* key */
+.code-block .v { color: #ce9178; }  /* value */
+.code-block .p { color: #808080; }  /* punctuation */
+.code-block .s { color: #dcdcaa; }  /* selector / function */
+.code-block .n { color: #b5cea8; }  /* number */
+
+/* ═══════════════════════════════════════
+   CONTEXT COMPARISON
+   ═══════════════════════════════════════ */
+.context-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.context-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg);
+  transition: box-shadow 0.2s;
+}
+.context-card:hover { box-shadow: var(--shadow-md); }
+.context-card__label {
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.context-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 20px;
+}
+.context-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .context-grid { grid-template-columns: 1fr; }
+  .logo-showcase { grid-template-columns: 1fr; }
+  .logo-showcase__bg { flex-direction: column; gap: var(--space-sm); }
+  .logo-showcase__bg div[style*="width:1px;height:40px"] { width: 40px !important; height: 1px !important; }
+  .footer-demo__grid { grid-template-columns: 1fr 1fr; }
+  .logo-sizes { gap: var(--space-md); }
+}
+
+/* ═══════════════════════════════════════
+   AI CONTEXT SECTION
+   ═══════════════════════════════════════ */
+.ai-card {
+  border: 1px solid var(--accent-300);
+  background: var(--accent-50);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+.ai-card__title {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-700);
+  margin-bottom: 12px;
+}
+
+/* ═══════════════════════════════════════
+   PAGE FOOTER
+   ═══════════════════════════════════════ */
+.page-footer {
+  background: var(--primary);
+  padding: 32px 0;
+}
+.page-footer__text {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: rgba(245,241,236,0.5);
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 600px) {
+  .section { padding: var(--space-xl) 0; }
+  .section__title { font-size: 1.5rem; }
+  .swatch-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .shade-strip { flex-wrap: wrap; }
+  .shade-strip__seg { font-size: 0.5rem; padding: 8px 2px; min-width: 20%; }
+  .personality-grid { grid-template-columns: 1fr; }
+  .logo-sizes { flex-direction: column; align-items: stretch; gap: var(--space-sm); }
+  .logo-size-item { flex-direction: row; justify-content: space-between; }
+  .footer-demo__grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ SVG Filters for color blind simulation ═══ -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <filter id="protanopia">
+      <feColorMatrix type="matrix" values="0.567,0.433,0,0,0 0.558,0.442,0,0,0 0,0.242,0.758,0,0 0,0,0,1,0"/>
+    </filter>
+    <filter id="deuteranopia">
+      <feColorMatrix type="matrix" values="0.625,0.375,0,0,0 0.7,0.3,0,0,0 0,0.3,0.7,0,0 0,0,0,1,0"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" role="navigation" aria-label="Design system navigation">
+  <div class="nav__logo">Privé Design</div>
+  <div class="nav__links">
+    <a href="#hero" class="nav__link">Brand</a>
+    <a href="#logo" class="nav__link">Logo</a>
+    <a href="#colors" class="nav__link">Colors</a>
+    <a href="#typography" class="nav__link">Type</a>
+    <a href="#spacing" class="nav__link">Spacing</a>
+    <a href="#components" class="nav__link">Components</a>
+    <a href="#voice" class="nav__link">Voice</a>
+    <a href="#tokens" class="nav__link">Tokens</a>
+    <a href="#ai-context" class="nav__link">AI</a>
+    <a href="#contexts" class="nav__link">Contexts</a>
+    <a href="banners.html" class="nav__link" style="color: var(--accent, #E87722);">Banners</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     1. HERO / BRAND MARK
+     ═══════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero__logo">
+      <img src="assets/logo-I-centered-v4.svg" alt="Privé" width="320" height="320">
+    </div>
+    <p class="hero__tagline">Friendly exclusive. Confident, not arrogant. Warm, not casual.</p>
+    <div class="hero__meta">
+      <span>v2.1.0</span>
+      <span>Updated 2026-04-22</span>
+      <span>Privé Perfumes — Honduras</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     2. LOGO SYSTEM
+     ═══════════════════════════════════════ -->
+<section class="section" id="logo">
+  <div class="container">
+    <div class="section__label">02</div>
+    <h2 class="section__title">Logo System</h2>
+    <p class="section__desc">Two-tier system with two treatment styles. The <strong>circle mark</strong> (navy circle + white PRIVÉ) is for contained icons — favicons, social avatars, standalone marks. The <strong>letters-only wordmark</strong> (white letterforms, transparent background) is the primary building block for everything else. Each mark comes in two styles: <strong>Style A (monochrome)</strong> — all elements in the same color; <strong>Style B (accent highlighted)</strong> — letters in primary color with the É accent stroke in pumpkin orange (#E87722). On dark or colored backgrounds the white letters render naturally; on white backgrounds, use CSS <code>filter:invert(1)</code> or inline SVG with <code>fill="#192E49"</code>. Six SVG asset files live in <code>assets/</code>.</p>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Logo on backgrounds</h3>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px"><strong>A</strong> = Monochrome (all elements same color) &nbsp;&bull;&nbsp; <strong>B</strong> = Accent highlighted (orange accent on E)</p>
+      <div class="logo-showcase">
+        <div class="logo-showcase__bg logo-showcase__bg--white" style="display:flex;gap:24px;align-items:center;justify-content:center">
+          <div style="text-align:center">
+            <img src="assets/logo-wordmark-mono.svg" alt="Privé monochrome on white" width="160" height="42" style="filter:invert(1)">
+            <div style="font-size:10px;color:#999;margin-top:6px;letter-spacing:0.1em">A</div>
+          </div>
+          <div style="width:1px;height:40px;background:rgba(0,0,0,0.1)"></div>
+          <div style="text-align:center">
+            <img src="assets/logo-wordmark-v4.svg" alt="Privé accent on white" width="160" height="42" style="filter:invert(1) hue-rotate(180deg) saturate(1.5)">
+            <div style="font-size:10px;color:#999;margin-top:6px;letter-spacing:0.1em">B</div>
+          </div>
+        </div>
+        <div class="logo-showcase__bg logo-showcase__bg--navy" style="display:flex;gap:24px;align-items:center;justify-content:center">
+          <div style="text-align:center">
+            <img src="assets/logo-wordmark-mono.svg" alt="Privé monochrome on navy" width="160" height="42">
+            <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:6px;letter-spacing:0.1em">A</div>
+          </div>
+          <div style="width:1px;height:40px;background:rgba(255,255,255,0.2)"></div>
+          <div style="text-align:center">
+            <img src="assets/logo-wordmark-v4.svg" alt="Privé accent on navy" width="160" height="42">
+            <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:6px;letter-spacing:0.1em">B</div>
+          </div>
+        </div>
+        <div class="logo-showcase__bg logo-showcase__bg--pumpkin" style="display:flex;gap:24px;align-items:center;justify-content:center">
+          <div style="text-align:center">
+            <img src="assets/logo-wordmark-mono.svg" alt="Privé monochrome on pumpkin" width="160" height="42">
+            <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:6px;letter-spacing:0.1em">A</div>
+          </div>
+          <div style="width:1px;height:40px;background:rgba(255,255,255,0.2)"></div>
+          <div style="text-align:center">
+            <img src="assets/logo-wordmark-v4.svg" alt="Privé accent on pumpkin" width="160" height="42">
+            <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:6px;letter-spacing:0.1em">B</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Circle mark &amp; wordmark</h3>
+      <div style="display:flex;gap:32px;align-items:center;flex-wrap:wrap;margin-bottom:32px;padding:32px;background:var(--background);border:1px solid var(--border);border-radius:8px">
+        <!-- Circle marks: A (mono) and B (accent) -->
+        <div style="display:flex;gap:20px;align-items:center">
+          <div style="text-align:center">
+            <img src="assets/logo-I-centered-v4.svg" alt="Privé circle mark monochrome" width="120" height="120">
+            <div style="font-size:10px;color:var(--text-muted);margin-top:6px;letter-spacing:0.1em">A</div>
+          </div>
+          <div style="text-align:center">
+            <img src="assets/logo-circle-accent.svg" alt="Privé circle mark accent" width="120" height="120">
+            <div style="font-size:10px;color:var(--text-muted);margin-top:6px;letter-spacing:0.1em">B</div>
+          </div>
+        </div>
+        <!-- Separator -->
+        <div style="width:1px;height:120px;background:var(--border)"></div>
+        <!-- Wordmarks: A (mono) and B (accent) on navy bg -->
+        <div style="display:flex;gap:20px;align-items:center">
+          <div style="text-align:center">
+            <div style="background:#192E49;border-radius:8px;padding:20px 32px;display:flex;align-items:center;justify-content:center">
+              <img src="assets/logo-wordmark-mono.svg" alt="Privé wordmark monochrome" width="220" height="58">
+            </div>
+            <div style="font-size:10px;color:var(--text-muted);margin-top:6px;letter-spacing:0.1em">A</div>
+          </div>
+          <div style="text-align:center">
+            <div style="background:#192E49;border-radius:8px;padding:20px 32px;display:flex;align-items:center;justify-content:center">
+              <img src="assets/logo-wordmark-v4.svg" alt="Privé wordmark accent" width="220" height="58">
+            </div>
+            <div style="font-size:10px;color:var(--text-muted);margin-top:6px;letter-spacing:0.1em">B</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Circle mark sizes</h3>
+      <div class="logo-sizes">
+        <div class="logo-size-item">
+          <div style="display:flex;gap:8px;align-items:flex-end">
+            <div style="text-align:center">
+              <img src="assets/logo-I-centered-v4.svg" alt="Privé circle mark 32px mono" width="32" height="32">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">A</div>
+            </div>
+            <div style="text-align:center">
+              <img src="assets/logo-circle-accent.svg" alt="Privé circle mark 32px accent" width="32" height="32">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">B</div>
+            </div>
+          </div>
+          <div class="logo-size-item__label">Favicon · 32px</div>
+        </div>
+        <div class="logo-size-item">
+          <div style="display:flex;gap:12px;align-items:flex-end">
+            <div style="text-align:center">
+              <img src="assets/logo-I-centered-v4.svg" alt="Privé circle mark 64px mono" width="64" height="64">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">A</div>
+            </div>
+            <div style="text-align:center">
+              <img src="assets/logo-circle-accent.svg" alt="Privé circle mark 64px accent" width="64" height="64">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">B</div>
+            </div>
+          </div>
+          <div class="logo-size-item__label">Social · 64px</div>
+        </div>
+        <div class="logo-size-item">
+          <div style="display:flex;gap:16px;align-items:flex-end">
+            <div style="text-align:center">
+              <img src="assets/logo-I-centered-v4.svg" alt="Privé circle mark 120px mono" width="120" height="120">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">A</div>
+            </div>
+            <div style="text-align:center">
+              <img src="assets/logo-circle-accent.svg" alt="Privé circle mark 120px accent" width="120" height="120">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">B</div>
+            </div>
+          </div>
+          <div class="logo-size-item__label">Large · 120px</div>
+        </div>
+      </div>
+      <div style="height:32px"></div>
+      <h3 class="subsection__title">Wordmark sizes</h3>
+      <div class="logo-sizes">
+        <div class="logo-size-item">
+          <div style="display:flex;gap:8px;align-items:flex-end">
+            <div style="text-align:center">
+              <img src="assets/logo-wordmark-mono.svg" alt="Privé wordmark 64px mono" width="64" height="17" style="background:#192E49;border-radius:4px;padding:8px 4px">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">A</div>
+            </div>
+            <div style="text-align:center">
+              <img src="assets/logo-wordmark-v4.svg" alt="Privé wordmark 64px accent" width="64" height="17" style="background:#192E49;border-radius:4px;padding:8px 4px">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">B</div>
+            </div>
+          </div>
+          <div class="logo-size-item__label">Header · 64px</div>
+        </div>
+        <div class="logo-size-item">
+          <div style="display:flex;gap:12px;align-items:flex-end">
+            <div style="text-align:center">
+              <img src="assets/logo-wordmark-mono.svg" alt="Privé wordmark 160px mono" width="160" height="42" style="background:#192E49;border-radius:4px;padding:12px 8px">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">A</div>
+            </div>
+            <div style="text-align:center">
+              <img src="assets/logo-wordmark-v4.svg" alt="Privé wordmark 160px accent" width="160" height="42" style="background:#192E49;border-radius:4px;padding:12px 8px">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">B</div>
+            </div>
+          </div>
+          <div class="logo-size-item__label">Medium · 160px</div>
+        </div>
+        <div class="logo-size-item">
+          <div style="display:flex;gap:16px;align-items:flex-end">
+            <div style="text-align:center">
+              <img src="assets/logo-wordmark-mono.svg" alt="Privé wordmark 280px mono" width="280" height="73" style="background:#192E49;border-radius:4px;padding:16px 12px">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">A</div>
+            </div>
+            <div style="text-align:center">
+              <img src="assets/logo-wordmark-v4.svg" alt="Privé wordmark 280px accent" width="280" height="73" style="background:#192E49;border-radius:4px;padding:16px 12px">
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px">B</div>
+            </div>
+          </div>
+          <div class="logo-size-item__label">Large · 280px</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection__title">SVG assets</h3>
+      <div class="code-section">
+        <div class="code-section__header">
+          <span class="code-section__title">Circle mark Style A (monochrome) — favicon, social, standalone · assets/logo-I-centered-v4.svg</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <div class="code-block" id="logo-svg-code">&lt;img src="assets/logo-I-centered-v4.svg" alt="Privé" width="120" height="120"&gt;</div>
+      </div>
+      <div class="code-section">
+        <div class="code-section__header">
+          <span class="code-section__title">Circle mark Style B (orange accent) · assets/logo-circle-accent.svg</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <div class="code-block">&lt;img src="assets/logo-circle-accent.svg" alt="Privé" width="120" height="120"&gt;</div>
+      </div>
+      <div class="code-section">
+        <div class="code-section__header">
+          <span class="code-section__title">Wordmark Style A (monochrome) — headers, backgrounds · assets/logo-wordmark-mono.svg</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <div class="code-block">&lt;!-- On dark/colored backgrounds — white letters render naturally --&gt;
+&lt;img src="assets/logo-wordmark-mono.svg" alt="Privé" width="200" height="52"&gt;
+
+&lt;!-- On white backgrounds — invert to get dark letters --&gt;
+&lt;img src="assets/logo-wordmark-mono.svg" alt="Privé" width="200" height="52" style="filter:invert(1)"&gt;</div>
+      </div>
+      <div class="code-section">
+        <div class="code-section__header">
+          <span class="code-section__title">Wordmark Style B (orange accent) — headers, backgrounds · assets/logo-wordmark-v4.svg</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <div class="code-block">&lt;!-- On dark/colored backgrounds — white letters + orange accent render naturally --&gt;
+&lt;img src="assets/logo-wordmark-v4.svg" alt="Privé" width="200" height="52"&gt;
+
+&lt;!-- On white backgrounds — invert to get dark letters (note: accent color also inverts) --&gt;
+&lt;img src="assets/logo-wordmark-v4.svg" alt="Privé" width="200" height="52" style="filter:invert(1)"&gt;</div>
+      </div>
+      <div class="code-section">
+        <div class="code-section__header">
+          <span class="code-section__title">Circle mark (rounded variant) — assets/logo-circle-v4.svg</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <div class="code-block">&lt;img src="assets/logo-circle-v4.svg" alt="Privé" width="120" height="120"&gt;</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Color variations</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-top:16px">
+        <!-- Navy on white — Style A (mono) -->
+        <div style="background:#FFFFFF;border:1px solid var(--border);border-radius:8px;padding:24px 16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px">
+          <img src="assets/logo-wordmark-mono.svg" alt="Navy on white mono" width="130" height="34" style="filter:invert(1)">
+          <span style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em">Navy on white · A</span>
+        </div>
+        <!-- Navy + accent on white — Style B -->
+        <div style="background:#FFFFFF;border:1px solid var(--border);border-radius:8px;padding:24px 16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px">
+          <img src="assets/logo-wordmark-v4.svg" alt="Navy accent on white" width="130" height="34" style="filter:invert(1) hue-rotate(180deg) saturate(1.5)">
+          <span style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em">Navy + accent · B</span>
+        </div>
+        <!-- White on pumpkin — Style A (mono) -->
+        <div style="background:#E87722;border-radius:8px;padding:24px 16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px">
+          <img src="assets/logo-wordmark-mono.svg" alt="White on pumpkin mono" width="130" height="34">
+          <span style="font-size:11px;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:0.05em">White on pumpkin · A</span>
+        </div>
+        <!-- White + accent on navy — Style B -->
+        <div style="background:#192E49;border-radius:8px;padding:24px 16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px">
+          <img src="assets/logo-wordmark-v4.svg" alt="White accent on navy" width="130" height="34">
+          <span style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em">White + accent · B</span>
+        </div>
+        <!-- Gold on navy — exclusivity (Style A variant) -->
+        <div style="background:#192E49;border-radius:8px;padding:24px 16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px">
+          <img src="assets/logo-wordmark-mono.svg" alt="Gold on navy" width="130" height="34" style="filter:brightness(0) invert(1) sepia(1) saturate(0.6) hue-rotate(350deg) brightness(0.82)">
+          <span style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em">Gold on navy · A</span>
+        </div>
+        <!-- All-white knockout -->
+        <div style="background:linear-gradient(135deg,#2a4a6b,#192E49);border-radius:8px;padding:24px 16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;opacity:0.15;background:url('assets/logo-circle-v4.svg') center/cover no-repeat"></div>
+          <img src="assets/logo-wordmark-mono.svg" alt="White knockout" width="130" height="34" style="position:relative">
+          <span style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em;position:relative">Photo overlay · A</span>
+        </div>
+        <!-- Navy on light — Style A -->
+        <div style="background:#F5F0EB;border-radius:8px;padding:24px 16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px">
+          <img src="assets/logo-wordmark-mono.svg" alt="Navy on light mono" width="130" height="34" style="filter:invert(1)">
+          <span style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em">Navy on light · A</span>
+        </div>
+        <!-- Navy + accent on light — Style B -->
+        <div style="background:#F5F0EB;border-radius:8px;padding:24px 16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px">
+          <img src="assets/logo-wordmark-v4.svg" alt="Navy accent on light" width="130" height="34" style="filter:invert(1) hue-rotate(180deg) saturate(1.5)">
+          <span style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em">Navy + accent · B</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     3. COLOR SYSTEM
+     ═══════════════════════════════════════ -->
+<section class="section" id="colors">
+  <div class="container">
+    <div class="section__label">03</div>
+    <h2 class="section__title">Color System</h2>
+    <p class="section__desc">High-contrast neutrals with warm undertones. Navy anchors authority, pumpkin brings warmth. Two accent roles: display (#E87722) for visual impact, CTA (#C96518) for interactive elements meeting WCAG AA contrast.</p>
+
+    <!-- Core palette -->
+    <div class="subsection">
+      <h3 class="subsection__title">Core palette</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--dark" style="background:#192E49">
+            #192E49
+            <span class="swatch__contrast swatch__contrast--pass">12.8:1 AA</span>
+          </div>
+          <div class="swatch__info">
+            <div class="swatch__name">Primary Navy</div>
+            <div class="swatch__hex">#192E49 · rgb(25,46,73) · hsl(214,49%,19%)</div>
+            <div class="swatch__role">Headings, primary buttons, brand marks, nav</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--dark" style="background:#E87722">
+            #E87722
+            <span class="swatch__contrast swatch__contrast--fail">2.8:1</span>
+          </div>
+          <div class="swatch__info">
+            <div class="swatch__name">Accent — Display</div>
+            <div class="swatch__hex">#E87722 · rgb(232,119,34)</div>
+            <div class="swatch__role">Large fills, backgrounds, decorative, star ratings</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--dark" style="background:#C96518">
+            #C96518
+            <span class="swatch__contrast swatch__contrast--pass">4.52:1 AA</span>
+          </div>
+          <div class="swatch__info">
+            <div class="swatch__name">Accent — CTA</div>
+            <div class="swatch__hex">#C96518 · rgb(201,101,24)</div>
+            <div class="swatch__role">Buttons, text links, interactive with white text</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--dark" style="background:#A85310">
+            #A85310
+            <span class="swatch__contrast swatch__contrast--pass">6.2:1 AA</span>
+          </div>
+          <div class="swatch__info">
+            <div class="swatch__name">Accent — CTA Hover</div>
+            <div class="swatch__hex">#A85310 · rgb(168,83,16)</div>
+            <div class="swatch__role">CTA button hover/pressed state</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--dark" style="background:#B8956A">
+            #B8956A
+            <span class="swatch__contrast swatch__contrast--fail">2.4:1</span>
+          </div>
+          <div class="swatch__info">
+            <div class="swatch__name">Accent Gold</div>
+            <div class="swatch__hex">#B8956A · rgb(184,149,106)</div>
+            <div class="swatch__role">Exclusivity signals ONLY — never CTA, never large fill</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--light" style="background:#FFFFFF">
+            #FFF
+          </div>
+          <div class="swatch__info">
+            <div class="swatch__name">Background</div>
+            <div class="swatch__hex">#FFFFFF</div>
+            <div class="swatch__role">Every surface starts here</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--light" style="background:#F5F1EC">
+            #F5F1EC
+          </div>
+          <div class="swatch__info">
+            <div class="swatch__name">Surface Warm</div>
+            <div class="swatch__hex">#F5F1EC · rgb(245,241,236)</div>
+            <div class="swatch__role">Secondary bg — warm, not cold grey</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--dark" style="background:#2E2E2E;color:#fff">
+            #2E2E2E
+            <span class="swatch__contrast swatch__contrast--pass">13.5:1 AAA</span>
+          </div>
+          <div class="swatch__info">
+            <div class="swatch__name">Text Body</div>
+            <div class="swatch__hex">#2E2E2E · rgb(46,46,46)</div>
+            <div class="swatch__role">Body copy — softer than pure black</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--dark" style="background:#6E6E6E;color:#fff">
+            #6E6E6E
+            <span class="swatch__contrast swatch__contrast--pass">5.13:1 AA</span>
+          </div>
+          <div class="swatch__info">
+            <div class="swatch__name">Text Muted</div>
+            <div class="swatch__hex">#6E6E6E · rgb(110,110,110)</div>
+            <div class="swatch__role">Captions, metadata, secondary text</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semantic -->
+    <div class="subsection">
+      <h3 class="subsection__title">Semantic colors</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--dark" style="background:#5A7A6F">#5A7A6F</div>
+          <div class="swatch__info">
+            <div class="swatch__name">Success</div>
+            <div class="swatch__hex">#5A7A6F</div>
+            <div class="swatch__role">In-stock, confirmations</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--light" style="background:#DEE4E2">#DEE4E2</div>
+          <div class="swatch__info">
+            <div class="swatch__name">Success Bg</div>
+            <div class="swatch__hex">#DEE4E2</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--dark" style="background:#D4950B">#D4950B</div>
+          <div class="swatch__info">
+            <div class="swatch__name">Warning</div>
+            <div class="swatch__hex">#D4950B</div>
+            <div class="swatch__role">Low stock, attention</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--light" style="background:#FDF6E3">#FDF6E3</div>
+          <div class="swatch__info">
+            <div class="swatch__name">Warning Bg</div>
+            <div class="swatch__hex">#FDF6E3</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--dark" style="background:#B3332B">#B3332B</div>
+          <div class="swatch__info">
+            <div class="swatch__name">Error</div>
+            <div class="swatch__hex">#B3332B</div>
+            <div class="swatch__role">Sale prices, out-of-stock, errors</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--light" style="background:#FAF1F0">#FAF1F0</div>
+          <div class="swatch__info">
+            <div class="swatch__name">Error Bg</div>
+            <div class="swatch__hex">#FAF1F0</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--light" style="background:#E0E0E0">#E0E0E0</div>
+          <div class="swatch__info">
+            <div class="swatch__name">Border</div>
+            <div class="swatch__hex">#E0E0E0</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__fill swatch__fill--light" style="background:#ABABAB">#ABABAB</div>
+          <div class="swatch__info">
+            <div class="swatch__name">Border Strong</div>
+            <div class="swatch__hex">#ABABAB</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accent shade scale -->
+    <div class="subsection">
+      <h3 class="subsection__title">Accent shade scale (50–900)</h3>
+      <div class="shade-strip">
+        <div class="shade-strip__seg" style="background:#FFF3ED;color:#A85310">50<span>#FFF3ED</span></div>
+        <div class="shade-strip__seg" style="background:#FFE0C8;color:#A85310">100<span>#FFE0C8</span></div>
+        <div class="shade-strip__seg" style="background:#FFCBA3;color:#8A420D">200<span>#FFCBA3</span></div>
+        <div class="shade-strip__seg" style="background:#FFB17A;color:#6E340A">300<span>#FFB17A</span></div>
+        <div class="shade-strip__seg" style="background:#F49345;color:#fff">400<span>#F49345</span></div>
+        <div class="shade-strip__seg" style="background:#E87722;color:#fff">500<span>#E87722</span></div>
+        <div class="shade-strip__seg" style="background:#C96518;color:#fff">600<span>#C96518</span></div>
+        <div class="shade-strip__seg" style="background:#A85310;color:#fff">700<span>#A85310</span></div>
+        <div class="shade-strip__seg" style="background:#8A420D;color:#fff">800<span>#8A420D</span></div>
+        <div class="shade-strip__seg" style="background:#6E340A;color:#fff">900<span>#6E340A</span></div>
+      </div>
+    </div>
+
+    <!-- Navy shade scale -->
+    <div class="subsection">
+      <h3 class="subsection__title">Navy shade scale (50–900)</h3>
+      <div class="shade-strip">
+        <div class="shade-strip__seg" style="background:#E8EDF3;color:#192E49">50<span>#E8EDF3</span></div>
+        <div class="shade-strip__seg" style="background:#C5D0DE;color:#192E49">100<span>#C5D0DE</span></div>
+        <div class="shade-strip__seg" style="background:#9FB2C8;color:#192E49">200<span>#9FB2C8</span></div>
+        <div class="shade-strip__seg" style="background:#7893B1;color:#fff">300<span>#7893B1</span></div>
+        <div class="shade-strip__seg" style="background:#5A7BA0;color:#fff">400<span>#5A7BA0</span></div>
+        <div class="shade-strip__seg" style="background:#3D638F;color:#fff">500<span>#3D638F</span></div>
+        <div class="shade-strip__seg" style="background:#2E4C72;color:#fff">600<span>#2E4C72</span></div>
+        <div class="shade-strip__seg" style="background:#213A5A;color:#fff">700<span>#213A5A</span></div>
+        <div class="shade-strip__seg" style="background:#192E49;color:#fff">800<span>#192E49</span></div>
+        <div class="shade-strip__seg" style="background:#0E1B2D;color:#fff">900<span>#0E1B2D</span></div>
+      </div>
+    </div>
+
+    <!-- Dead colors -->
+    <div class="subsection">
+      <h3 class="subsection__title">Dead colors (never use)</h3>
+      <p style="font-family:var(--font-body);font-size:0.875rem;color:var(--text-muted);margin-bottom:16px">These colors were previously part of the brand or came from third-party plugins. They are permanently retired.</p>
+      <div class="swatch-grid">
+        <div class="swatch swatch--dead">
+          <div class="swatch__fill swatch__fill--dark" style="background:#2A9D8F">#2A9D8F</div>
+          <div class="swatch__info">
+            <div class="swatch__name" style="text-decoration:line-through">Teal</div>
+            <div class="swatch__hex">#2A9D8F</div>
+            <div class="swatch__role">Retired — Judge.me plugin color</div>
+          </div>
+        </div>
+        <div class="swatch swatch--dead">
+          <div class="swatch__fill swatch__fill--dark" style="background:#108474">#108474</div>
+          <div class="swatch__info">
+            <div class="swatch__name" style="text-decoration:line-through">Green</div>
+            <div class="swatch__hex">#108474</div>
+            <div class="swatch__role">Retired — old accent color</div>
+          </div>
+        </div>
+        <div class="swatch swatch--dead">
+          <div class="swatch__fill swatch__fill--dark" style="background:#FF4500">#FF4500</div>
+          <div class="swatch__info">
+            <div class="swatch__name" style="text-decoration:line-through">Flame</div>
+            <div class="swatch__hex">#FF4500</div>
+            <div class="swatch__role">Retired — old accent color</div>
+          </div>
+        </div>
+        <div class="swatch swatch--dead">
+          <div class="swatch__fill swatch__fill--light" style="background:#F5F5F5">#F5F5F5</div>
+          <div class="swatch__info">
+            <div class="swatch__name" style="text-decoration:line-through">Cold Grey</div>
+            <div class="swatch__hex">#F5F5F5</div>
+            <div class="swatch__role">Retired — use warm cream #F5F1EC instead</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color blind simulation -->
+    <div class="subsection">
+      <h3 class="subsection__title">Color blind simulation</h3>
+      <div class="colorblind-row">
+        <div class="colorblind-card">
+          <div class="colorblind-card__title">Normal vision</div>
+          <div class="colorblind-strip">
+            <div style="background:#192E49"></div>
+            <div style="background:#E87722"></div>
+            <div style="background:#C96518"></div>
+            <div style="background:#B8956A"></div>
+            <div style="background:#5A7A6F"></div>
+            <div style="background:#B3332B"></div>
+            <div style="background:#F5F1EC"></div>
+          </div>
+        </div>
+        <div class="colorblind-card">
+          <div class="colorblind-card__title">Protanopia (red-blind)</div>
+          <div class="colorblind-strip filter-protanopia">
+            <div style="background:#192E49"></div>
+            <div style="background:#E87722"></div>
+            <div style="background:#C96518"></div>
+            <div style="background:#B8956A"></div>
+            <div style="background:#5A7A6F"></div>
+            <div style="background:#B3332B"></div>
+            <div style="background:#F5F1EC"></div>
+          </div>
+        </div>
+        <div class="colorblind-card">
+          <div class="colorblind-card__title">Deuteranopia (green-blind)</div>
+          <div class="colorblind-strip filter-deuteranopia">
+            <div style="background:#192E49"></div>
+            <div style="background:#E87722"></div>
+            <div style="background:#C96518"></div>
+            <div style="background:#B8956A"></div>
+            <div style="background:#5A7A6F"></div>
+            <div style="background:#B3332B"></div>
+            <div style="background:#F5F1EC"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     4. TYPOGRAPHY
+     ═══════════════════════════════════════ -->
+<section class="section" id="typography">
+  <div class="container">
+    <div class="section__label">04</div>
+    <h2 class="section__title">Typography</h2>
+    <p class="section__desc">Two fonts, strict roles. Jost for structure and authority. Barlow for voice and warmth. The contrast between them IS the brand personality.</p>
+
+    <!-- Heading specimens -->
+    <div class="subsection">
+      <h3 class="subsection__title">Jost — Structure &amp; authority</h3>
+
+      <div class="type-specimen">
+        <div class="type-specimen__sample" style="font-family:var(--font-heading);font-size:3.5rem;font-weight:300;letter-spacing:0.02em;text-transform:uppercase;color:var(--text-heading)">Hero Display</div>
+        <div class="type-specimen__meta">
+          <span data-label="Font">Jost 300</span>
+          <span data-label="Size">3.5rem / 56px</span>
+          <span data-label="Tracking">0.02em</span>
+          <span data-label="Transform">Uppercase</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__sample" style="font-family:var(--font-heading);font-size:2rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-heading)">Section Heading</div>
+        <div class="type-specimen__meta">
+          <span data-label="Font">Jost 400</span>
+          <span data-label="Size">2rem / 32px</span>
+          <span data-label="Tracking">0.18em</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__sample" style="font-family:var(--font-heading);font-size:1.5rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-heading)">Card / Subsection Title</div>
+        <div class="type-specimen__meta">
+          <span data-label="Font">Jost 400</span>
+          <span data-label="Size">1.5rem / 24px</span>
+          <span data-label="Tracking">0.18em</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__sample" style="font-family:var(--font-heading);font-size:0.8125rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-heading)">Small Heading / Product Name</div>
+        <div class="type-specimen__meta">
+          <span data-label="Font">Jost 400</span>
+          <span data-label="Size">0.8125rem / 13px</span>
+          <span data-label="Tracking">0.18em</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__sample" style="font-family:var(--font-heading);font-size:0.6875rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-heading)">LABEL / BADGE / NAV / BUTTON</div>
+        <div class="type-specimen__meta">
+          <span data-label="Font">Jost 500</span>
+          <span data-label="Size">0.6875rem / 11px</span>
+          <span data-label="Tracking">0.18em</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__sample" style="font-family:var(--font-heading);font-size:1.25rem;font-weight:400;letter-spacing:0.04em;color:var(--text-heading)">L. 2,870</div>
+        <div class="type-specimen__meta">
+          <span data-label="Font">Jost 400</span>
+          <span data-label="Size">1.25rem / 20px</span>
+          <span data-label="Role">Price</span>
+          <span data-label="Format">L. X,XXX (lempiras)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body specimens -->
+    <div class="subsection">
+      <h3 class="subsection__title">Barlow — Voice &amp; warmth</h3>
+
+      <div class="type-specimen">
+        <div class="type-specimen__sample" style="font-family:var(--font-body);font-size:0.9375rem;font-weight:400;line-height:1.55;color:var(--text-body);max-width:600px">Body text for descriptions, product details, and general reading. Sentence case, warm, readable. Barlow at 15px with 1.55 line-height gives comfortable reading for the Honduras market.</div>
+        <div class="type-specimen__meta">
+          <span data-label="Font">Barlow 400</span>
+          <span data-label="Size">0.9375rem / 15px</span>
+          <span data-label="Line-height">1.55</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__sample" style="font-family:var(--font-body);font-size:0.9375rem;font-weight:600;line-height:1.55;color:var(--text-heading);max-width:600px">Bold body for emphasis, product specs, and key details that need to stand out without changing hierarchy.</div>
+        <div class="type-specimen__meta">
+          <span data-label="Font">Barlow 600</span>
+          <span data-label="Size">0.9375rem / 15px</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__sample" style="font-family:var(--font-body);font-size:0.9375rem;font-weight:400;font-style:italic;line-height:1.5;color:var(--text-body);max-width:600px">La hora azul, antes de que alguien encienda una luz. Mood sentences are the only place the brand voice is expressive in type.</div>
+        <div class="type-specimen__meta">
+          <span data-label="Font">Barlow 400 Italic</span>
+          <span data-label="Role">Mood sentence — editorial voice</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Font pairing -->
+    <div class="subsection">
+      <h3 class="subsection__title">Why Jost + Barlow work together</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px">
+        <div style="border:1px solid var(--border);padding:24px">
+          <div style="font-family:var(--font-heading);font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">Jost</div>
+          <div style="font-family:var(--font-heading);font-size:2rem;font-weight:300;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-heading);margin-bottom:8px">GEOMETRIC</div>
+          <div style="font-family:var(--font-body);font-size:0.8125rem;color:var(--text-muted)">Sharp, structured, authoritative. Gives the brand its backbone and premium feel.</div>
+        </div>
+        <div style="border:1px solid var(--border);padding:24px">
+          <div style="font-family:var(--font-heading);font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">Barlow</div>
+          <div style="font-family:var(--font-body);font-size:2rem;font-weight:400;color:var(--text-heading);margin-bottom:8px">Humanist</div>
+          <div style="font-family:var(--font-body);font-size:0.8125rem;color:var(--text-muted)">Rounder, warmer, approachable. Gives the brand its friendly voice and readability.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Size scale visualization -->
+    <div class="subsection">
+      <h3 class="subsection__title">Type size scale</h3>
+      <div class="size-scale">
+        <div class="size-scale__row">
+          <div class="size-scale__label">56px</div>
+          <div style="font-family:var(--font-heading);font-size:3.5rem;font-weight:300;text-transform:uppercase;letter-spacing:0.02em;color:var(--text-heading);line-height:1">Aa</div>
+        </div>
+        <div class="size-scale__row">
+          <div class="size-scale__label">32px</div>
+          <div style="font-family:var(--font-heading);font-size:2rem;font-weight:400;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-heading);line-height:1">Aa</div>
+        </div>
+        <div class="size-scale__row">
+          <div class="size-scale__label">24px</div>
+          <div style="font-family:var(--font-heading);font-size:1.5rem;font-weight:400;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-heading);line-height:1">Aa</div>
+        </div>
+        <div class="size-scale__row">
+          <div class="size-scale__label">20px</div>
+          <div style="font-family:var(--font-heading);font-size:1.25rem;font-weight:400;letter-spacing:0.04em;color:var(--text-heading);line-height:1">L. 2,870</div>
+        </div>
+        <div class="size-scale__row">
+          <div class="size-scale__label">15px</div>
+          <div style="font-family:var(--font-body);font-size:0.9375rem;font-weight:400;color:var(--text-body);line-height:1">Body text for descriptions</div>
+        </div>
+        <div class="size-scale__row">
+          <div class="size-scale__label">13px</div>
+          <div style="font-family:var(--font-heading);font-size:0.8125rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-heading);line-height:1">PRODUCT NAME</div>
+        </div>
+        <div class="size-scale__row">
+          <div class="size-scale__label">11px</div>
+          <div style="font-family:var(--font-heading);font-size:0.6875rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-heading);line-height:1">LABEL / BADGE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsive type -->
+    <div class="subsection">
+      <h3 class="subsection__title">Responsive type rules</h3>
+      <div style="font-family:var(--font-body);font-size:0.875rem;line-height:1.7;color:var(--text-body)">
+        <p style="margin-bottom:8px"><strong>Hero:</strong> 3.5rem desktop → 2.5rem tablet → 2rem mobile</p>
+        <p style="margin-bottom:8px"><strong>Section heading:</strong> 2rem desktop → 1.5rem mobile</p>
+        <p style="margin-bottom:8px"><strong>Body text:</strong> 0.9375rem stays constant (15px is readable on all devices)</p>
+        <p><strong>Labels/badges:</strong> 0.6875rem stays constant (minimum legible small caps)</p>
+      </div>
+    </div>
+
+    <!-- Do/Don't -->
+    <div class="subsection">
+      <h3 class="subsection__title">Typography do's and don'ts</h3>
+      <div class="do-dont-grid">
+        <div class="do-dont-card do-dont-card--do">
+          <div class="do-dont-card__label">Do</div>
+          <div class="do-dont-card__example">
+            <p style="font-family:var(--font-heading);font-size:0.8125rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;text-decoration:none">DEVOTION PARFUM</p>
+            <p style="font-family:var(--font-body);font-style:italic;text-decoration:none">Donde el deseo se viste de lavanda.</p>
+          </div>
+        </div>
+        <div class="do-dont-card do-dont-card--dont">
+          <div class="do-dont-card__label">Don't</div>
+          <div class="do-dont-card__example">
+            <p style="font-family:var(--font-body);font-size:0.8125rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px">DEVOTION PARFUM</p>
+            <p style="font-family:var(--font-heading);font-style:italic">Donde el deseo se viste de lavanda.</p>
+          </div>
+        </div>
+        <div class="do-dont-card do-dont-card--do">
+          <div class="do-dont-card__label">Do</div>
+          <div class="do-dont-card__example" style="text-decoration:none">
+            <p>Jost for headings, navigation, badges, prices</p>
+            <p>Barlow for body text, descriptions, mood sentences</p>
+          </div>
+        </div>
+        <div class="do-dont-card do-dont-card--dont">
+          <div class="do-dont-card__label">Don't</div>
+          <div class="do-dont-card__example">
+            <p>Mix Jost and Barlow in the same element</p>
+            <p>Use serif fonts anywhere</p>
+            <p>Use Jost for body text or Barlow for headings</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     5. SPACING & LAYOUT
+     ═══════════════════════════════════════ -->
+<section class="section" id="spacing">
+  <div class="container">
+    <div class="section__label">05</div>
+    <h2 class="section__title">Spacing &amp; Layout</h2>
+    <p class="section__desc">A deliberate spacing scale creates visual rhythm. Generous whitespace is the luxury signal — it says we have room to breathe.</p>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Spacing scale</h3>
+      <div class="spacing-demo">
+        <div class="spacing-block">
+          <div class="spacing-block__bar" style="height:8px"></div>
+          <div class="spacing-block__label">xs<br>8px</div>
+        </div>
+        <div class="spacing-block">
+          <div class="spacing-block__bar" style="height:16px"></div>
+          <div class="spacing-block__label">sm<br>16px</div>
+        </div>
+        <div class="spacing-block">
+          <div class="spacing-block__bar" style="height:24px"></div>
+          <div class="spacing-block__label">md<br>24px</div>
+        </div>
+        <div class="spacing-block">
+          <div class="spacing-block__bar" style="height:40px"></div>
+          <div class="spacing-block__label">lg<br>40px</div>
+        </div>
+        <div class="spacing-block">
+          <div class="spacing-block__bar" style="height:64px"></div>
+          <div class="spacing-block__label">xl<br>64px</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Grid system</h3>
+      <div style="font-family:var(--font-body);font-size:0.875rem;line-height:1.7;color:var(--text-body);margin-bottom:24px">
+        <p style="margin-bottom:8px"><strong>Max width:</strong> 1600px</p>
+        <p style="margin-bottom:8px"><strong>Desktop:</strong> 20 columns · 40px gutter · 64px vertical rhythm</p>
+        <p style="margin-bottom:8px"><strong>Tablet:</strong> 10 columns · 24px gutter · 48px vertical rhythm</p>
+        <p><strong>Mobile:</strong> 10 columns · 24px gutter · 36px vertical rhythm</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Border radius comparison</h3>
+      <div style="display:flex;gap:32px;flex-wrap:wrap">
+        <div style="text-align:center">
+          <div style="width:120px;height:80px;border:2px solid var(--primary);border-radius:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:0.625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--primary);margin-bottom:8px">Storefront</div>
+          <div style="font-family:var(--font-mono);font-size:0.6875rem;color:var(--text-muted)">0px — sharp, editorial</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:120px;height:80px;border:2px solid var(--primary);border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:0.625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--primary);margin-bottom:8px">Internal</div>
+          <div style="font-family:var(--font-mono);font-size:0.6875rem;color:var(--text-muted)">14px — soft, efficient</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Shadow tokens</h3>
+      <div class="shadow-demo">
+        <div class="shadow-card" style="box-shadow:var(--shadow-sm)">shadow-sm</div>
+        <div class="shadow-card" style="box-shadow:var(--shadow-md)">shadow-md</div>
+        <div class="shadow-card" style="box-shadow:var(--shadow-lg)">shadow-lg</div>
+        <div class="shadow-card" style="box-shadow:var(--shadow-accent)">shadow-accent</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     6. COMPONENTS
+     ═══════════════════════════════════════ -->
+<section class="section" id="components">
+  <div class="container">
+    <div class="section__label">06</div>
+    <h2 class="section__title">Components</h2>
+    <p class="section__desc">Every component shows default, hover, focus, active, and disabled states. All interactive elements use --accent-cta (#C96518) for WCAG AA compliance with white text.</p>
+
+    <!-- BUTTONS -->
+    <div class="subsection">
+      <h3 class="subsection__title">Buttons</h3>
+
+      <div class="component-group">
+        <div class="component-group__title">Types</div>
+        <div class="component-row">
+          <button class="btn btn--primary">Primary</button>
+          <button class="btn btn--secondary">Secondary</button>
+          <button class="btn btn--cta">Comprar Ahora</button>
+          <button class="btn btn--ghost">Ghost</button>
+          <button class="btn btn--text">Text Link</button>
+          <button class="btn btn--icon" aria-label="Wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button class="btn btn--destructive">Eliminar</button>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <div class="component-group__title">Sizes</div>
+        <div class="component-row">
+          <button class="btn btn--primary btn--sm">Small · 36px</button>
+          <button class="btn btn--primary">Default · 48px</button>
+          <button class="btn btn--primary btn--lg">Large · 56px</button>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <div class="component-group__title">States</div>
+        <div class="component-row">
+          <button class="btn btn--cta">Default</button>
+          <button class="btn btn--cta" style="background:var(--accent-cta-hover)">Hover</button>
+          <button class="btn btn--cta btn--loading">Loading</button>
+          <button class="btn btn--cta" disabled>Disabled</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BADGES -->
+    <div class="subsection">
+      <h3 class="subsection__title">Badges</h3>
+      <div class="component-group">
+        <div class="component-group__title">Product badges</div>
+        <div class="component-row">
+          <span class="badge badge--new">Nuevo</span>
+          <span class="badge badge--limited">Edición Limitada</span>
+          <span class="badge badge--exclusive">Exclusivo</span>
+          <span class="badge badge--classic">Clásico</span>
+          <span class="badge badge--sale">-20%</span>
+          <span class="badge badge--oos">Agotado</span>
+        </div>
+      </div>
+      <div class="component-group">
+        <div class="component-group__title">Gender markers</div>
+        <div class="component-row">
+          <span class="badge badge--gender">Para Él</span>
+          <span class="badge badge--gender">Para Ella</span>
+          <span class="badge badge--gender">Unisex</span>
+        </div>
+      </div>
+      <div class="component-group">
+        <div class="component-group__title">Spec badges</div>
+        <div class="component-row">
+          <span class="badge badge--classic">EDP</span>
+          <span class="badge badge--classic">EDT</span>
+          <span class="badge badge--classic">Parfum</span>
+          <span class="badge badge--classic">100 ml</span>
+          <span class="badge badge--classic">50 ml</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAR RATING -->
+    <div class="subsection">
+      <h3 class="subsection__title">Star rating</h3>
+      <div class="component-group">
+        <div class="component-row" style="gap:24px">
+          <!-- 5 stars -->
+          <div>
+            <div class="star-rating">
+              <svg viewBox="0 0 24 24" fill="#E87722"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E87722"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E87722"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E87722"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E87722"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span class="star-rating__count">(47)</span>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--text-muted);margin-top:4px">5.0 — Full</div>
+          </div>
+          <!-- 4.5 stars -->
+          <div>
+            <div class="star-rating">
+              <svg viewBox="0 0 24 24" fill="#E87722"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E87722"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E87722"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E87722"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs><linearGradient id="half"><stop offset="50%" stop-color="#E87722"/><stop offset="50%" stop-color="#E0E0E0"/></linearGradient></defs>
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#half)"/>
+              </svg>
+              <span class="star-rating__count">(23)</span>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--text-muted);margin-top:4px">4.5 — Half star</div>
+          </div>
+          <!-- 0 stars -->
+          <div>
+            <div class="star-rating">
+              <svg viewBox="0 0 24 24" fill="#E0E0E0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E0E0E0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E0E0E0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E0E0E0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#E0E0E0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span class="star-rating__count">(0)</span>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--text-muted);margin-top:4px">0 — Empty</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICE DISPLAY -->
+    <div class="subsection">
+      <h3 class="subsection__title">Price display</h3>
+      <div class="component-group">
+        <div class="component-row" style="gap:40px">
+          <div>
+            <div class="price-display">
+              <span class="price-display__current">L. 5,799</span>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--text-muted);margin-top:4px">Regular price</div>
+          </div>
+          <div>
+            <div class="price-display">
+              <span class="price-display__current price-display__current--sale">L. 4,639</span>
+              <span class="price-display__original">L. 5,799</span>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--text-muted);margin-top:4px">Sale price</div>
+          </div>
+          <div>
+            <div class="price-display">
+              <span class="price-display__current">L. 5,799</span>
+              <span class="price-display__per-ml">L. 57.99/ml</span>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--text-muted);margin-top:4px">Price per ml</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIZE SELECTOR -->
+    <div class="subsection">
+      <h3 class="subsection__title">Size selector</h3>
+      <div class="component-row">
+        <div class="size-selector">
+          <button class="size-selector__option">30 ML</button>
+          <button class="size-selector__option size-selector__option--active">50 ML</button>
+          <button class="size-selector__option">100 ML</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STOCK INDICATOR -->
+    <div class="subsection">
+      <h3 class="subsection__title">Stock indicator</h3>
+      <div class="component-row" style="gap:32px">
+        <div class="stock-indicator stock-indicator--in">
+          <div class="stock-dot"></div>
+          Disponible
+        </div>
+        <div class="stock-indicator stock-indicator--low">
+          <div class="stock-dot"></div>
+          Quedan pocas unidades
+        </div>
+        <div class="stock-indicator stock-indicator--out">
+          <div class="stock-dot"></div>
+          Agotado
+        </div>
+      </div>
+    </div>
+
+    <!-- QUANTITY STEPPER -->
+    <div class="subsection">
+      <h3 class="subsection__title">Quantity stepper</h3>
+      <div class="component-row">
+        <div class="qty-stepper">
+          <button class="qty-stepper__btn" aria-label="Decrease quantity">−</button>
+          <input class="qty-stepper__input" type="number" value="1" min="1" max="10" aria-label="Quantity">
+          <button class="qty-stepper__btn" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT CARD -->
+    <div class="subsection">
+      <h3 class="subsection__title">Product card</h3>
+      <div class="component-row" style="gap:24px;align-items:flex-start">
+        <!-- Full featured card -->
+        <div class="card-demo">
+          <div class="card-demo__img">
+            <span class="card-demo__img-placeholder">Product Image</span>
+            <div class="card-demo__badges">
+              <span class="badge badge--new" style="font-size:0.5625rem;padding:3px 8px">Nuevo</span>
+            </div>
+            <button class="card-demo__wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+          <div class="card-demo__body">
+            <div class="card-demo__brand">Dolce &amp; Gabbana</div>
+            <div class="card-demo__name">Devotion Parfum</div>
+            <div class="card-demo__mood">Donde el deseo se viste de lavanda y la noche huele a promesa.</div>
+            <div class="card-demo__specs">
+              <span class="badge badge--classic" style="font-size:0.5625rem;padding:3px 8px">EDP</span>
+              <span class="badge badge--classic" style="font-size:0.5625rem;padding:3px 8px">100 ml</span>
+              <span class="badge badge--gender" style="font-size:0.5625rem;padding:3px 8px">Para Ella</span>
+            </div>
+            <div class="card-demo__pricing">
+              <span class="card-demo__price">L. 5,799</span>
+            </div>
+            <div class="card-demo__stock card-demo__stock--in">
+              <div class="card-demo__stock-dot"></div>
+              Disponible
+            </div>
+            <button class="btn btn--cta" style="width:100%;height:44px">Pedir por WhatsApp</button>
+          </div>
+        </div>
+        <!-- Sale card -->
+        <div class="card-demo">
+          <div class="card-demo__img">
+            <span class="card-demo__img-placeholder">Product Image</span>
+            <div class="card-demo__badges">
+              <span class="badge badge--sale" style="font-size:0.5625rem;padding:3px 8px">-20%</span>
+            </div>
+            <button class="card-demo__wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+          <div class="card-demo__body">
+            <div class="card-demo__brand">Versace</div>
+            <div class="card-demo__name">Dylan Blue</div>
+            <div class="card-demo__mood">Mediterráneo después de la tormenta. Sal, higo, algo que no puedes nombrar.</div>
+            <div class="card-demo__specs">
+              <span class="badge badge--classic" style="font-size:0.5625rem;padding:3px 8px">EDT</span>
+              <span class="badge badge--classic" style="font-size:0.5625rem;padding:3px 8px">200 ml</span>
+              <span class="badge badge--gender" style="font-size:0.5625rem;padding:3px 8px">Para Él</span>
+            </div>
+            <div class="card-demo__pricing">
+              <span class="card-demo__price card-demo__price--sale">L. 2,296</span>
+              <span class="card-demo__price--original">L. 2,870</span>
+            </div>
+            <div class="card-demo__stock card-demo__stock--low">
+              <div class="card-demo__stock-dot"></div>
+              Quedan 3
+            </div>
+            <button class="btn btn--cta" style="width:100%;height:44px">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INPUT FIELDS -->
+    <div class="subsection">
+      <h3 class="subsection__title">Input fields</h3>
+      <div class="component-row" style="gap:24px;align-items:flex-start">
+        <div class="input-group">
+          <label class="input-group__label">Nombre completo</label>
+          <input class="input-field" type="text" placeholder="Tu nombre">
+          <span class="input-group__helper">Tal como aparece en tu documento.</span>
+        </div>
+        <div class="input-group">
+          <label class="input-group__label">Email</label>
+          <input class="input-field input-field--error" type="email" value="invalido">
+          <span class="input-group__helper input-group__helper--error">Ingresa un email válido.</span>
+        </div>
+        <div class="input-group">
+          <label class="input-group__label">Teléfono</label>
+          <input class="input-field" type="text" value="+504 9999-9999" disabled>
+          <span class="input-group__helper">Este campo no se puede editar.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div class="subsection">
+      <h3 class="subsection__title">Search bar</h3>
+      <div class="component-row">
+        <div class="search-bar">
+          <svg class="search-bar__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input class="search-bar__input" type="text" placeholder="Buscar fragancias...">
+          <button class="search-bar__clear" aria-label="Clear search">&times;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOASTS -->
+    <div class="subsection">
+      <h3 class="subsection__title">Toast / Notification</h3>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="toast toast--success">
+          <svg class="toast__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <span class="toast__message">Producto agregado al carrito exitosamente.</span>
+          <button class="toast__close" aria-label="Close">&times;</button>
+        </div>
+        <div class="toast toast--error">
+          <svg class="toast__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+          <span class="toast__message">No pudimos procesar tu pedido. Intenta de nuevo.</span>
+          <button class="toast__close" aria-label="Close">&times;</button>
+        </div>
+        <div class="toast toast--info">
+          <svg class="toast__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <span class="toast__message">Tu orden está siendo procesada. Recibirás un mensaje pronto.</span>
+          <button class="toast__close" aria-label="Close">&times;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BREADCRUMB -->
+    <div class="subsection">
+      <h3 class="subsection__title">Breadcrumb</h3>
+      <div class="component-row">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a class="breadcrumb__link" href="#">Inicio</a>
+          <span class="breadcrumb__sep">/</span>
+          <a class="breadcrumb__link" href="#">Hombre</a>
+          <span class="breadcrumb__sep">/</span>
+          <a class="breadcrumb__link" href="#">Eau de Parfum</a>
+          <span class="breadcrumb__sep">/</span>
+          <span class="breadcrumb__current">Devotion Parfum</span>
+        </nav>
+      </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="subsection">
+      <h3 class="subsection__title">Modal</h3>
+      <div class="modal-demo">
+        <div class="modal-demo__header">
+          <span class="modal-demo__title">Confirmar pedido</span>
+          <button class="modal-demo__close" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal-demo__body">
+          Estás a punto de enviar tu pedido por WhatsApp. Se abrirá una conversación con nuestro equipo para confirmar disponibilidad y coordinar la entrega.
+        </div>
+        <div class="modal-demo__footer">
+          <button class="btn btn--secondary btn--sm">Cancelar</button>
+          <button class="btn btn--cta btn--sm">Confirmar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKELETON LOADER -->
+    <div class="subsection">
+      <h3 class="subsection__title">Skeleton loader</h3>
+      <div style="width:300px;border:1px solid var(--border);overflow:hidden">
+        <div class="skeleton" style="height:200px"></div>
+        <div style="padding:16px">
+          <div class="skeleton" style="height:12px;width:40%;margin-bottom:8px"></div>
+          <div class="skeleton" style="height:14px;width:70%;margin-bottom:12px"></div>
+          <div class="skeleton" style="height:12px;width:100%;margin-bottom:6px"></div>
+          <div class="skeleton" style="height:12px;width:80%;margin-bottom:16px"></div>
+          <div class="skeleton" style="height:20px;width:35%;margin-bottom:12px"></div>
+          <div class="skeleton" style="height:44px;width:100%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="subsection">
+      <h3 class="subsection__title">Navigation header</h3>
+      <div class="nav-demo">
+        <div class="nav-demo__logo">Privé</div>
+        <nav class="nav-demo__links">
+          <a href="#" class="nav-demo__link nav-demo__link--active">Hombre</a>
+          <a href="#" class="nav-demo__link">Mujer</a>
+          <a href="#" class="nav-demo__link">Unisex</a>
+          <a href="#" class="nav-demo__link">Nuevo</a>
+        </nav>
+        <div class="nav-demo__icons">
+          <svg class="nav-demo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <svg class="nav-demo__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="subsection">
+      <h3 class="subsection__title">Footer</h3>
+      <div class="footer-demo">
+        <div class="footer-demo__grid">
+          <div>
+            <div class="footer-demo__brand">Privé Perfumes</div>
+            <div class="footer-demo__desc">Tu destino de fragancias en Honduras. Perfumes originales con garantía de autenticidad.</div>
+            <div class="footer-demo__social">
+              <a href="#" class="footer-demo__social-icon" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+              </a>
+              <a href="#" class="footer-demo__social-icon" aria-label="WhatsApp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.264-1.227l-.306-.182-2.894.86.86-2.894-.182-.306A7.96 7.96 0 014 12a8 8 0 1116 0 8 8 0 01-8 8z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-demo__heading">Categorías</div>
+            <a href="#" class="footer-demo__link">Hombre</a>
+            <a href="#" class="footer-demo__link">Mujer</a>
+            <a href="#" class="footer-demo__link">Unisex</a>
+            <a href="#" class="footer-demo__link">Nuevo</a>
+          </div>
+          <div>
+            <div class="footer-demo__heading">Soporte</div>
+            <a href="#" class="footer-demo__link">Contacto</a>
+            <a href="#" class="footer-demo__link">Envíos</a>
+            <a href="#" class="footer-demo__link">Devoluciones</a>
+          </div>
+          <div>
+            <div class="footer-demo__heading">Legal</div>
+            <a href="#" class="footer-demo__link">Privacidad</a>
+            <a href="#" class="footer-demo__link">Términos</a>
+          </div>
+        </div>
+        <div class="footer-demo__bottom">
+          &copy; 2026 Privé Perfumes. Tegucigalpa, Honduras.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     7. BRAND VOICE
+     ═══════════════════════════════════════ -->
+<section class="section" id="voice">
+  <div class="container">
+    <div class="section__label">07</div>
+    <h2 class="section__title">Brand Voice</h2>
+    <p class="section__desc">Privé speaks like a knowledgeable friend recommending something special. Direct, warm, never performative. Spanish-first for all customer-facing content.</p>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Personality traits</h3>
+      <div class="personality-grid">
+        <div class="personality-card">
+          <div class="personality-card__trait">Confident</div>
+          <div class="personality-card__anti">not arrogant</div>
+          <div class="personality-card__desc">We know our products. We don't need to prove it with logos everywhere or excessive superlatives.</div>
+        </div>
+        <div class="personality-card">
+          <div class="personality-card__trait">Warm</div>
+          <div class="personality-card__anti">not casual</div>
+          <div class="personality-card__desc">Every interaction feels personal, like a recommendation from someone who genuinely understands fragrance.</div>
+        </div>
+        <div class="personality-card">
+          <div class="personality-card__trait">Masculine-leaning</div>
+          <div class="personality-card__anti">not exclusionary</div>
+          <div class="personality-card__desc">The navy + orange palette has masculine energy, but warmth keeps it open. A well-designed men's store that women also love browsing.</div>
+        </div>
+        <div class="personality-card">
+          <div class="personality-card__trait">Premium</div>
+          <div class="personality-card__anti">not expensive</div>
+          <div class="personality-card__desc">We signal quality through restraint and detail. Whitespace is our luxury signal, not gold or price flashing.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Tone spectrum</h3>
+      <div class="tone-spectrum">
+        <div class="tone-spectrum__marker">
+          <div class="tone-spectrum__marker-label">Privé</div>
+        </div>
+        <div class="tone-spectrum__labels">
+          <span>Formal</span>
+          <span>Casual</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Do's and don'ts</h3>
+      <div class="do-dont-grid" style="margin-bottom:24px">
+        <div class="do-dont-card do-dont-card--do">
+          <div class="do-dont-card__label">Do — Mood over notes</div>
+          <div class="do-dont-card__example" style="text-decoration:none">
+            <p style="font-style:italic">"La hora azul, antes de que alguien encienda una luz."</p>
+          </div>
+        </div>
+        <div class="do-dont-card do-dont-card--dont">
+          <div class="do-dont-card__label">Don't — Generic note listing</div>
+          <div class="do-dont-card__example">
+            <p>"Bergamota, pachulí, sándalo."</p>
+          </div>
+        </div>
+      </div>
+      <div class="do-dont-grid" style="margin-bottom:24px">
+        <div class="do-dont-card do-dont-card--do">
+          <div class="do-dont-card__label">Do — Direct, respectful</div>
+          <div class="do-dont-card__example" style="text-decoration:none">
+            <p>"Nuevo en tienda. Pruébalo antes que nadie."</p>
+          </div>
+        </div>
+        <div class="do-dont-card do-dont-card--dont">
+          <div class="do-dont-card__label">Don't — Hashtag spam</div>
+          <div class="do-dont-card__example">
+            <p>"#Luxury #Perfume #Honduras #NewArrival #FragranceLovers"</p>
+          </div>
+        </div>
+      </div>
+      <div class="do-dont-grid">
+        <div class="do-dont-card do-dont-card--do">
+          <div class="do-dont-card__label">Do — Spanish-first</div>
+          <div class="do-dont-card__example" style="text-decoration:none">
+            <p>"Disponible para entrega inmediata en Tegucigalpa."</p>
+          </div>
+        </div>
+        <div class="do-dont-card do-dont-card--dont">
+          <div class="do-dont-card__label">Don't — AI slop</div>
+          <div class="do-dont-card__example">
+            <p>"Unleash your inner confidence with this must-have fragrance!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection__title">Spanish-first rule</h3>
+      <div style="font-family:var(--font-body);font-size:0.875rem;line-height:1.7;color:var(--text-body)">
+        <p style="margin-bottom:8px"><strong>Customer-facing:</strong> Always Spanish. Product descriptions, social media, email, WhatsApp, all marketing.</p>
+        <p style="margin-bottom:8px"><strong>Internal:</strong> English for code, docs, and developer tools.</p>
+        <p style="margin-bottom:8px"><strong>Price format:</strong> L. X,XXX (period for thousands, comma for decimals in amounts under 1)</p>
+        <p><strong>Max emojis:</strong> 2 per asset. Zero in editorial contexts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     8. DESIGN TOKENS
+     ═══════════════════════════════════════ -->
+<section class="section" id="tokens">
+  <div class="container">
+    <div class="section__label">08</div>
+    <h2 class="section__title">Design Tokens</h2>
+    <p class="section__desc">Copy-ready tokens in multiple formats. These are the single source of truth for color, type, spacing, and component values.</p>
+
+    <!-- CSS Custom Properties -->
+    <div class="code-section">
+      <div class="code-section__header">
+        <span class="code-section__title">CSS Custom Properties</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-block"><span class="c">/* Privé Design System v2.1.0 — CSS Tokens */</span>
+<span class="s">:root</span> <span class="p">{</span>
+  <span class="c">/* Core */</span>
+  <span class="k">--primary</span><span class="p">:</span> <span class="v">#192E49</span><span class="p">;</span>
+  <span class="k">--on-primary</span><span class="p">:</span> <span class="v">#FFFFFF</span><span class="p">;</span>
+  <span class="k">--text-heading</span><span class="p">:</span> <span class="v">#192E49</span><span class="p">;</span>
+  <span class="k">--text-body</span><span class="p">:</span> <span class="v">#2E2E2E</span><span class="p">;</span>
+  <span class="k">--text-muted</span><span class="p">:</span> <span class="v">#6E6E6E</span><span class="p">;</span>
+  <span class="k">--background</span><span class="p">:</span> <span class="v">#FFFFFF</span><span class="p">;</span>
+  <span class="k">--surface</span><span class="p">:</span> <span class="v">#F5F1EC</span><span class="p">;</span>
+  <span class="k">--border</span><span class="p">:</span> <span class="v">#E0E0E0</span><span class="p">;</span>
+  <span class="k">--border-strong</span><span class="p">:</span> <span class="v">#ABABAB</span><span class="p">;</span>
+
+  <span class="c">/* Accent — Display (decorative, large fills) */</span>
+  <span class="k">--accent</span><span class="p">:</span> <span class="v">#E87722</span><span class="p">;</span>
+  <span class="k">--accent-light</span><span class="p">:</span> <span class="v">#FFF3ED</span><span class="p">;</span>
+
+  <span class="c">/* Accent — CTA (interactive, meets WCAG AA) */</span>
+  <span class="k">--accent-cta</span><span class="p">:</span> <span class="v">#C96518</span><span class="p">;</span>
+  <span class="k">--accent-cta-hover</span><span class="p">:</span> <span class="v">#A85310</span><span class="p">;</span>
+
+  <span class="c">/* Accent scale */</span>
+  <span class="k">--accent-50</span><span class="p">:</span> <span class="v">#FFF3ED</span><span class="p">;</span>
+  <span class="k">--accent-100</span><span class="p">:</span> <span class="v">#FFE0C8</span><span class="p">;</span>
+  <span class="k">--accent-200</span><span class="p">:</span> <span class="v">#FFCBA3</span><span class="p">;</span>
+  <span class="k">--accent-300</span><span class="p">:</span> <span class="v">#FFB17A</span><span class="p">;</span>
+  <span class="k">--accent-400</span><span class="p">:</span> <span class="v">#F49345</span><span class="p">;</span>
+  <span class="k">--accent-500</span><span class="p">:</span> <span class="v">#E87722</span><span class="p">;</span>
+  <span class="k">--accent-600</span><span class="p">:</span> <span class="v">#C96518</span><span class="p">;</span>
+  <span class="k">--accent-700</span><span class="p">:</span> <span class="v">#A85310</span><span class="p">;</span>
+  <span class="k">--accent-800</span><span class="p">:</span> <span class="v">#8A420D</span><span class="p">;</span>
+  <span class="k">--accent-900</span><span class="p">:</span> <span class="v">#6E340A</span><span class="p">;</span>
+
+  <span class="c">/* Navy scale */</span>
+  <span class="k">--navy-50</span><span class="p">:</span> <span class="v">#E8EDF3</span><span class="p">;</span>
+  <span class="k">--navy-100</span><span class="p">:</span> <span class="v">#C5D0DE</span><span class="p">;</span>
+  <span class="k">--navy-200</span><span class="p">:</span> <span class="v">#9FB2C8</span><span class="p">;</span>
+  <span class="k">--navy-300</span><span class="p">:</span> <span class="v">#7893B1</span><span class="p">;</span>
+  <span class="k">--navy-400</span><span class="p">:</span> <span class="v">#5A7BA0</span><span class="p">;</span>
+  <span class="k">--navy-500</span><span class="p">:</span> <span class="v">#3D638F</span><span class="p">;</span>
+  <span class="k">--navy-600</span><span class="p">:</span> <span class="v">#2E4C72</span><span class="p">;</span>
+  <span class="k">--navy-700</span><span class="p">:</span> <span class="v">#213A5A</span><span class="p">;</span>
+  <span class="k">--navy-800</span><span class="p">:</span> <span class="v">#192E49</span><span class="p">;</span>
+  <span class="k">--navy-900</span><span class="p">:</span> <span class="v">#0E1B2D</span><span class="p">;</span>
+
+  <span class="c">/* Specialty */</span>
+  <span class="k">--accent-gold</span><span class="p">:</span> <span class="v">#B8956A</span><span class="p">;</span>
+  <span class="k">--success</span><span class="p">:</span> <span class="v">#5A7A6F</span><span class="p">;</span>
+  <span class="k">--success-bg</span><span class="p">:</span> <span class="v">#DEE4E2</span><span class="p">;</span>
+  <span class="k">--warning</span><span class="p">:</span> <span class="v">#D4950B</span><span class="p">;</span>
+  <span class="k">--warning-bg</span><span class="p">:</span> <span class="v">#FDF6E3</span><span class="p">;</span>
+  <span class="k">--error</span><span class="p">:</span> <span class="v">#B3332B</span><span class="p">;</span>
+  <span class="k">--error-bg</span><span class="p">:</span> <span class="v">#FAF1F0</span><span class="p">;</span>
+
+  <span class="c">/* Typography */</span>
+  <span class="k">--font-heading</span><span class="p">:</span> <span class="v">'Jost', sans-serif</span><span class="p">;</span>
+  <span class="k">--font-body</span><span class="p">:</span> <span class="v">'Barlow', sans-serif</span><span class="p">;</span>
+
+  <span class="c">/* Spacing */</span>
+  <span class="k">--space-xs</span><span class="p">:</span> <span class="n">8px</span><span class="p">;</span>
+  <span class="k">--space-sm</span><span class="p">:</span> <span class="n">16px</span><span class="p">;</span>
+  <span class="k">--space-md</span><span class="p">:</span> <span class="n">24px</span><span class="p">;</span>
+  <span class="k">--space-lg</span><span class="p">:</span> <span class="n">40px</span><span class="p">;</span>
+  <span class="k">--space-xl</span><span class="p">:</span> <span class="n">64px</span><span class="p">;</span>
+
+  <span class="c">/* Radii */</span>
+  <span class="k">--radius-storefront</span><span class="p">:</span> <span class="n">0px</span><span class="p">;</span>
+  <span class="k">--radius-internal</span><span class="p">:</span> <span class="n">14px</span><span class="p">;</span>
+
+  <span class="c">/* Shadows */</span>
+  <span class="k">--shadow-sm</span><span class="p">:</span> <span class="v">0 1px 3px rgba(0,0,0,0.04)</span><span class="p">;</span>
+  <span class="k">--shadow-md</span><span class="p">:</span> <span class="v">0 4px 12px rgba(0,0,0,0.06)</span><span class="p">;</span>
+  <span class="k">--shadow-lg</span><span class="p">:</span> <span class="v">0 8px 24px rgba(0,0,0,0.08)</span><span class="p">;</span>
+<span class="p">}</span></div>
+    </div>
+
+    <!-- Tailwind Config -->
+    <div class="code-section">
+      <div class="code-section__header">
+        <span class="code-section__title">Tailwind Config</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-block"><span class="c">// tailwind.config.js — Privé Design System v2.1.0</span>
+<span class="s">module.exports</span> <span class="p">= {</span>
+  <span class="k">theme</span><span class="p">: {</span>
+    <span class="k">extend</span><span class="p">: {</span>
+      <span class="k">colors</span><span class="p">: {</span>
+        <span class="k">navy</span><span class="p">: {</span>
+          <span class="n">50</span><span class="p">:</span> <span class="v">'#E8EDF3'</span><span class="p">,</span>
+          <span class="n">100</span><span class="p">:</span> <span class="v">'#C5D0DE'</span><span class="p">,</span>
+          <span class="n">200</span><span class="p">:</span> <span class="v">'#9FB2C8'</span><span class="p">,</span>
+          <span class="n">300</span><span class="p">:</span> <span class="v">'#7893B1'</span><span class="p">,</span>
+          <span class="n">400</span><span class="p">:</span> <span class="v">'#5A7BA0'</span><span class="p">,</span>
+          <span class="n">500</span><span class="p">:</span> <span class="v">'#3D638F'</span><span class="p">,</span>
+          <span class="n">600</span><span class="p">:</span> <span class="v">'#2E4C72'</span><span class="p">,</span>
+          <span class="n">700</span><span class="p">:</span> <span class="v">'#213A5A'</span><span class="p">,</span>
+          <span class="n">800</span><span class="p">:</span> <span class="v">'#192E49'</span><span class="p">,</span>
+          <span class="n">900</span><span class="p">:</span> <span class="v">'#0E1B2D'</span><span class="p">,</span>
+          <span class="k">DEFAULT</span><span class="p">:</span> <span class="v">'#192E49'</span>
+        <span class="p">},</span>
+        <span class="k">accent</span><span class="p">: {</span>
+          <span class="n">50</span><span class="p">:</span> <span class="v">'#FFF3ED'</span><span class="p">,</span>
+          <span class="n">100</span><span class="p">:</span> <span class="v">'#FFE0C8'</span><span class="p">,</span>
+          <span class="n">200</span><span class="p">:</span> <span class="v">'#FFCBA3'</span><span class="p">,</span>
+          <span class="n">300</span><span class="p">:</span> <span class="v">'#FFB17A'</span><span class="p">,</span>
+          <span class="n">400</span><span class="p">:</span> <span class="v">'#F49345'</span><span class="p">,</span>
+          <span class="n">500</span><span class="p">:</span> <span class="v">'#E87722'</span><span class="p">,</span>
+          <span class="n">600</span><span class="p">:</span> <span class="v">'#C96518'</span><span class="p">,</span>
+          <span class="n">700</span><span class="p">:</span> <span class="v">'#A85310'</span><span class="p">,</span>
+          <span class="n">800</span><span class="p">:</span> <span class="v">'#8A420D'</span><span class="p">,</span>
+          <span class="n">900</span><span class="p">:</span> <span class="v">'#6E340A'</span><span class="p">,</span>
+          <span class="k">DEFAULT</span><span class="p">:</span> <span class="v">'#E87722'</span><span class="p">,</span>
+          <span class="k">cta</span><span class="p">:</span> <span class="v">'#C96518'</span><span class="p">,</span>
+          <span class="k">gold</span><span class="p">:</span> <span class="v">'#B8956A'</span>
+        <span class="p">},</span>
+        <span class="k">surface</span><span class="p">:</span> <span class="v">'#F5F1EC'</span><span class="p">,</span>
+        <span class="k">success</span><span class="p">:</span> <span class="v">'#5A7A6F'</span><span class="p">,</span>
+        <span class="k">warning</span><span class="p">:</span> <span class="v">'#D4950B'</span><span class="p">,</span>
+        <span class="k">error</span><span class="p">:</span> <span class="v">'#B3332B'</span>
+      <span class="p">},</span>
+      <span class="k">fontFamily</span><span class="p">: {</span>
+        <span class="k">heading</span><span class="p">:</span> <span class="v">['Jost', 'sans-serif']</span><span class="p">,</span>
+        <span class="k">body</span><span class="p">:</span> <span class="v">['Barlow', 'sans-serif']</span>
+      <span class="p">},</span>
+      <span class="k">spacing</span><span class="p">: {</span>
+        <span class="k">xs</span><span class="p">:</span> <span class="v">'8px'</span><span class="p">,</span> <span class="k">sm</span><span class="p">:</span> <span class="v">'16px'</span><span class="p">,</span> <span class="k">md</span><span class="p">:</span> <span class="v">'24px'</span><span class="p">,</span>
+        <span class="k">lg</span><span class="p">:</span> <span class="v">'40px'</span><span class="p">,</span> <span class="k">xl</span><span class="p">:</span> <span class="v">'64px'</span>
+      <span class="p">},</span>
+      <span class="k">borderRadius</span><span class="p">: {</span>
+        <span class="k">storefront</span><span class="p">:</span> <span class="v">'0px'</span><span class="p">,</span>
+        <span class="k">internal</span><span class="p">:</span> <span class="v">'14px'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></div>
+    </div>
+
+    <!-- JSON Tokens -->
+    <div class="code-section">
+      <div class="code-section__header">
+        <span class="code-section__title">JSON Tokens</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-block"><span class="p">{</span>
+  <span class="k">"color"</span><span class="p">: {</span>
+    <span class="k">"primary"</span><span class="p">:</span> <span class="v">"#192E49"</span><span class="p">,</span>
+    <span class="k">"on-primary"</span><span class="p">:</span> <span class="v">"#FFFFFF"</span><span class="p">,</span>
+    <span class="k">"text-heading"</span><span class="p">:</span> <span class="v">"#192E49"</span><span class="p">,</span>
+    <span class="k">"text-body"</span><span class="p">:</span> <span class="v">"#2E2E2E"</span><span class="p">,</span>
+    <span class="k">"text-muted"</span><span class="p">:</span> <span class="v">"#6E6E6E"</span><span class="p">,</span>
+    <span class="k">"background"</span><span class="p">:</span> <span class="v">"#FFFFFF"</span><span class="p">,</span>
+    <span class="k">"surface"</span><span class="p">:</span> <span class="v">"#F5F1EC"</span><span class="p">,</span>
+    <span class="k">"border"</span><span class="p">:</span> <span class="v">"#E0E0E0"</span><span class="p">,</span>
+    <span class="k">"accent"</span><span class="p">:</span> <span class="v">"#E87722"</span><span class="p">,</span>
+    <span class="k">"accent-cta"</span><span class="p">:</span> <span class="v">"#C96518"</span><span class="p">,</span>
+    <span class="k">"accent-cta-hover"</span><span class="p">:</span> <span class="v">"#A85310"</span><span class="p">,</span>
+    <span class="k">"accent-light"</span><span class="p">:</span> <span class="v">"#FFF3ED"</span><span class="p">,</span>
+    <span class="k">"accent-gold"</span><span class="p">:</span> <span class="v">"#B8956A"</span><span class="p">,</span>
+    <span class="k">"success"</span><span class="p">:</span> <span class="v">"#5A7A6F"</span><span class="p">,</span>
+    <span class="k">"warning"</span><span class="p">:</span> <span class="v">"#D4950B"</span><span class="p">,</span>
+    <span class="k">"error"</span><span class="p">:</span> <span class="v">"#B3332B"</span>
+  <span class="p">},</span>
+  <span class="k">"typography"</span><span class="p">: {</span>
+    <span class="k">"heading"</span><span class="p">:</span> <span class="v">"Jost"</span><span class="p">,</span>
+    <span class="k">"body"</span><span class="p">:</span> <span class="v">"Barlow"</span>
+  <span class="p">},</span>
+  <span class="k">"spacing"</span><span class="p">: {</span>
+    <span class="k">"xs"</span><span class="p">:</span> <span class="n">8</span><span class="p">,</span> <span class="k">"sm"</span><span class="p">:</span> <span class="n">16</span><span class="p">,</span> <span class="k">"md"</span><span class="p">:</span> <span class="n">24</span><span class="p">,</span>
+    <span class="k">"lg"</span><span class="p">:</span> <span class="n">40</span><span class="p">,</span> <span class="k">"xl"</span><span class="p">:</span> <span class="n">64</span>
+  <span class="p">},</span>
+  <span class="k">"radius"</span><span class="p">: {</span>
+    <span class="k">"storefront"</span><span class="p">:</span> <span class="n">0</span><span class="p">,</span>
+    <span class="k">"internal"</span><span class="p">:</span> <span class="n">14</span>
+  <span class="p">}</span>
+<span class="p">}</span></div>
+    </div>
+
+    <!-- Figma Variables -->
+    <div class="code-section">
+      <div class="code-section__header">
+        <span class="code-section__title">Figma Variables (JSON)</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-block"><span class="p">{</span>
+  <span class="k">"collections"</span><span class="p">: [{</span>
+    <span class="k">"name"</span><span class="p">:</span> <span class="v">"Privé Design System"</span><span class="p">,</span>
+    <span class="k">"modes"</span><span class="p">: [</span><span class="v">"Storefront"</span><span class="p">,</span> <span class="v">"Internal"</span><span class="p">],</span>
+    <span class="k">"variables"</span><span class="p">: [</span>
+      <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"color/primary"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"COLOR"</span><span class="p">,</span> <span class="k">"value"</span><span class="p">:</span> <span class="v">"#192E49"</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"color/accent"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"COLOR"</span><span class="p">,</span> <span class="k">"value"</span><span class="p">:</span> <span class="v">"#E87722"</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"color/accent-cta"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"COLOR"</span><span class="p">,</span> <span class="k">"value"</span><span class="p">:</span> <span class="v">"#C96518"</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"color/surface"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"COLOR"</span><span class="p">,</span> <span class="k">"value"</span><span class="p">:</span> <span class="v">"#F5F1EC"</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"radius/default"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"FLOAT"</span><span class="p">,</span>
+        <span class="k">"valuesByMode"</span><span class="p">: {</span> <span class="v">"Storefront"</span><span class="p">:</span> <span class="n">0</span><span class="p">,</span> <span class="v">"Internal"</span><span class="p">:</span> <span class="n">14</span> <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}]</span>
+<span class="p">}</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     9. AI CONTEXT SECTION
+     ═══════════════════════════════════════ -->
+<section class="section" id="ai-context" style="background:var(--surface)">
+  <div class="container">
+    <div class="section__label">09</div>
+    <h2 class="section__title">AI Context</h2>
+    <p class="section__desc">Machine-readable brand data and prompt templates for AI agents generating on-brand content and assets.</p>
+
+    <!-- Machine-readable JSON -->
+    <div class="subsection">
+      <h3 class="subsection__title">Machine-readable brand summary</h3>
+      <div class="code-section">
+        <div class="code-section__header">
+          <span class="code-section__title">Brand Summary JSON</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <div class="code-block"><span class="p">{</span>
+  <span class="k">"brand"</span><span class="p">:</span> <span class="v">"Privé Perfumes"</span><span class="p">,</span>
+  <span class="k">"location"</span><span class="p">:</span> <span class="v">"Tegucigalpa, Honduras"</span><span class="p">,</span>
+  <span class="k">"industry"</span><span class="p">:</span> <span class="v">"Luxury fragrance retail"</span><span class="p">,</span>
+  <span class="k">"personality"</span><span class="p">:</span> <span class="v">"Friendly exclusive"</span><span class="p">,</span>
+  <span class="k">"traits"</span><span class="p">: [</span>
+    <span class="v">"Confident, not arrogant"</span><span class="p">,</span>
+    <span class="v">"Warm, not casual"</span><span class="p">,</span>
+    <span class="v">"Masculine-leaning, not exclusionary"</span><span class="p">,</span>
+    <span class="v">"Premium, not expensive"</span>
+  <span class="p">],</span>
+  <span class="k">"language"</span><span class="p">:</span> <span class="v">"Spanish-first for customer-facing"</span><span class="p">,</span>
+  <span class="k">"currency"</span><span class="p">:</span> <span class="v">"HNL (L.)"</span><span class="p">,</span>
+  <span class="k">"priceFormat"</span><span class="p">:</span> <span class="v">"L. X,XXX"</span><span class="p">,</span>
+  <span class="k">"palette"</span><span class="p">: {</span>
+    <span class="k">"primary"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#192E49"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(25,46,73)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(214,49%,19%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.28 0.05 254)"</span> <span class="p">},</span>
+    <span class="k">"accent"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#E87722"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(232,119,34)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(26,82%,52%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.66 0.16 52)"</span> <span class="p">},</span>
+    <span class="k">"accentCta"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#C96518"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(201,101,24)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(26,79%,44%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.58 0.15 48)"</span> <span class="p">},</span>
+    <span class="k">"surface"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#F5F1EC"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(245,241,236)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(33,35%,94%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.96 0.01 80)"</span> <span class="p">},</span>
+    <span class="k">"gold"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#B8956A"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(184,149,106)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(33,35%,57%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.67 0.07 72)"</span> <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="k">"fonts"</span><span class="p">: {</span>
+    <span class="k">"heading"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"family"</span><span class="p">:</span> <span class="v">"Jost"</span><span class="p">,</span> <span class="k">"fallback"</span><span class="p">:</span> <span class="v">"system-ui, -apple-system, sans-serif"</span><span class="p">,</span> <span class="k">"role"</span><span class="p">:</span> <span class="v">"Headings, nav, badges, buttons, prices"</span> <span class="p">},</span>
+    <span class="k">"body"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"family"</span><span class="p">:</span> <span class="v">"Barlow"</span><span class="p">,</span> <span class="k">"fallback"</span><span class="p">:</span> <span class="v">"system-ui, -apple-system, sans-serif"</span><span class="p">,</span> <span class="k">"role"</span><span class="p">:</span> <span class="v">"Body text, descriptions, mood sentences"</span> <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="k">"rules"</span><span class="p">: [</span>
+    <span class="v">"0px border-radius on storefront, 14px on internal tools"</span><span class="p">,</span>
+    <span class="v">"No gradients, no transparency overlays"</span><span class="p">,</span>
+    <span class="v">"No serif fonts"</span><span class="p">,</span>
+    <span class="v">"Max 2 emojis per asset, zero in editorial"</span><span class="p">,</span>
+    <span class="v">"Gold only for exclusivity signals, never CTAs"</span><span class="p">,</span>
+    <span class="v">"Mood over notes in product descriptions"</span><span class="p">,</span>
+    <span class="v">"Use #C96518 for CTA buttons (WCAG AA), #E87722 for display only"</span>
+  <span class="p">]</span>
+<span class="p">}</span></div>
+      </div>
+    </div>
+
+    <!-- Prompt templates -->
+    <div class="subsection">
+      <h3 class="subsection__title">Prompt templates</h3>
+
+      <div class="ai-card">
+        <div class="ai-card__title">Product description prompt</div>
+        <div class="code-block" style="background:#1a1a2e;margin:0">Write a product description for [PRODUCT] by [BRAND] for Privé Perfumes.
+Rules:
+- Spanish only
+- Start with a mood sentence in italic (evocative, sensory, no note-listing)
+- Max 2 sentences for the description
+- End with key specs as comma-separated tags
+- Tone: confident, warm, not arrogant — like a knowledgeable friend
+- Never use: hashtags, generic greetings, "unleash", "must-have", more than 2 emojis
+- Price format: L. X,XXX</div>
+      </div>
+
+      <div class="ai-card">
+        <div class="ai-card__title">Social media post prompt</div>
+        <div class="code-block" style="background:#1a1a2e;margin:0">Write an Instagram/social post for Privé Perfumes about [TOPIC].
+Rules:
+- Spanish only
+- Lead with mood, not product specs
+- Max 2 emojis, zero hashtag spam
+- Short sentences. Respect the reader's time.
+- Never use: "Hola amigos", AI-slop phrases, generic luxury language
+- CTA: direct, one line (e.g., "Disponible ahora. Escríbenos.")
+- Tone: like a knowledgeable friend, not a salesperson</div>
+      </div>
+
+      <div class="ai-card">
+        <div class="ai-card__title">Component generation prompt</div>
+        <div class="code-block" style="background:#1a1a2e;margin:0">Build a [COMPONENT] using the Privé Design System:
+- Font headings: Jost, uppercase, letter-spacing 0.18em, weight 400-500
+- Font body: Barlow, sentence case, weight 400, line-height 1.55
+- Primary: #192E49 (headings, primary buttons)
+- CTA buttons: #C96518 background, white text (WCAG AA)
+- Display accent: #E87722 (stars, decorative fills, badges)
+- Surface: #F5F1EC (warm cream, never cold grey)
+- Border radius: 0px (storefront) or 14px (internal)
+- Shadows: ultra-subtle, max 0.08 opacity
+- All text in badges/buttons: Jost 500, 0.6875rem, uppercase, 0.18em tracking</div>
+      </div>
+    </div>
+
+    <!-- Quick reference -->
+    <div class="subsection">
+      <h3 class="subsection__title">Quick reference card</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="ai-card">
+          <div class="ai-card__title">Colors (copy-paste)</div>
+          <div style="font-family:var(--font-mono);font-size:0.75rem;line-height:2;color:var(--text-body)">
+            Navy: #192E49<br>
+            Pumpkin (display): #E87722<br>
+            Pumpkin (CTA): #C96518<br>
+            Pumpkin (hover): #A85310<br>
+            Surface: #F5F1EC<br>
+            Body text: #2E2E2E<br>
+            Muted: #6E6E6E<br>
+            Gold: #B8956A<br>
+            Success: #5A7A6F<br>
+            Error: #B3332B
+          </div>
+        </div>
+        <div class="ai-card">
+          <div class="ai-card__title">Typography (copy-paste)</div>
+          <div style="font-family:var(--font-mono);font-size:0.75rem;line-height:2;color:var(--text-body)">
+            Heading: Jost, sans-serif<br>
+            Body: Barlow, sans-serif<br>
+            Hero: 3.5rem / 300 / 0.02em / uppercase<br>
+            Section: 2rem / 400 / 0.18em / uppercase<br>
+            Label: 0.6875rem / 500 / 0.18em / uppercase<br>
+            Body: 0.9375rem / 400 / 1.55 line-height<br>
+            Price: 1.25rem / Jost 400 / 0.04em<br>
+            Mood: Barlow italic 400
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     10. TWO CONTEXTS
+     ═══════════════════════════════════════ -->
+<section class="section" id="contexts">
+  <div class="container">
+    <div class="section__label">10</div>
+    <h2 class="section__title">Two Contexts</h2>
+    <p class="section__desc">The same design system serves two environments. Same colors, same typography rules — different radius and font pairing strategy.</p>
+
+    <div class="context-grid">
+      <div class="context-card">
+        <div class="context-card__label">Customer-facing</div>
+        <div class="context-card__title">Storefront</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="component-row">
+            <button class="btn btn--primary" style="border-radius:0">Navy Button</button>
+            <button class="btn btn--cta" style="border-radius:0">Comprar</button>
+          </div>
+          <div class="component-row">
+            <span class="badge badge--new" style="border-radius:0">Nuevo</span>
+            <span class="badge badge--exclusive" style="border-radius:0">Exclusivo</span>
+          </div>
+          <input class="input-field" type="text" placeholder="Buscar..." style="border-radius:0;width:100%">
+        </div>
+        <div class="context-card__desc">
+          <strong>Radius:</strong> 0px everywhere<br>
+          <strong>Fonts:</strong> Jost (headings) + Barlow (body)<br>
+          <strong>Feel:</strong> Editorial luxury, sharp, warm
+        </div>
+      </div>
+      <div class="context-card">
+        <div class="context-card__label">Team-facing</div>
+        <div class="context-card__title">Internal Tools</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="component-row">
+            <button class="btn btn--primary" style="border-radius:14px">Navy Button</button>
+            <button class="btn btn--cta" style="border-radius:14px">Guardar</button>
+          </div>
+          <div class="component-row">
+            <span class="badge badge--new" style="border-radius:14px">Nuevo</span>
+            <span class="badge badge--exclusive" style="border-radius:14px">Activo</span>
+          </div>
+          <input class="input-field" type="text" placeholder="Buscar..." style="border-radius:14px;width:100%">
+        </div>
+        <div class="context-card__desc">
+          <strong>Radius:</strong> 14px everywhere<br>
+          <strong>Fonts:</strong> Jost only (simplified)<br>
+          <strong>Feel:</strong> Clean, efficient, hacker aesthetic
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAGE FOOTER ═══ -->
+<footer class="page-footer">
+  <div class="container">
+    <p class="page-footer__text">Privé Design System v2.1.0 — Updated 2026-04-22 — Source of truth for all Privé Perfumes brand assets</p>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+// Copy to clipboard
+function copyCode(btn) {
+  const block = btn.closest('.code-section').querySelector('.code-block');
+  const text = block.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'Copied';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('.section[id], .hero[id], section[id]');
+const navLinks = document.querySelectorAll('.nav__link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === '#' + id
+          ? 'var(--on-primary)'
+          : '';
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(section => observer.observe(section));
+</script>
+</body>
+</html>

@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privé Perfumes — Banners para Shopify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+  <style>
+    /* ═══════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #192E49;
+      --pumpkin: #E87722;
+      --pumpkin-cta: #C96518;
+      --cream: #F5F1EC;
+      --gold: #B8956A;
+      --text: #2E2E2E;
+      --muted: #6E6E6E;
+      --white: #FFFFFF;
+      --banner-w: 2000px;
+      --banner-h: 980px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: #F0EDE8;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════
+       PAGE HEADER
+       ═══════════════════════════════════════ */
+    .page-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 40px 0 32px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--pumpkin);
+    }
+
+    .page-header p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .page-header .logo-mark {
+      margin-bottom: 24px;
+    }
+
+    /* ═══════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════ */
+    .banner-nav {
+      background: var(--white);
+      border-bottom: 1px solid #E0DCD7;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .banner-nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+    }
+
+    .banner-nav a {
+      display: inline-block;
+      padding: 14px 20px;
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .banner-nav a:hover {
+      color: var(--navy);
+      border-bottom-color: var(--pumpkin);
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER SECTION WRAPPER
+       ═══════════════════════════════════════ */
+    .banner-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 24px;
+    }
+
+    .banner-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pumpkin);
+      margin-bottom: 4px;
+    }
+
+    .banner-title {
+      font-family: 'Jost', sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .banner-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 600px;
+    }
+
+    /* Banner container with aspect ratio */
+    .banner-frame {
+      width: 100%;
+      aspect-ratio: 2000 / 980;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    .banner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Mobile preview */
+    .mobile-preview-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 32px 0 12px;
+    }
+
+    .mobile-frame {
+      width: 750px;
+      max-width: 100%;
+      aspect-ratio: 750 / 735;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid #E0DCD7;
+    }
+
+    .mobile-frame .banner {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Copy CSS button */
+    .banner-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    .btn-copy {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border: 1px solid var(--navy);
+      background: transparent;
+      color: var(--navy);
+      cursor: pointer;
+      border-radius: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-copy:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-copy.copied {
+      background: var(--pumpkin);
+      border-color: var(--pumpkin);
+      color: var(--white);
+    }
+
+    .btn-download {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border: 1px solid var(--pumpkin);
+      background: var(--pumpkin);
+      color: var(--white);
+      cursor: pointer;
+      border-radius: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-download:hover {
+      background: var(--pumpkin-cta);
+      border-color: var(--pumpkin-cta);
+    }
+
+    .btn-download:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .screenshot-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Divider */
+    .divider {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .divider hr {
+      border: none;
+      border-top: 1px solid #E0DCD7;
+    }
+
+    /* ═══════════════════════════════════════
+       SHARED BANNER STYLES
+       ═══════════════════════════════════════ */
+    .banner .heading {
+      font-family: 'Jost', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      line-height: 1.1;
+    }
+
+    .banner .subtext {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    .banner .cta-bar {
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER 1: HERO
+       ═══════════════════════════════════════ */
+    .banner--hero {
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner--hero .hero-logo {
+      margin-bottom: 32px;
+    }
+
+    .banner--hero .hero-tagline {
+      font-family: 'Barlow', sans-serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(36px, 2.2vw, 42px);
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.05em;
+    }
+
+    .banner--hero .hero-stripe {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--pumpkin);
+    }
+
+    .banner--hero .hero-accent-line {
+      width: 60px;
+      height: 1px;
+      background: var(--pumpkin);
+      margin: 20px auto 24px;
+    }
+
+    .banner--hero .hero-sub {
+      font-family: 'Jost', sans-serif;
+      font-size: clamp(28px, 1.6vw, 32px);
+      font-weight: 400;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER 2: NUEVOS INGRESOS
+       ═══════════════════════════════════════ */
+    .banner--nuevos {
+      display: flex;
+      background: var(--cream);
+    }
+
+    .banner--nuevos .left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 clamp(24px, 5%, 80px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .banner--nuevos .left .heading {
+      font-size: clamp(80px, 7vw, 140px);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .banner--nuevos .left .subtext {
+      font-size: clamp(36px, 2.2vw, 40px);
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .banner--nuevos .right {
+      flex: 1;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner--nuevos .right::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 80%;
+      height: 200%;
+      background: var(--pumpkin);
+      transform: rotate(15deg);
+      opacity: 0.15;
+    }
+
+    .banner--nuevos .right::after {
+      content: '';
+      position: absolute;
+      bottom: 60px;
+      right: 60px;
+      width: 120px;
+      height: 120px;
+      border: 2px solid var(--pumpkin);
+      opacity: 0.4;
+    }
+
+    .banner--nuevos .diagonal-split {
+      position: absolute;
+      top: 0;
+      left: -1px;
+      width: calc(50% + 60px);
+      height: 100%;
+      background: var(--cream);
+      clip-path: polygon(0 0, calc(100% - 60px) 0, 100% 100%, 0 100%);
+      z-index: 1;
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER 3: ESTUCHES Y SETS
+       ═══════════════════════════════════════ */
+    .banner--estuches {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .banner--estuches .heading {
+      font-size: clamp(80px, 6.5vw, 130px);
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    .banner--estuches .subtext {
+      font-size: clamp(36px, 2.2vw, 40px);
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.4;
+    }
+
+    .banner--estuches .gift-icon {
+      margin-bottom: 28px;
+    }
+
+    .banner--estuches .cta-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: var(--pumpkin-cta);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: clamp(24px, 1.3vw, 26px);
+      letter-spacing: 0.3em;
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER 4: OFERTAS ESPECIALES
+       ═══════════════════════════════════════ */
+    .banner--ofertas {
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner--ofertas .pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 40px,
+          rgba(255,255,255,0.5) 40px,
+          rgba(255,255,255,0.5) 41px
+        );
+    }
+
+    .banner--ofertas .heading {
+      font-size: clamp(100px, 8vw, 160px);
+      font-weight: 500;
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .banner--ofertas .subtext {
+      font-size: clamp(36px, 2.4vw, 44px);
+      color: rgba(255,255,255,0.5);
+      position: relative;
+      z-index: 1;
+      margin-bottom: 32px;
+      line-height: 1.4;
+    }
+
+    .banner--ofertas .accent-dots {
+      display: flex;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner--ofertas .accent-dots span {
+      width: 6px;
+      height: 6px;
+      background: var(--pumpkin);
+    }
+
+    .banner--ofertas .corner-accent {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border: 2px solid var(--pumpkin);
+      opacity: 0.3;
+    }
+
+    .banner--ofertas .corner-accent--tl {
+      top: 40px;
+      left: 40px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .banner--ofertas .corner-accent--br {
+      bottom: 40px;
+      right: 40px;
+      border-left: none;
+      border-top: none;
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER 5: PARA ÉL / PARA ELLA
+       ═══════════════════════════════════════ */
+    .banner--genero {
+      display: flex;
+    }
+
+    .banner--genero .panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .banner--genero .panel--el {
+      background: var(--navy);
+    }
+
+    .banner--genero .panel--ella {
+      background: var(--cream);
+    }
+
+    .banner--genero .panel .heading {
+      font-size: clamp(70px, 6vw, 120px);
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      line-height: 1.1;
+    }
+
+    .banner--genero .panel--el .heading {
+      color: var(--white);
+    }
+
+    .banner--genero .panel--ella .heading {
+      color: var(--navy);
+    }
+
+    .banner--genero .panel .sub-label {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: clamp(24px, 1.8vw, 32px);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+
+    .banner--genero .panel--el .sub-label {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .banner--genero .panel--ella .sub-label {
+      color: var(--muted);
+    }
+
+    .banner--genero .divider-line {
+      position: absolute;
+      top: 15%;
+      bottom: 15%;
+      left: 50%;
+      width: 2px;
+      background: var(--pumpkin);
+      z-index: 2;
+      transform: translateX(-50%);
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER 6: LO MÁS VENDIDO
+       ═══════════════════════════════════════ */
+    .banner--vendido {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner--vendido .heading {
+      font-size: clamp(90px, 7vw, 140px);
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .banner--vendido .rule {
+      width: 80px;
+      height: 2px;
+      background: var(--pumpkin);
+      margin-bottom: 24px;
+    }
+
+    .banner--vendido .subtext {
+      font-size: clamp(36px, 2.2vw, 40px);
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER 7: EXCLUSIVOS
+       ═══════════════════════════════════════ */
+    .banner--exclusivos {
+      background: linear-gradient(135deg, #0F1D30 0%, var(--navy) 40%, #1A3254 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner--exclusivos .glow {
+      position: absolute;
+      width: 625px;
+      height: 625px;
+      background: radial-gradient(circle, rgba(184,149,106,0.06) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .banner--exclusivos .heading {
+      font-size: clamp(90px, 7.5vw, 150px);
+      font-weight: 400;
+      color: var(--gold);
+      position: relative;
+      z-index: 1;
+      margin-bottom: 8px;
+      letter-spacing: 0.3em;
+      line-height: 1;
+      text-shadow: 0 0 40px rgba(232,119,34,0.15);
+      background: linear-gradient(
+        90deg,
+        #B8956A 0%,
+        #B8956A 35%,
+        #E8D5B5 50%,
+        #B8956A 65%,
+        #B8956A 100%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer-sweep 4s ease-in-out infinite;
+    }
+    @keyframes shimmer-sweep {
+      0%, 100% { background-position: 150% center; }
+      50% { background-position: -50% center; }
+    }
+
+    .banner--exclusivos .gold-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+      margin: 16px 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner--exclusivos .subtext {
+      font-size: clamp(36px, 2.4vw, 44px);
+      color: var(--cream);
+      opacity: 0.65;
+      position: relative;
+      z-index: 1;
+      line-height: 1.4;
+    }
+
+    .banner--exclusivos .corner-diamond {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.2;
+    }
+
+    .banner--exclusivos .corner-diamond--tl { top: 40px; left: 40px; }
+    .banner--exclusivos .corner-diamond--tr { top: 40px; right: 40px; }
+    .banner--exclusivos .corner-diamond--bl { bottom: 40px; left: 40px; }
+    .banner--exclusivos .corner-diamond--br { bottom: 40px; right: 40px; }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ */
+    .page-footer {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .page-footer a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    /* ═══════════════════════════════════════
+       SCREENSHOT INFO BOX
+       ═══════════════════════════════════════ */
+    .info-box {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    .info-box-inner {
+      background: var(--white);
+      border-left: 3px solid var(--pumpkin);
+      padding: 20px 24px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .info-box-inner strong {
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .info-box-inner code {
+      background: #F0EDE8;
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER 9: DÍA DE LA MADRE — Split Layout
+       ═══════════════════════════════════════ */
+    .banner--madre {
+      display: flex;
+      position: relative;
+      overflow: hidden;
+    }
+    .banner--madre .panel-left {
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(135deg, #F5E6E0 0%, #EED5CC 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 clamp(20px, 5%, 80px);
+    }
+    .banner--madre .panel-right {
+      width: 45%;
+      height: 100%;
+      background: #FAF7F3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .banner--madre .panel-divider {
+      position: absolute;
+      left: 55%;
+      top: 10%;
+      bottom: 10%;
+      width: 1px;
+      background: #B8956A;
+      z-index: 2;
+    }
+    .banner--madre .heading {
+      font-size: clamp(80px, 6.5vw, 130px);
+      font-weight: 400;
+      color: #5C3D2E;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+    .banner--madre .subtext {
+      font-style: italic;
+      font-size: clamp(32px, 2.2vw, 40px);
+      font-weight: 300;
+      color: #5C3D2E;
+      opacity: 0.7;
+      margin-top: clamp(8px, 1.5vw, 20px);
+      line-height: 1.4;
+    }
+    .banner--madre .rose-motif {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(100px, 60%, 260px);
+      height: auto;
+    }
+    .banner--madre .cta-bar {
+      margin-top: clamp(12px, 2vw, 32px);
+      padding: clamp(12px, 1.2vw, 18px) clamp(32px, 3.5vw, 56px);
+      background: #B8956A;
+      color: #FFFFFF;
+      font-family: 'Jost', sans-serif;
+      font-size: clamp(22px, 1.4vw, 26px);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+    .banner--madre .cta-bar:hover {
+      background: #9A7D55;
+    }
+    .banner--madre-mobile {
+      flex-direction: column;
+    }
+    .banner--madre-mobile .panel-left {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER 10: SAN VALENTÍN — Decorative Frame
+       ═══════════════════════════════════════ */
+    .banner--valentin {
+      background: linear-gradient(180deg, #0F1D30 0%, #192E49 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .banner--valentin .frame-border {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      right: 40px;
+      bottom: 40px;
+      border: 1px solid #6B2D3E;
+      pointer-events: none;
+    }
+    .banner--valentin .corner-diamond {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #6B2D3E;
+      transform: rotate(45deg);
+      z-index: 1;
+    }
+    .banner--valentin .corner-diamond--tl { top: 35px; left: 35px; }
+    .banner--valentin .corner-diamond--tr { top: 35px; right: 35px; }
+    .banner--valentin .corner-diamond--bl { bottom: 35px; left: 35px; }
+    .banner--valentin .corner-diamond--br { bottom: 35px; right: 35px; }
+    .banner--valentin .rings-motif {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(100px, 15%, 200px);
+      height: auto;
+    }
+    .banner--valentin .heading {
+      font-size: clamp(80px, 6.5vw, 130px);
+      font-weight: 300;
+      color: #FFFFFF;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+      line-height: 1.1;
+    }
+    .banner--valentin .burgundy-rule {
+      width: clamp(60px, 8%, 120px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #6B2D3E, transparent);
+      margin: clamp(12px, 1.5vw, 24px) 0;
+    }
+    .banner--valentin .subtext {
+      font-size: clamp(32px, 2.2vw, 40px);
+      font-weight: 300;
+      color: #F5F1EC;
+      opacity: 0.7;
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
+      line-height: 1.4;
+    }
+
+    /* ═══════════════════════════════════════
+       BANNER 11: NAVIDAD — Gift Strip + Sparkles
+       ═══════════════════════════════════════ */
+    .banner--navidad {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .banner--navidad .top-area {
+      flex: 3;
+      background: linear-gradient(180deg, #0B1520 0%, #142333 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .banner--navidad .top-area::before,
+    .banner--navidad .top-area::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: #B8956A;
+      animation: navidad-sparkle 3s infinite;
+    }
+    .banner--navidad .top-area::before {
+      width: 3px; height: 3px;
+      top: 18%; left: 12%;
+      box-shadow:
+        0 0 0 0 rgba(184,149,106,0),
+        80px 40px 0 0 #B8956A,
+        200px -10px 0 0 #B8956A,
+        500px 30px 0 0 #B8956A;
+      animation-delay: 0s;
+    }
+    .banner--navidad .top-area::after {
+      width: 3px; height: 3px;
+      top: 35%; right: 15%;
+      box-shadow:
+        0 0 0 0 rgba(184,149,106,0),
+        -60px 50px 0 0 #B8956A,
+        -180px -20px 0 0 #B8956A,
+        -400px 40px 0 0 #B8956A;
+      animation-delay: 1.5s;
+    }
+    @keyframes navidad-sparkle {
+      0%, 100% { opacity: 0; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.8); }
+    }
+    .banner--navidad .heading {
+      font-size: clamp(90px, 7vw, 140px);
+      font-weight: 300;
+      color: #B8956A;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+      line-height: 1.1;
+    }
+    .banner--navidad .gold-rule {
+      width: 60px;
+      height: 1px;
+      background: #B8956A;
+      opacity: 0.4;
+      margin: clamp(10px, 1.5vw, 20px) 0 clamp(12px, 1.5vw, 24px);
+    }
+    .banner--navidad .subtext {
+      font-size: clamp(32px, 2.2vw, 40px);
+      font-weight: 300;
+      color: rgba(245,241,236,0.6);
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
+      line-height: 1.4;
+    }
+    .banner--navidad .gift-strip {
+      flex: 1;
+      background: #F5F1EC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .banner--navidad .gift-strip-text {
+      font-family: 'Jost', sans-serif;
+      font-size: clamp(20px, 1.2vw, 24px);
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #0B1520;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     PAGE HEADER
+     ═══════════════════════════════════════ -->
+<header class="page-header">
+  <div class="logo-mark">
+    <img src="assets/logo-wordmark-v4.svg" width="140" height="37" aria-label="Privé">
+  </div>
+  <h1>Banners para Shopify</h1>
+  <p>7 banners premium — 2000 &times; 980px — listos para captura y subida a Shopify.</p>
+</header>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════ -->
+<nav class="banner-nav" aria-label="Navegación de banners">
+  <div class="banner-nav-inner">
+    <a href="#banner-1">01 Hero</a>
+    <a href="#banner-2">02 Nuevos Ingresos</a>
+    <a href="#banner-3">03 Estuches</a>
+    <a href="#banner-4">04 Ofertas</a>
+    <a href="#banner-5">05 Él / Ella</a>
+    <a href="#banner-6">06 Más Vendido</a>
+    <a href="#banner-7">07 Exclusivos</a>
+    <a href="#banner-9" style="color: var(--gold);">09 Madre</a>
+    <a href="#banner-10" style="color: var(--gold);">10 Valentín</a>
+    <a href="#banner-11" style="color: var(--gold);">11 Navidad</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HOW TO USE
+     ═══════════════════════════════════════ -->
+<div class="info-box">
+  <div class="info-box-inner">
+    <strong>Exportación automática de banners</strong><br>
+    1. Usa los botones "Desktop WebP" (2000×980px) y "Mobile WebP" (750×735px) para exportar banners individuales.<br>
+    2. Usa "Descargar Todos los Banners" para exportar todos los banners de una vez.<br>
+    3. Los archivos se exportan en formato WebP, calidad 92%, listos para Shopify.<br>
+    4. Sube las imágenes a Shopify en <code>Online Store → Themes → Customize → Image banner</code>.<br>
+    <div style="text-align: center; margin-top: 16px;">
+      <button class="btn-download" onclick="downloadAllBanners()" style="font-size: 12px; padding: 12px 24px;">Descargar Todos los Banners</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     BANNER 1: HERO
+     ═══════════════════════════════════════ -->
+<section class="banner-section" id="banner-1">
+  <div class="banner-label">Banner 01</div>
+  <h2 class="banner-title">Hero — Declaración de Marca</h2>
+  <p class="banner-desc">Banner principal del sitio. Presencia de marca pura con el wordmark PRIVÉ en gran escala.</p>
+
+  <div class="banner-frame">
+    <div class="banner banner--hero" data-banner-id="1">
+      <div class="hero-logo">
+        <img src="assets/logo-wordmark-v4.svg" width="700" height="184" aria-label="Privé">
+      </div>
+      <div class="hero-accent-line"></div>
+      <p class="hero-tagline">Fragancias que definen quien eres.</p>
+      <p class="hero-sub" style="margin-top: 24px;">Luxury Perfumes · Honduras</p>
+      <div class="hero-stripe"></div>
+    </div>
+  </div>
+
+  <div class="mobile-preview-label">Vista móvil (750px)</div>
+  <div class="mobile-frame">
+    <div class="banner banner--hero">
+      <div class="hero-logo">
+        <img src="assets/logo-wordmark-v4.svg" width="260" height="68" aria-label="Privé">
+      </div>
+      <div class="hero-accent-line"></div>
+      <p class="hero-tagline" style="font-size: 28px;">Fragancias que definen quien eres.</p>
+      <div class="hero-stripe"></div>
+    </div>
+  </div>
+
+  <div class="banner-actions">
+    <button class="btn-copy" onclick="copyCss(1)">Copiar CSS</button>
+    <button class="btn-download" onclick="downloadBanner(1, 'desktop')">Desktop WebP</button>
+    <button class="btn-download" onclick="downloadBanner(1, 'mobile')">Mobile WebP</button>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════════════════════════════
+     BANNER 2: NUEVOS INGRESOS
+     ═══════════════════════════════════════ -->
+<section class="banner-section" id="banner-2">
+  <div class="banner-label">Banner 02</div>
+  <h2 class="banner-title">Nuevos Ingresos</h2>
+  <p class="banner-desc">Anuncia nuevas fragancias. División diagonal con contraste crema/navy.</p>
+
+  <div class="banner-frame">
+    <div class="banner banner--nuevos" data-banner-id="2">
+      <div class="diagonal-split"></div>
+      <div class="left">
+        <p class="heading">Nuevos<br>Ingresos</p>
+        <p class="subtext">Las fragancias más recientes del mercado.</p>
+      </div>
+      <div class="right"></div>
+    </div>
+  </div>
+
+  <div class="mobile-preview-label">Vista móvil (750px)</div>
+  <div class="mobile-frame">
+    <div class="banner banner--nuevos">
+      <div class="diagonal-split"></div>
+      <div class="left">
+        <p class="heading" style="font-size: 56px;">Nuevos<br>Ingresos</p>
+        <p class="subtext" style="font-size: 28px;">Las fragancias más recientes del mercado.</p>
+      </div>
+      <div class="right"></div>
+    </div>
+  </div>
+
+  <div class="banner-actions">
+    <button class="btn-copy" onclick="copyCss(2)">Copiar CSS</button>
+    <button class="btn-download" onclick="downloadPng(2)">Download PNG</button>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════════════════════════════
+     BANNER 3: ESTUCHES Y SETS
+     ═══════════════════════════════════════ -->
+<section class="banner-section" id="banner-3">
+  <div class="banner-label">Banner 03</div>
+  <h2 class="banner-title">Colección de Regalos</h2>
+  <p class="banner-desc">Promoción de regalos premium. Fondo crema con CTA naranja en la parte inferior.</p>
+
+  <div class="banner-frame">
+    <div class="banner banner--estuches" data-banner-id="3">
+      <!-- Gift box icon -->
+      <div class="gift-icon">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="22" width="48" height="30" stroke="#E87722" stroke-width="1.5" fill="none"/>
+          <rect x="8" y="14" width="40" height="8" stroke="#E87722" stroke-width="1.5" fill="none"/>
+          <line x1="28" y1="14" x2="28" y2="52" stroke="#E87722" stroke-width="1.5"/>
+          <path d="M28 14 C28 14 20 6 16 10 C12 14 20 14 28 14" stroke="#E87722" stroke-width="1.5" fill="none"/>
+          <path d="M28 14 C28 14 36 6 40 10 C44 14 36 14 28 14" stroke="#E87722" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <p class="heading">Colección de Regalos</p>
+      <p class="subtext">El detalle que siempre se recuerda.</p>
+      <div class="cta-bar">Ver Colección</div>
+    </div>
+  </div>
+
+  <div class="mobile-preview-label">Vista móvil (750px)</div>
+  <div class="mobile-frame">
+    <div class="banner banner--estuches">
+      <div class="gift-icon">
+        <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="22" width="48" height="30" stroke="#E87722" stroke-width="2" fill="none"/>
+          <rect x="8" y="14" width="40" height="8" stroke="#E87722" stroke-width="2" fill="none"/>
+          <line x1="28" y1="14" x2="28" y2="52" stroke="#E87722" stroke-width="2"/>
+          <path d="M28 14 C28 14 20 6 16 10 C12 14 20 14 28 14" stroke="#E87722" stroke-width="2" fill="none"/>
+          <path d="M28 14 C28 14 36 6 40 10 C44 14 36 14 28 14" stroke="#E87722" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+      <p class="heading" style="font-size: 48px;">Colección de Regalos</p>
+      <p class="subtext" style="font-size: 24px;">El detalle que siempre se recuerda.</p>
+      <div class="cta-bar" style="height: 64px; font-size: 20px;">Ver Colección</div>
+    </div>
+  </div>
+
+  <div class="banner-actions">
+    <button class="btn-copy" onclick="copyCss(3)">Copiar CSS</button>
+    <button class="btn-download" onclick="downloadPng(3)">Download PNG</button>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════════════════════════════
+     BANNER 4: OFERTAS ESPECIALES
+     ═══════════════════════════════════════ -->
+<section class="banner-section" id="banner-4">
+  <div class="banner-label">Banner 04</div>
+  <h2 class="banner-title">Ofertas Especiales</h2>
+  <p class="banner-desc">Reemplaza el banner "CLEARANCE" actual. Premium y elegante, no de descuento.</p>
+
+  <div class="banner-frame">
+    <div class="banner banner--ofertas" data-banner-id="4">
+      <div class="pattern"></div>
+      <div class="corner-accent corner-accent--tl"></div>
+      <div class="corner-accent corner-accent--br"></div>
+      <p class="heading">Ofertas Especiales</p>
+      <p class="subtext">Precios exclusivos por tiempo limitado.</p>
+      <div class="accent-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-preview-label">Vista móvil (750px)</div>
+  <div class="mobile-frame">
+    <div class="banner banner--ofertas">
+      <div class="pattern"></div>
+      <p class="heading" style="font-size: 60px;">Ofertas Especiales</p>
+      <p class="subtext" style="font-size: 28px;">Precios exclusivos por tiempo limitado.</p>
+      <div class="accent-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner-actions">
+    <button class="btn-copy" onclick="copyCss(4)">Copiar CSS</button>
+    <button class="btn-download" onclick="downloadPng(4)">Download PNG</button>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════════════════════════════
+     BANNER 5: PARA ÉL / PARA ELLA
+     ═══════════════════════════════════════ -->
+<section class="banner-section" id="banner-5">
+  <div class="banner-label">Banner 05</div>
+  <h2 class="banner-title">Para Él / Para Ella</h2>
+  <p class="banner-desc">División editorial de género. Estilo revista de moda con línea divisoria naranja.</p>
+
+  <div class="banner-frame">
+    <div class="banner banner--genero" data-banner-id="5">
+      <div class="panel panel--el">
+        <p class="heading">Para Él</p>
+        <p class="sub-label">Fragancias masculinas</p>
+      </div>
+      <div class="divider-line"></div>
+      <div class="panel panel--ella">
+        <p class="heading">Para Ella</p>
+        <p class="sub-label">Fragancias femeninas</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-preview-label">Vista móvil (750px)</div>
+  <div class="mobile-frame">
+    <div class="banner banner--genero">
+      <div class="panel panel--el">
+        <p class="heading" style="font-size: 48px;">Para Él</p>
+        <p class="sub-label" style="font-size: 24px;">Fragancias masculinas</p>
+      </div>
+      <div class="divider-line"></div>
+      <div class="panel panel--ella">
+        <p class="heading" style="font-size: 48px;">Para Ella</p>
+        <p class="sub-label" style="font-size: 24px;">Fragancias femeninas</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner-actions">
+    <button class="btn-copy" onclick="copyCss(5)">Copiar CSS</button>
+    <button class="btn-download" onclick="downloadPng(5)">Download PNG</button>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════════════════════════════
+     BANNER 6: LO MÁS VENDIDO
+     ═══════════════════════════════════════ -->
+<section class="banner-section" id="banner-6">
+  <div class="banner-label">Banner 06</div>
+  <h2 class="banner-title">Lo Más Vendido</h2>
+  <p class="banner-desc">Banner minimalista y seguro. Deja que la tipografía hable por sí sola.</p>
+
+  <div class="banner-frame">
+    <div class="banner banner--vendido" data-banner-id="6">
+      <p class="heading">Lo Más Vendido</p>
+      <div class="rule"></div>
+      <p class="subtext">Las fragancias favoritas de nuestros clientes.</p>
+    </div>
+  </div>
+
+  <div class="mobile-preview-label">Vista móvil (750px)</div>
+  <div class="mobile-frame">
+    <div class="banner banner--vendido">
+      <p class="heading" style="font-size: 56px;">Lo Más Vendido</p>
+      <div class="rule" style="width: 60px;"></div>
+      <p class="subtext" style="font-size: 24px;">Las fragancias favoritas de nuestros clientes.</p>
+    </div>
+  </div>
+
+  <div class="banner-actions">
+    <button class="btn-copy" onclick="copyCss(6)">Copiar CSS</button>
+    <button class="btn-download" onclick="downloadPng(6)">Download PNG</button>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════════════════════════════
+     BANNER 7: EXCLUSIVOS
+     ═══════════════════════════════════════ -->
+<section class="banner-section" id="banner-7">
+  <div class="banner-label">Banner 07</div>
+  <h2 class="banner-title">Edición Exclusiva</h2>
+  <p class="banner-desc">El único banner que usa gold (#B8956A). Reservado para exclusividad. Premium, raro, aspiracional.</p>
+
+  <div class="banner-frame">
+    <div class="banner banner--exclusivos" data-banner-id="7">
+      <div class="glow"></div>
+      <div class="corner-diamond corner-diamond--tl"></div>
+      <div class="corner-diamond corner-diamond--tr"></div>
+      <div class="corner-diamond corner-diamond--bl"></div>
+      <div class="corner-diamond corner-diamond--br"></div>
+      <p class="heading">Edición Exclusiva</p>
+      <div class="gold-rule"></div>
+      <p class="subtext">Fragancias que no encontrarás en otro lugar.</p>
+    </div>
+  </div>
+
+  <div class="mobile-preview-label">Vista móvil (750px)</div>
+  <div class="mobile-frame">
+    <div class="banner banner--exclusivos">
+      <div class="glow"></div>
+      <p class="heading" style="font-size: 54px;">Edición Exclusiva</p>
+      <div class="gold-rule"></div>
+      <p class="subtext" style="font-size: 28px;">Fragancias que no encontrarás en otro lugar.</p>
+    </div>
+  </div>
+
+  <div class="banner-actions">
+    <button class="btn-copy" onclick="copyCss(7)">Copiar CSS</button>
+    <button class="btn-download" onclick="downloadPng(7)">Download PNG</button>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SEASONAL BANNERS
+     ═══════════════════════════════════════ -->
+
+<div class="divider"><hr></div>
+
+<div style="max-width:1200px;margin:40px auto;padding:0 24px;text-align:center">
+  <div class="banner-label" style="color:var(--pumpkin);margin-bottom:8px">Temporada</div>
+  <h2 style="font-family:'Jost',sans-serif;font-size:28px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--navy)">Banners de Temporada</h2>
+  <p style="font-size:14px;color:var(--muted);margin-top:8px">Banners predefinidos para fechas clave. Listos para activar.</p>
+</div>
+
+<!-- ═══════════════════════════════════════
+     BANNER 9: DÍA DE LA MADRE
+     ═══════════════════════════════════════ -->
+<section class="banner-section" id="banner-9">
+  <div class="banner-label">Temporada 01</div>
+  <h2 class="banner-title">Día de la Madre</h2>
+  <p class="banner-desc">Mayo. Elegancia floral con tipografía serif en gold. El banner más emocional del año.</p>
+
+  <div class="banner-frame">
+    <div class="banner banner--madre" data-banner-id="9">
+      <div class="panel-left">
+        <p class="heading">Día de<br>la Madre</p>
+        <p class="subtext">Porque ella merece lo extraordinario.</p>
+      </div>
+      <div class="panel-divider"></div>
+      <div class="panel-right">
+        <svg class="rose-motif" width="220" height="280" viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Stem -->
+          <path d="M110 160 C108 200, 106 240, 110 270" stroke="#B8956A" stroke-width="1.2" opacity="0.15"/>
+          <!-- Left leaf -->
+          <path d="M108 210 C90 195, 65 200, 55 215 C65 210, 85 205, 108 210Z" stroke="#B8956A" stroke-width="1" fill="none" opacity="0.12"/>
+          <!-- Right leaf -->
+          <path d="M112 230 C130 215, 155 218, 165 230 C155 225, 135 220, 112 230Z" stroke="#B8956A" stroke-width="1" fill="none" opacity="0.12"/>
+          <!-- Outer petals -->
+          <path d="M110 155 C80 140, 50 110, 55 80 C60 60, 80 50, 95 55" stroke="#B8956A" stroke-width="1.2" fill="none" opacity="0.13"/>
+          <path d="M110 155 C85 130, 65 95, 75 65 C82 45, 100 38, 110 45" stroke="#B8956A" stroke-width="1.2" fill="none" opacity="0.13"/>
+          <path d="M110 155 C110 125, 110 90, 110 55 C110 35, 110 25, 110 20" stroke="#B8956A" stroke-width="1.2" fill="none" opacity="0.11"/>
+          <path d="M110 155 C135 130, 155 95, 145 65 C138 45, 120 38, 110 45" stroke="#B8956A" stroke-width="1.2" fill="none" opacity="0.13"/>
+          <path d="M110 155 C140 140, 170 110, 165 80 C160 60, 140 50, 125 55" stroke="#B8956A" stroke-width="1.2" fill="none" opacity="0.13"/>
+          <!-- Inner petals -->
+          <path d="M110 145 C95 135, 80 115, 85 95 C88 80, 98 75, 105 80" stroke="#B8956A" stroke-width="1" fill="none" opacity="0.1"/>
+          <path d="M110 145 C110 125, 105 100, 110 80 C112 70, 110 60, 110 55" stroke="#B8956A" stroke-width="1" fill="none" opacity="0.08"/>
+          <path d="M110 145 C125 135, 140 115, 135 95 C132 80, 122 75, 115 80" stroke="#B8956A" stroke-width="1" fill="none" opacity="0.1"/>
+          <!-- Center dot -->
+          <circle cx="110" cy="110" r="3" fill="#B8956A" opacity="0.08"/>
+        </svg>
+        <div class="cta-bar">Ver Colección</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-preview-label">Vista móvil (750px)</div>
+  <div class="mobile-frame">
+    <div class="banner banner--madre banner--madre-mobile">
+      <div class="panel-left" style="width:100%;padding:16px 20px;align-items:center;text-align:center;">
+        <p class="heading" style="font-size:52px;">Día de la Madre</p>
+        <p class="subtext" style="font-size:26px;">Porque ella merece lo extraordinario.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner-actions">
+    <button class="btn-copy" onclick="copyCss(9)">Copiar CSS</button>
+    <button class="btn-download" onclick="downloadPng(9)">Download PNG</button>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════════════════════════════
+     BANNER 10: SAN VALENTÍN
+     ═══════════════════════════════════════ -->
+<section class="banner-section" id="banner-10">
+  <div class="banner-label">Temporada 02</div>
+  <h2 class="banner-title">San Valentín</h2>
+  <p class="banner-desc">Febrero. Navy profundo con acentos cálidos. Romántico sin ser cursi.</p>
+
+  <div class="banner-frame">
+    <div class="banner banner--valentin" data-banner-id="10">
+      <div class="frame-border"></div>
+      <div class="corner-diamond corner-diamond--tl"></div>
+      <div class="corner-diamond corner-diamond--tr"></div>
+      <div class="corner-diamond corner-diamond--bl"></div>
+      <div class="corner-diamond corner-diamond--br"></div>
+      <svg class="rings-motif" width="200" height="120" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="80" cy="60" r="40" stroke="#6B2D3E" stroke-width="1.5" opacity="0.2"/>
+        <circle cx="120" cy="60" r="40" stroke="#6B2D3E" stroke-width="1.5" opacity="0.2"/>
+      </svg>
+      <p class="heading">San Valentín</p>
+      <div class="burgundy-rule"></div>
+      <p class="subtext">Fragancias que dicen lo que las palabras no pueden.</p>
+    </div>
+  </div>
+
+  <div class="mobile-preview-label">Vista móvil (750px)</div>
+  <div class="mobile-frame">
+    <div class="banner banner--valentin">
+      <div class="frame-border" style="top:16px;left:16px;right:16px;bottom:16px;"></div>
+      <p class="heading" style="font-size: 52px; letter-spacing: 0.15em;">San Valentín</p>
+      <div class="burgundy-rule"></div>
+      <p class="subtext" style="font-size: 26px;">Fragancias que dicen lo que las palabras no pueden.</p>
+    </div>
+  </div>
+
+  <div class="banner-actions">
+    <button class="btn-copy" onclick="copyCss(10)">Copiar CSS</button>
+    <button class="btn-download" onclick="downloadPng(10)">Download PNG</button>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════════════════════════════
+     BANNER 11: NAVIDAD
+     ═══════════════════════════════════════ -->
+<section class="banner-section" id="banner-11">
+  <div class="banner-label">Temporada 03</div>
+  <h2 class="banner-title">Navidad</h2>
+  <p class="banner-desc">Diciembre. Navy oscuro con gold. Lujo festivo, no navideño genérico.</p>
+
+  <div class="banner-frame">
+    <div class="banner banner--navidad" data-banner-id="11">
+      <div class="top-area">
+        <p class="heading">Navidad</p>
+        <div class="gold-rule"></div>
+        <p class="subtext">Regalos que se recuerdan por siempre.</p>
+      </div>
+      <div class="gift-strip">
+        <p class="gift-strip-text">Envoltura Gratis · Tarjeta Personalizada</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-preview-label">Vista móvil (750px)</div>
+  <div class="mobile-frame">
+    <div class="banner banner--navidad">
+      <div class="top-area" style="flex:7;">
+        <p class="heading" style="font-size:56px;">Navidad</p>
+        <div class="gold-rule"></div>
+        <p class="subtext" style="font-size:28px;">Regalos que se recuerdan por siempre.</p>
+      </div>
+      <div class="gift-strip" style="flex:3;">
+        <p class="gift-strip-text" style="font-size:20px;">Envoltura Gratis · Tarjeta Personalizada</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner-actions">
+    <button class="btn-copy" onclick="copyCss(11)">Copiar CSS</button>
+    <button class="btn-download" onclick="downloadPng(11)">Download PNG</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════ -->
+<footer class="page-footer">
+  <p>Privé Perfumes — Sistema de Banners v1.1</p>
+  <p style="margin-top: 4px;"><a href="index.html">← Volver al Design System</a></p>
+</footer>
+
+<!-- ═══════════════════════════════════════
+     COPY CSS SCRIPT
+     ═══════════════════════════════════════ -->
+<script>
+const bannerCss = {
+  1: `/* Banner 1: Hero — Brand Statement */
+.banner--hero {
+  width: 2000px;
+  height: 980px;
+  background: #192E49;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: 'Barlow', sans-serif;
+}
+.banner--hero .hero-tagline {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 20px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.05em;
+}
+.banner--hero .hero-stripe {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: #E87722;
+}`,
+
+  2: `/* Banner 2: Nuevos Ingresos */
+.banner--nuevos {
+  width: 2000px;
+  height: 980px;
+  display: flex;
+  background: #F5F1EC;
+  position: relative;
+}
+.banner--nuevos .left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 80px;
+  z-index: 2;
+}
+.banner--nuevos .left .heading {
+  font-family: 'Jost', sans-serif;
+  font-size: 72px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #192E49;
+  line-height: 1;
+}
+.banner--nuevos .right {
+  flex: 1;
+  background: #192E49;
+}
+.banner--nuevos .diagonal-split {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: calc(50% + 60px);
+  height: 100%;
+  background: #F5F1EC;
+  clip-path: polygon(0 0, calc(100% - 60px) 0, 100% 100%, 0 100%);
+  z-index: 1;
+}`,
+
+  3: `/* Banner 3: Estuches y Sets */
+.banner--estuches {
+  width: 2000px;
+  height: 980px;
+  background: #F5F1EC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: 'Jost', sans-serif;
+}
+.banner--estuches .heading {
+  font-size: 68px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #192E49;
+}
+.banner--estuches .cta-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: #C96518;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}`,
+
+  4: `/* Banner 4: Ofertas Especiales */
+.banner--ofertas {
+  width: 2000px;
+  height: 980px;
+  background: #192E49;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.banner--ofertas .pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 41px);
+}
+.banner--ofertas .heading {
+  font-family: 'Jost', sans-serif;
+  font-size: 80px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #FFFFFF;
+}`,
+
+  5: `/* Banner 5: Para Él / Para Ella */
+.banner--genero {
+  width: 2000px;
+  height: 980px;
+  display: flex;
+  position: relative;
+}
+.banner--genero .panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.banner--genero .panel--el {
+  background: #192E49;
+}
+.banner--genero .panel--ella {
+  background: #F5F1EC;
+}
+.banner--genero .heading {
+  font-family: 'Jost', sans-serif;
+  font-size: 72px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+.banner--genero .divider-line {
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  left: 50%;
+  width: 2px;
+  background: #E87722;
+  transform: translateX(-50%);
+}`,
+
+  6: `/* Banner 6: Lo Más Vendido */
+.banner--vendido {
+  width: 2000px;
+  height: 980px;
+  background: #F5F1EC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.banner--vendido .heading {
+  font-family: 'Jost', sans-serif;
+  font-size: 80px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #192E49;
+}
+.banner--vendido .rule {
+  width: 80px;
+  height: 2px;
+  background: #E87722;
+  margin: 20px 0 24px;
+}`,
+
+  7: `/* Banner 7: Edición Exclusiva (formerly 8) */
+.banner--exclusivos {
+  width: 2000px;
+  height: 980px;
+  background: linear-gradient(135deg, #0F1D30 0%, #192E49 40%, #1A3254 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.banner--exclusivos .heading {
+  font-family: 'Jost', sans-serif;
+  font-size: 72px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #B8956A;
+}
+.banner--exclusivos .gold-rule {
+  width: 60px;
+  height: 1px;
+  background: #B8956A;
+  opacity: 0.5;
+  margin: 16px 0 20px;
+}
+.banner--exclusivos .subtext {
+  font-family: 'Barlow', sans-serif;
+  font-size: 17px;
+  font-weight: 300;
+  color: #F5F1EC;
+  opacity: 0.5;
+}`,
+
+  9: `/* Banner 9: Día de la Madre — Split Layout */
+.banner--madre {
+  width: 2000px;
+  height: 980px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+.banner--madre .panel-left {
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(135deg, #F5E6E0 0%, #EED5CC 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 80px;
+}
+.banner--madre .panel-right {
+  width: 45%;
+  height: 100%;
+  background: #FAF7F3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.banner--madre .panel-divider {
+  position: absolute;
+  left: 55%;
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background: #B8956A;
+  z-index: 2;
+}
+.banner--madre .heading {
+  font-family: 'Jost', sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  color: #5C3D2E;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.banner--madre .subtext {
+  font-family: 'Barlow', sans-serif;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 300;
+  color: #5C3D2E;
+  opacity: 0.7;
+  margin-top: 20px;
+}
+.banner--madre .cta-bar {
+  margin-top: 32px;
+  padding: 14px 48px;
+  background: #B8956A;
+  color: #FFFFFF;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: inline-block;
+}`,
+
+  10: `/* Banner 10: San Valentín — Decorative Frame */
+.banner--valentin {
+  width: 2000px;
+  height: 980px;
+  background: linear-gradient(180deg, #0F1D30 0%, #192E49 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.banner--valentin .frame-border {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  border: 1px solid #6B2D3E;
+}
+.banner--valentin .corner-diamond {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #6B2D3E;
+  transform: rotate(45deg);
+}
+.banner--valentin .corner-diamond--tl { top: 35px; left: 35px; }
+.banner--valentin .corner-diamond--tr { top: 35px; right: 35px; }
+.banner--valentin .corner-diamond--bl { bottom: 35px; left: 35px; }
+.banner--valentin .corner-diamond--br { bottom: 35px; right: 35px; }
+.banner--valentin .heading {
+  font-family: 'Jost', sans-serif;
+  font-size: 72px;
+  font-weight: 300;
+  color: #FFFFFF;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+.banner--valentin .burgundy-rule {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #6B2D3E, transparent);
+  margin: 24px 0;
+}
+.banner--valentin .subtext {
+  font-family: 'Barlow', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #F5F1EC;
+  opacity: 0.7;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}`,
+
+  11: `/* Banner 11: Navidad — Gift Strip Layout */
+.banner--navidad {
+  width: 2000px;
+  height: 980px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.banner--navidad .top-area {
+  flex: 3;
+  background: linear-gradient(180deg, #0B1520 0%, #142333 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.banner--navidad .heading {
+  font-family: 'Jost', sans-serif;
+  font-size: 96px;
+  font-weight: 300;
+  color: #B8956A;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.banner--navidad .gold-rule {
+  width: 60px;
+  height: 1px;
+  background: #B8956A;
+  opacity: 0.4;
+  margin: 20px 0 24px;
+}
+.banner--navidad .subtext {
+  font-family: 'Barlow', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: rgba(245,241,236,0.6);
+  letter-spacing: 0.04em;
+}
+.banner--navidad .gift-strip {
+  flex: 1;
+  background: #F5F1EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banner--navidad .gift-strip-text {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #0B1520;
+  font-variant: small-caps;
+}`
+}
+
+function copyCss(id) {
+  const css = bannerCss[id];
+  if (!css) return;
+
+  navigator.clipboard.writeText(css).then(() => {
+    const btn = document.querySelector(`[data-banner-id="${id}"]`)
+      .closest('.banner-section, section')
+      ?.querySelector('.btn-copy')
+      || event.target;
+    btn.textContent = 'Copiado';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copiar CSS';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+/* Smooth scroll for nav */
+document.querySelectorAll('.banner-nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Banner name mapping for file naming
+const bannerNames = {
+  1: 'hero',
+  2: 'nuevos',
+  3: 'coleccion-regalos',
+  4: 'ofertas',
+  5: 'genero',
+  6: 'mas-vendido',
+  7: 'exclusivos',
+  9: 'dia-madre',
+  10: 'san-valentin',
+  11: 'navidad'
+};
+
+/* Download banner as WebP with specified dimensions */
+async function downloadBanner(id, format) {
+  const section = document.getElementById('banner-' + id);
+  if (!section) return;
+
+  const isDesktop = format === 'desktop';
+  const frame = isDesktop ? section.querySelector('.banner-frame') : section.querySelector('.mobile-frame');
+  const btn = event.target;
+
+  // Determine dimensions
+  const width = isDesktop ? 2000 : 750;
+  const height = isDesktop ? 980 : 735;
+
+  btn.disabled = true;
+  btn.textContent = 'Generando...';
+
+  try {
+    const canvas = await html2canvas(frame, {
+      width: width,
+      height: height,
+      scale: 1,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: '#FFFFFF', // Opaque background as required
+      windowWidth: isDesktop ? 2000 : 750,
+      windowHeight: isDesktop ? 980 : 735,
+      onclone: (doc) => {
+        // Force the cloned frame to exact banner dimensions
+        const clonedFrame = doc.querySelector(`#banner-${id} ${isDesktop ? '.banner-frame' : '.mobile-frame'}`);
+        if (clonedFrame) {
+          clonedFrame.style.width = width + 'px';
+          clonedFrame.style.height = height + 'px';
+          clonedFrame.style.aspectRatio = 'unset';
+        }
+      }
+    });
+
+    // Convert to WebP
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const link = document.createElement('a');
+        const bannerName = bannerNames[id] || `banner-${id}`;
+        link.download = `prive-${bannerName}-${format}.webp`;
+        link.href = URL.createObjectURL(blob);
+        link.click();
+
+        btn.textContent = 'Descargado';
+        setTimeout(() => {
+          btn.textContent = `${format === 'desktop' ? 'Desktop' : 'Mobile'} WebP`;
+          btn.disabled = false;
+        }, 2000);
+      } else {
+        throw new Error('WebP not supported, falling back to PNG');
+      }
+    }, 'image/webp', 0.92);
+
+  } catch (err) {
+    console.error('Error generating WebP, trying PNG fallback:', err);
+
+    // Fallback to PNG
+    try {
+      const link = document.createElement('a');
+      const bannerName = bannerNames[id] || `banner-${id}`;
+      link.download = `prive-${bannerName}-${format}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+
+      btn.textContent = 'Descargado (PNG)';
+      setTimeout(() => {
+        btn.textContent = `${format === 'desktop' ? 'Desktop' : 'Mobile'} WebP`;
+        btn.disabled = false;
+      }, 2000);
+    } catch (pngErr) {
+      console.error('Error generating PNG:', pngErr);
+      btn.textContent = 'Error';
+      setTimeout(() => {
+        btn.textContent = `${format === 'desktop' ? 'Desktop' : 'Mobile'} WebP`;
+        btn.disabled = false;
+      }, 2000);
+    }
+  }
+}
+
+/* Download all banners */
+async function downloadAllBanners() {
+  const btn = event.target;
+  const originalText = btn.textContent;
+  const bannerIds = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11];
+
+  btn.disabled = true;
+  btn.textContent = 'Descargando...';
+
+  let completed = 0;
+  const total = bannerIds.length * 2; // Desktop + Mobile for each banner
+
+  for (const id of bannerIds) {
+    try {
+      // Download desktop version
+      await downloadBannerSilent(id, 'desktop');
+      completed++;
+      btn.textContent = `Descargando... (${completed}/${total})`;
+
+      // Wait a bit between downloads to avoid overwhelming the browser
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Download mobile version
+      await downloadBannerSilent(id, 'mobile');
+      completed++;
+      btn.textContent = `Descargando... (${completed}/${total})`;
+
+      // Wait a bit between banners
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+    } catch (err) {
+      console.error(`Error downloading banner ${id}:`, err);
+    }
+  }
+
+  btn.textContent = 'Completado';
+  setTimeout(() => {
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }, 3000);
+}
+
+/* Silent download helper for batch downloads */
+async function downloadBannerSilent(id, format) {
+  const section = document.getElementById('banner-' + id);
+  if (!section) return;
+
+  const isDesktop = format === 'desktop';
+  const frame = isDesktop ? section.querySelector('.banner-frame') : section.querySelector('.mobile-frame');
+
+  // Determine dimensions
+  const width = isDesktop ? 2000 : 750;
+  const height = isDesktop ? 980 : 735;
+
+  const canvas = await html2canvas(frame, {
+    width: width,
+    height: height,
+    scale: 1,
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: '#FFFFFF',
+    windowWidth: isDesktop ? 2000 : 750,
+    windowHeight: isDesktop ? 980 : 735,
+    onclone: (doc) => {
+      const clonedFrame = doc.querySelector(`#banner-${id} ${isDesktop ? '.banner-frame' : '.mobile-frame'}`);
+      if (clonedFrame) {
+        clonedFrame.style.width = width + 'px';
+        clonedFrame.style.height = height + 'px';
+        clonedFrame.style.aspectRatio = 'unset';
+      }
+    }
+  });
+
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const link = document.createElement('a');
+        const bannerName = bannerNames[id] || `banner-${id}`;
+        link.download = `prive-${bannerName}-${format}.webp`;
+        link.href = URL.createObjectURL(blob);
+        link.click();
+        resolve();
+      } else {
+        // Fallback to PNG
+        const link = document.createElement('a');
+        const bannerName = bannerNames[id] || `banner-${id}`;
+        link.download = `prive-${bannerName}-${format}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        resolve();
+      }
+    }, 'image/webp', 0.92);
+  });
+}
+</script>
+
+</body>
+</html>

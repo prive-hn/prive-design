@@ -86,7 +86,7 @@ When you find issues, fix them in a single pilot commit per logical group (e.g.,
 
 ## CI-first rule (highest priority)
 
-**CI failures block everything.** If any CI check is `failed`, you must fix it BEFORE responding to code review comments. No exceptions. Review comments from CodeRabbit, Codex, or humans wait until CI is green. Rationale: CI red means the code is broken; reviewing broken code is wasted effort.
+**CI failures block everything.** If any CI check is `failed`, you must fix it BEFORE responding to code review comments. No exceptions. Review comments from CodeRabbit or humans wait until CI is green. Rationale: CI red means the code is broken; reviewing broken code is wasted effort.
 
 Check CI status **immediately** after reading the PR state using `gh pr checks $PR_NUMBER --repo $REPO`. This is the very first action after hydrating PR state, before any review or fix work.
 
@@ -118,6 +118,7 @@ Before merging, verify **every** condition using `gh` CLI commands (MCP GitHub t
 - ✅ `mergeable_state != 'dirty'` (no merge conflicts) — check via `gh pr view $PR_NUMBER --repo $REPO --json mergeable`
 - ✅ No labels: `needs-human`, `claude-pilot-paused`, `do-not-merge`, `breaking-change`
 - ✅ PR is not a draft
+- ✅ `ALLOW_MERGE != "0"` — if this env var is `"0"`, do NOT merge. Instead: add label `ready-to-merge`, comment `🛩️ claude-pilot: merge gate satisfied, awaiting human merge (ALLOW_MERGE=0).`, and stop.
 
 If any condition fails, do not merge. Either fix what's fixable, or escalate (see "Escalation" below).
 

@@ -36,9 +36,9 @@ on:
 # Cancel superseded runs for the same PR so a fresh push doesn't fight a stale Claude run.
 concurrency:
   # Isolate claude[bot]'s own merge-triggered events (pull_request.closed after auto-merge)
-  # so they never enter the same group as a running pilot. Also isolate CodeRabbit/Dependabot
+  # so they never enter the same group as a running pilot. Also isolate CodeRabbit/Codex/Dependabot
   # issue_comments. Human @claude commands and real PR events share the per-PR group.
-  group: claude-pilot-${{ (github.actor == 'claude[bot]' || github.actor == 'claude-pilot[bot]') && github.run_id || (github.event_name == 'issue_comment' && github.actor != 'coderabbitai[bot]' && github.actor != 'dependabot[bot]' && github.event.issue.number) || github.event.pull_request.number || github.event.inputs.pr_number || github.event.workflow_run.pull_requests[0].number || github.run_id }}
+  group: claude-pilot-${{ (github.actor == 'claude[bot]' || github.actor == 'claude-pilot[bot]') && github.run_id || (github.event_name == 'issue_comment' && github.actor != 'coderabbitai[bot]' && github.actor != 'chatgpt-codex-connector[bot]' && github.actor != 'dependabot[bot]' && github.event.issue.number) || github.event.pull_request.number || github.event.inputs.pr_number || github.event.workflow_run.pull_requests[0].number || github.run_id }}
   cancel-in-progress: true
 
 permissions:
@@ -59,7 +59,7 @@ jobs:
     if: >-
       github.actor != 'claude[bot]' &&
       github.actor != 'claude-pilot[bot]' &&
-      !(github.event_name == 'issue_comment' && github.actor == 'coderabbitai[bot]') &&
+      !(github.event_name == 'issue_comment' && (github.actor == 'coderabbitai[bot]' || github.actor == 'chatgpt-codex-connector[bot]')) &&
       (
         github.event_name != 'issue_comment' ||
         github.event.issue.pull_request != null
@@ -179,7 +179,7 @@ jobs:
 
       - name: Run Claude-Pilot
         id: claude
-        if: steps.pr.outputs.skip != 'true' && !contains(steps.pr.outputs.labels, 'claude-quota-exhausted')
+        if: steps.pr.outputs.skip != 'true'
         uses: anthropics/claude-code-action@567fe954a4527e81f132d87d1bdbcc94f7737434  # v1
         env:
           # Event context — referenced from prompts/pr-pilot.md decision table.
@@ -191,6 +191,9 @@ jobs:
           REPO: ${{ github.repository }}
           ACTOR: ${{ github.actor }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          # Merge gate override. Set ALLOW_MERGE=0 in repo secrets to block
+          # auto-merge (pilot reviews but human merges). Default: 1 (allowed).
+          ALLOW_MERGE: ${{ secrets.ALLOW_MERGE }}
         with:
           # Allow bot-triggered events (CodeRabbit reviews, Dependabot, etc.)
           allowed_bots: "*"
@@ -212,6 +215,7 @@ jobs:
             - REPO: ${{ github.repository }}
             - ACTOR: ${{ github.actor }}
             - DISCORD_WEBHOOK_URL: available in env (the action will inject it when needed)
+            - ALLOW_MERGE: ${{ secrets.ALLOW_MERGE }} (default: 1. If "0", do NOT merge — review only, label `ready-to-merge`, and stop.)
           # Action v1: model + tool flags go into claude_args, not separate inputs.
           # Bash sub-patterns unlock gh CLI, curl, git push, jq for PR ops.
           # NOTE: mcp__github__* intentionally excluded — the action's sandbox
@@ -221,19 +225,6 @@ jobs:
             --model claude-opus-4-7
             --allowed-tools Bash(gh:*),Bash(curl:*),Bash(git:*),Bash(jq:*),Bash(env:*),Edit,Read,Write,Grep,Glob
           # show_full_output: true  # disabled after debugging complete
-
-      # Fallback: Codex when label is set.
-      - name: Run Codex fallback
-        if: steps.pr.outputs.skip != 'true' && contains(steps.pr.outputs.labels, 'claude-quota-exhausted')
-        uses: openai/codex-action@v1
-        continue-on-error: true
-        env:
-          PR_NUMBER: ${{ steps.pr.outputs.pr }}
-          REPO: ${{ github.repository }}
-        with:
-          # codex-action uses hyphenated input names.
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-          prompt-file: prompts/pr-pilot.md
 
       - name: Discord ping on failure
         if: failure() && steps.pr.outputs.skip != 'true'

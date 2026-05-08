@@ -98,14 +98,24 @@ After pushing fixes (or if there were none to push), check CI status **immediate
 
 **Active merge pattern:**
 1. Run `gh pr checks $PR_NUMBER --repo $REPO` to see current CI status.
-2. If all checks are `pass`/`success` → evaluate the merge gate immediately and merge.
+2. If all checks are `pass`/`success` → evaluate the merge gate. If the gate passes, enter the **merge cool-down** (see below).
 3. If checks are `pending`/`running` → **enable auto-merge** so GitHub merges when CI passes: `gh pr merge $PR_NUMBER --repo $REPO --squash --delete-branch --auto`. This avoids depending on a re-trigger.
 4. If any check `failed` → see `playbooks/ci-failure.md`.
-5. If no CI is configured (no checks found) → skip CI requirement, evaluate remaining merge gate conditions, and merge.
+5. If no CI is configured (no checks found) → skip CI requirement, evaluate remaining merge gate conditions, and enter the merge cool-down.
 
-For repos without a CI workflow: there are no CI checks to wait for. Evaluate the other merge gate conditions and merge immediately.
+For repos without a CI workflow: there are no CI checks to wait for. Evaluate the other merge gate conditions and enter the merge cool-down.
 
-CodeRabbit reviews: if it hasn't reviewed yet and the merge gate is otherwise satisfied, proceed without it. Don't block the merge waiting for a review that may never come.
+CodeRabbit reviews: if it hasn't reviewed yet and the merge gate is otherwise satisfied, proceed after the cool-down. Don't block beyond the cool-down waiting for a review that may never come.
+
+**Merge cool-down (5 minutes):**
+Before merging any PR, wait 5 minutes after the merge gate is first satisfied. This gives CodeRabbit, human reviewers, and other bots a window to comment.
+
+1. After the merge gate passes, run `sleep 300`.
+2. Re-check the merge gate in full (CI status, review threads, labels, draft state).
+3. If the gate is still satisfied → merge.
+4. If any new review threads, CI failures, or blocker labels appeared → abort merge, triage the new findings, and loop.
+5. **Skip the cool-down** if the PR has label `skip-cooldown` or `hotfix`, or if the event is `@claude merge` (explicit human override).
+6. **Skip the cool-down** for Dependabot lockfile-only / patch PRs (see `playbooks/dependabot.md` fast path).
 
 ## Merge gate
 

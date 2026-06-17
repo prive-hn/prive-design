@@ -181,7 +181,7 @@ jobs:
       - name: Run Claude-Pilot
         id: claude
         if: steps.pr.outputs.skip != 'true' && !contains(steps.pr.outputs.labels, 'claude-quota-exhausted')
-        uses: anthropics/claude-code-action@567fe954a4527e81f132d87d1bdbcc94f7737434  # v1
+        uses: anthropics/claude-code-action@9dd8b95a392eb34b6f5fb56cf5a64cb735912d4b  # v1
         env:
           # Event context — referenced from prompts/pr-pilot.md decision table.
           EVENT_NAME: ${{ github.event_name }}

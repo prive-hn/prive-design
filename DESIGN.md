@@ -1,5 +1,5 @@
 ---
-version: "2.0.0"
+version: alpha
 name: Privé Perfumes
 description: "Luxury fragrance retailer in Honduras. Editorial minimalism — sharp edges, warm neutrals, navy authority, pumpkin warmth. Individualism per product. Friendly exclusive — not stuffy, not cheap."
 
@@ -8,13 +8,15 @@ colors:
   on-primary: "#FFFFFF"
   text-heading: "#192E49"
   text-body: "#2E2E2E"
-  text-muted: "#8A8A8A"
+  text-muted: "#6E6E6E"
   background: "#FFFFFF"
   surface: "#F5F1EC"
   border: "#E0E0E0"
   border-strong: "#ABABAB"
-  accent: "#E87722"
-  accent-hover: "#D06318"
+  accent: "#E87722"        # display accent / backwards-compatible alias
+  accent-display: "#E87722"
+  accent-cta: "#A85310"    # AA with white text (5.37:1)
+  accent-hover: "#A85310"  # legacy alias; same safe dark pumpkin
   accent-light: "#FFF3ED"
   accent-gold: "#B8956A"
   success: "#5A7A6F"
@@ -94,25 +96,26 @@ components:
     height: 48px
     typography: "{typography.label}"
   button-cta:
-    backgroundColor: "{colors.accent}"
+    backgroundColor: "{colors.accent-cta}"
     textColor: "{colors.on-primary}"
     rounded: "{rounded.storefront}"
     height: 48px
     typography: "{typography.label}"
-    hoverBackgroundColor: "{colors.accent-hover}"
+  button-cta-hover:
+    backgroundColor: "{colors.accent-hover}"
+    textColor: "{colors.on-primary}"
+    rounded: "{rounded.storefront}"
+    height: 48px
+    typography: "{typography.label}"
   nav-bar:
     backgroundColor: "{colors.on-primary}"
-    borderBottom: "1px solid {colors.border}"
     height: 64px
   card:
     backgroundColor: "{colors.on-primary}"
-    border: "1px solid {colors.border}"
     rounded: "{rounded.storefront}"
   card-interactive:
     backgroundColor: "{colors.on-primary}"
-    border: "1px solid {colors.border}"
     rounded: "{rounded.storefront}"
-    hoverShadow: "0 4px 12px rgba(0,0,0,0.06)"
   badge-tag:
     typography: "{typography.label}"
     padding: "4px 12px"
@@ -124,17 +127,59 @@ components:
     backgroundColor: "{colors.accent-gold}"
     textColor: "#000000"
   badge-exclusive:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.on-primary}"
+    backgroundColor: "{colors.accent-display}"
+    textColor: "{colors.primary}"
   badge-classic:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.text-body}"
   input-field:
     backgroundColor: "{colors.on-primary}"
-    border: "1px solid {colors.border}"
     rounded: "{rounded.storefront}"
     height: 48px
-    focusBorderColor: "{colors.primary}"
+  page:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.text-body}"
+  heading-text:
+    textColor: "{colors.text-heading}"
+    typography: "{typography.heading}"
+  caption-text:
+    textColor: "{colors.text-muted}"
+    typography: "{typography.body}"
+  divider:
+    backgroundColor: "{colors.border}"
+    height: 1px
+  divider-strong:
+    backgroundColor: "{colors.border-strong}"
+    height: 1px
+  accent-chip:
+    backgroundColor: "{colors.accent-light}"
+    textColor: "{colors.accent-cta}"
+    rounded: "{rounded.storefront}"
+    typography: "{typography.label}"
+  accent-display-swatch:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.storefront}"
+  status-success:
+    backgroundColor: "{colors.success}"
+    textColor: "{colors.on-primary}"
+    rounded: "{rounded.storefront}"
+    typography: "{typography.label}"
+  status-success-soft:
+    backgroundColor: "{colors.success-bg}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.storefront}"
+    typography: "{typography.label}"
+  status-error:
+    backgroundColor: "{colors.error}"
+    textColor: "{colors.on-primary}"
+    rounded: "{rounded.storefront}"
+    typography: "{typography.label}"
+  status-error-soft:
+    backgroundColor: "{colors.error-bg}"
+    textColor: "{colors.error}"
+    rounded: "{rounded.storefront}"
+    typography: "{typography.label}"
 
 ---
 
@@ -160,7 +205,8 @@ components:
 The palette is built on high-contrast neutrals with warm undertones and two accent colors with distinct roles.
 
 - **Primary (#192E49):** Deep ink navy. The anchor. Used for headings, primary buttons, brand marks, navigation. The single most important color. Masculine, authoritative, confident.
-- **Accent (#E87722):** Pumpkin orange. The warmth. Used for CTAs, active states, product interactions, star ratings, fragrance family badges, hover highlights. This is the energy of the brand — approachable, warm, human. Hover state: #D06318 (darker, richer).
+- **Display Accent (#E87722):** Pumpkin orange. The warmth. Used for decorative accents, star ratings, fragrance family badges, icons, and large fills. Never pair with white text — contrast is only 2.96:1.
+- **CTA Accent (#A85310):** Dark pumpkin. The only orange approved for white CTA text, with 5.37:1 contrast on white text. Use when a button or badge needs orange with white copy.
 - **Accent Gold (#B8956A):** Caramel gold. The exclusivity signal. Used ONLY for limited edition badges, premium tier markers, and special collection tags. Never as a CTA. Never as a large fill. This color says "rare" — use it sparingly so it keeps meaning.
 - **Text Body (#2E2E2E):** Near-black for body copy. Softer than pure black.
 - **Background (#FFFFFF):** Pure white. Every surface starts here.
@@ -172,7 +218,8 @@ The palette is built on high-contrast neutrals with warm undertones and two acce
 ### Color Rules
 
 - Navy is the ONLY color for headings and primary actions
-- Pumpkin (#E87722) is the primary accent for CTAs, interactions, and active states
+- Display pumpkin (#E87722) is for decorative accents, icons, large fills, and star ratings — never white text
+- CTA pumpkin (#A85310) is the only orange background approved for white CTA text
 - Gold (#B8956A) is reserved for exclusivity signals only — never for CTAs or large areas
 - Surface (#F5F1EC) replaces grey everywhere — warm, not clinical
 - Never introduce new colors without updating this file
@@ -183,8 +230,9 @@ The palette is built on high-contrast neutrals with warm undertones and two acce
 | Token | Hex | Use |
 |-------|-----|-----|
 | accent-light | #FFF3ED | Hover background on white cards |
-| accent | #E87722 | CTAs, active states, badges, icons |
-| accent-hover | #D06318 | Button hover, pressed states |
+| accent / accent-display | #E87722 | Display accents, badges, icons, star ratings; not white text |
+| accent-cta | #A85310 | Orange CTA backgrounds with white text |
+| accent-hover | #A85310 | Legacy alias for safe CTA pumpkin |
 
 ## Typography
 
@@ -218,13 +266,15 @@ Jost is geometric and sharp — it gives structure and authority. Barlow is roun
 ## Two Design Contexts
 
 ### Storefront (priveperfumes.com, marketing, Claude Design)
-- **Accent:** #E87722 pumpkin orange
+- **Display accent:** #E87722 pumpkin orange
+- **CTA accent:** #A85310 dark pumpkin for orange buttons with white text
 - **Border radius:** 0px everywhere
 - **Fonts:** Jost (headings) + Barlow (body)
 - **Feel:** Editorial luxury, sharp, warm
 
 ### Internal Tools (prive-staff, prive-portal, dashboards)
-- **Accent:** #E87722 pumpkin orange
+- **Display accent:** #E87722 pumpkin orange
+- **CTA accent:** #A85310 dark pumpkin for orange buttons with white text
 - **Border radius:** 14px
 - **Fonts:** Jost only (simplified)
 - **Feel:** Clean, efficient, hacker aesthetic
@@ -264,7 +314,7 @@ Zero border radius on storefront. Every element — buttons, cards, inputs, badg
 ### Buttons
 - Primary: Navy background, white text, 48px height, 0px radius
 - Secondary: Cream (#F5F1EC) background, navy text, same structure
-- CTA: Pumpkin (#E87722) background, white text — primary purchase/engagement actions. Hover: #D06318
+- CTA: Dark pumpkin (#A85310) background, white text — orange purchase/engagement actions that need AA contrast
 - All buttons: 0px radius, subtle shadow on hover (no color change except CTA)
 
 ### Cards
@@ -281,7 +331,7 @@ Zero border radius on storefront. Every element — buttons, cards, inputs, badg
 - No border radius, no icons
 - "NUEVO": navy bg, white text
 - "EDICIÓN LIMITADA": gold (#B8956A) bg, black text
-- "EXCLUSIVO": pumpkin (#E87722) bg, white text
+- "EXCLUSIVO": display pumpkin (#E87722) bg, navy text (white fails contrast)
 - "CLÁSICO": cream bg, dark text
 - Small caps Jost with wide tracking
 
@@ -332,7 +382,7 @@ Every banner follows:
 
 ### Do
 - Use warm cream (#F5F1EC) for secondary surfaces
-- Use pumpkin (#E87722) for CTAs and interaction points
+- Use display pumpkin (#E87722) for decorative accents and CTA pumpkin (#A85310) for orange buttons with white text
 - Use gold (#B8956A) sparingly for premium/exclusive signals only
 - Write mood-anchored copy in italic Barlow
 - Keep layouts spacious with deliberate vertical rhythm
@@ -351,4 +401,4 @@ Every banner follows:
 - Never use grey (#F5F5F5) for surfaces — use warm cream (#F5F1EC)
 - Never use hashtag spam
 - Never use gold (#B8956A) for CTAs or large fills
-- Never use pumpkin (#E87722) for body text or headings
+- Never use pumpkin (#E87722) for body text, headings, or white-text buttons

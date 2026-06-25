@@ -1,2 +1,6 @@
 public/
-.git/dist/\n*.zip\n__pycache__/\n*.pyc\nPROMPT-*.md\nrender-banners.py
+dist/
+*.zip
+__pycache__/
+*.pyc
+PROMPT-*.md

@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privé Design System v2.1.0</title>
+<title>Privé Design System v2.2.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════════════
-   PRIVÉ DESIGN SYSTEM — LIVE STYLEGUIDE v2.1.0
+   PRIVÉ DESIGN SYSTEM — LIVE STYLEGUIDE v2.2.0
    Source: DESIGN.md
    Last updated: 2026-06-25
 
@@ -1594,8 +1594,8 @@ body {
     </div>
     <p class="hero__tagline">Friendly exclusive. Confident, not arrogant. Warm, not casual.</p>
     <div class="hero__meta">
-      <span>v2.1.0</span>
-      <span>Updated 2026-04-22</span>
+      <span>v2.2.0</span>
+      <span>Updated 2026-06-25</span>
       <span>Privé Perfumes — Honduras</span>
     </div>
   </div>
@@ -2869,7 +2869,7 @@ body {
           </div>
         </div>
         <div class="footer-demo__bottom">
-          &copy; 2026 Privé Perfumes. Tegucigalpa, Honduras.
+          &copy; 2026 Privé Perfumes. San Pedro Sula, Honduras.
         </div>
       </div>
     </div>
@@ -2958,7 +2958,7 @@ body {
         <div class="do-dont-card do-dont-card--do">
           <div class="do-dont-card__label">Do — Spanish-first</div>
           <div class="do-dont-card__example" style="text-decoration:none">
-            <p>"Disponible para entrega inmediata en Tegucigalpa."</p>
+            <p>"Disponible para entrega inmediata en San Pedro Sula."</p>
           </div>
         </div>
         <div class="do-dont-card do-dont-card--dont">
@@ -2989,7 +2989,7 @@ body {
   <div class="container">
     <div class="section__label">08</div>
     <h2 class="section__title">Design Tokens</h2>
-    <p class="section__desc">Copy-ready tokens in multiple formats. These are the single source of truth for color, type, spacing, and component values.</p>
+    <p class="section__desc">Generated from DESIGN.md via Google's design.md CLI. Run <code>npx @google/design.md export --format &lt;format&gt; DESIGN.md</code> to regenerate. These are the single source of truth for color, type, spacing, and component values.</p>
 
     <!-- CSS Custom Properties -->
     <div class="code-section">
@@ -2997,7 +2997,7 @@ body {
         <span class="code-section__title">CSS Custom Properties</span>
         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
       </div>
-      <div class="code-block"><span class="c">/* Privé Design System v2.1.0 — CSS Tokens */</span>
+      <div class="code-block"><span class="c">/* Privé Design System v2.2.0 — CSS Tokens */</span>
 <span class="s">:root</span> <span class="p">{</span>
   <span class="c">/* Core */</span>
   <span class="k">--primary</span><span class="p">:</span> <span class="v">#192E49</span><span class="p">;</span>
@@ -3079,7 +3079,7 @@ body {
         <span class="code-section__title">Tailwind Config</span>
         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
       </div>
-      <div class="code-block"><span class="c">// tailwind.config.js — Privé Design System v2.1.0</span>
+      <div class="code-block"><span class="c">// tailwind.config.js — Privé Design System v2.2.0</span>
 <span class="s">module.exports</span> <span class="p">= {</span>
   <span class="k">theme</span><span class="p">: {</span>
     <span class="k">extend</span><span class="p">: {</span>
@@ -3196,6 +3196,88 @@ body {
   <span class="p">}]</span>
 <span class="p">}</span></div>
     </div>
+
+    <!-- Tailwind v4 @theme -->
+    <div class="code-section">
+      <div class="code-section__header">
+        <span class="code-section__title">Tailwind v4 (@theme CSS)</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-block"><span class="s">@theme</span> <span class="p">{</span>
+  <span class="k">--color-primary</span><span class="p">:</span> <span class="v">#192e49</span><span class="p">;</span>
+  <span class="k">--color-on-primary</span><span class="p">:</span> <span class="v">#ffffff</span><span class="p">;</span>
+  <span class="k">--color-text-heading</span><span class="p">:</span> <span class="v">#192e49</span><span class="p">;</span>
+  <span class="k">--color-text-body</span><span class="p">:</span> <span class="v">#2e2e2e</span><span class="p">;</span>
+  <span class="k">--color-text-muted</span><span class="p">:</span> <span class="v">#6e6e6e</span><span class="p">;</span>
+  <span class="k">--color-background</span><span class="p">:</span> <span class="v">#ffffff</span><span class="p">;</span>
+  <span class="k">--color-surface</span><span class="p">:</span> <span class="v">#f5f1ec</span><span class="p">;</span>
+  <span class="k">--color-border</span><span class="p">:</span> <span class="v">#e0e0e0</span><span class="p">;</span>
+  <span class="k">--color-border-strong</span><span class="p">:</span> <span class="v">#ababab</span><span class="p">;</span>
+  <span class="k">--color-accent</span><span class="p">:</span> <span class="v">#e87722</span><span class="p">;</span>
+  <span class="k">--color-accent-display</span><span class="p">:</span> <span class="v">#e87722</span><span class="p">;</span>
+  <span class="k">--color-accent-cta</span><span class="p">:</span> <span class="v">#a85310</span><span class="p">;</span>
+  <span class="k">--color-accent-hover</span><span class="p">:</span> <span class="v">#a85310</span><span class="p">;</span>
+  <span class="k">--color-accent-light</span><span class="p">:</span> <span class="v">#fff3ed</span><span class="p">;</span>
+  <span class="k">--color-accent-gold</span><span class="p">:</span> <span class="v">#b8956a</span><span class="p">;</span>
+  <span class="k">--color-success</span><span class="p">:</span> <span class="v">#5a7a6f</span><span class="p">;</span>
+  <span class="k">--color-success-bg</span><span class="p">:</span> <span class="v">#dee4e2</span><span class="p">;</span>
+  <span class="k">--color-error</span><span class="p">:</span> <span class="v">#b3332b</span><span class="p">;</span>
+  <span class="k">--color-error-bg</span><span class="p">:</span> <span class="v">#faf1f0</span><span class="p">;</span>
+  <span class="k">--font-heading</span><span class="p">:</span> <span class="v">"Jost"</span><span class="p">;</span>
+  <span class="k">--font-body</span><span class="p">:</span> <span class="v">"Barlow"</span><span class="p">;</span>
+  <span class="k">--radius-storefront</span><span class="p">:</span> <span class="v">0px</span><span class="p">;</span>
+  <span class="k">--radius-internal</span><span class="p">:</span> <span class="v">14px</span><span class="p">;</span>
+  <span class="k">--spacing-xs</span><span class="p">:</span> <span class="v">8px</span><span class="p">;</span>
+  <span class="k">--spacing-sm</span><span class="p">:</span> <span class="v">16px</span><span class="p">;</span>
+  <span class="k">--spacing-md</span><span class="p">:</span> <span class="v">24px</span><span class="p">;</span>
+  <span class="k">--spacing-lg</span><span class="p">:</span> <span class="v">40px</span><span class="p">;</span>
+  <span class="k">--spacing-xl</span><span class="p">:</span> <span class="v">64px</span><span class="p">;</span>
+<span class="p">}</span></div>
+    </div>
+
+    <!-- W3C DTCG tokens.json -->
+    <div class="code-section">
+      <div class="code-section__header">
+        <span class="code-section__title">W3C DTCG tokens.json</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-block"><span class="p">{</span>
+  <span class="k">"$schema"</span><span class="p">:</span> <span class="v">"https://www.designtokens.org/schemas/2025.10/format.json"</span><span class="p">,</span>
+  <span class="k">"$description"</span><span class="p">:</span> <span class="v">"Luxury fragrance retailer in Honduras."</span><span class="p">,</span>
+  <span class="k">"color"</span><span class="p">: {</span>
+    <span class="k">"$type"</span><span class="p">:</span> <span class="v">"color"</span><span class="p">,</span>
+    <span class="k">"primary"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#192e49"</span> <span class="p">} },</span>
+    <span class="k">"on-primary"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#ffffff"</span> <span class="p">} },</span>
+    <span class="k">"text-heading"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#192e49"</span> <span class="p">} },</span>
+    <span class="k">"text-body"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#2e2e2e"</span> <span class="p">} },</span>
+    <span class="k">"text-muted"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#6e6e6e"</span> <span class="p">} },</span>
+    <span class="k">"background"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#ffffff"</span> <span class="p">} },</span>
+    <span class="k">"surface"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#f5f1ec"</span> <span class="p">} },</span>
+    <span class="k">"border"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#e0e0e0"</span> <span class="p">} },</span>
+    <span class="k">"border-strong"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#ababab"</span> <span class="p">} },</span>
+    <span class="k">"accent"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#e87722"</span> <span class="p">} },</span>
+    <span class="k">"accent-cta"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#a85310"</span> <span class="p">} },</span>
+    <span class="k">"accent-hover"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#a85310"</span> <span class="p">} },</span>
+    <span class="k">"accent-light"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#fff3ed"</span> <span class="p">} },</span>
+    <span class="k">"accent-gold"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#b8956a"</span> <span class="p">} },</span>
+    <span class="k">"success"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#5a7a6f"</span> <span class="p">} },</span>
+    <span class="k">"error"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"colorSpace"</span><span class="p">:</span> <span class="v">"srgb"</span><span class="p">,</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#b3332b"</span> <span class="p">} }</span>
+  <span class="p">},</span>
+  <span class="k">"rounded"</span><span class="p">: {</span>
+    <span class="k">"$type"</span><span class="p">:</span> <span class="v">"dimension"</span><span class="p">,</span>
+    <span class="k">"storefront"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"value"</span><span class="p">:</span> <span class="n">0</span><span class="p">,</span> <span class="k">"unit"</span><span class="p">:</span> <span class="v">"px"</span> <span class="p">} },</span>
+    <span class="k">"internal"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"value"</span><span class="p">:</span> <span class="n">14</span><span class="p">,</span> <span class="k">"unit"</span><span class="p">:</span> <span class="v">"px"</span> <span class="p">} }</span>
+  <span class="p">},</span>
+  <span class="k">"spacing"</span><span class="p">: {</span>
+    <span class="k">"$type"</span><span class="p">:</span> <span class="v">"dimension"</span><span class="p">,</span>
+    <span class="k">"xs"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"value"</span><span class="p">:</span> <span class="n">8</span><span class="p">,</span> <span class="k">"unit"</span><span class="p">:</span> <span class="v">"px"</span> <span class="p">} },</span>
+    <span class="k">"sm"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"value"</span><span class="p">:</span> <span class="n">16</span><span class="p">,</span> <span class="k">"unit"</span><span class="p">:</span> <span class="v">"px"</span> <span class="p">} },</span>
+    <span class="k">"md"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"value"</span><span class="p">:</span> <span class="n">24</span><span class="p">,</span> <span class="k">"unit"</span><span class="p">:</span> <span class="v">"px"</span> <span class="p">} },</span>
+    <span class="k">"lg"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"value"</span><span class="p">:</span> <span class="n">40</span><span class="p">,</span> <span class="k">"unit"</span><span class="p">:</span> <span class="v">"px"</span> <span class="p">} },</span>
+    <span class="k">"xl"</span><span class="p">: {</span> <span class="k">"$value"</span><span class="p">: {</span> <span class="k">"value"</span><span class="p">:</span> <span class="n">64</span><span class="p">,</span> <span class="k">"unit"</span><span class="p">:</span> <span class="v">"px"</span> <span class="p">} }</span>
+  <span class="p">}</span>
+<span class="p">}</span></div>
+    </div>
   </div>
 </section>
 
@@ -3218,7 +3300,7 @@ body {
         </div>
         <div class="code-block"><span class="p">{</span>
   <span class="k">"brand"</span><span class="p">:</span> <span class="v">"Privé Perfumes"</span><span class="p">,</span>
-  <span class="k">"location"</span><span class="p">:</span> <span class="v">"Tegucigalpa, Honduras"</span><span class="p">,</span>
+  <span class="k">"location"</span><span class="p">:</span> <span class="v">"San Pedro Sula, Honduras"</span><span class="p">,</span>
   <span class="k">"industry"</span><span class="p">:</span> <span class="v">"Luxury fragrance retail"</span><span class="p">,</span>
   <span class="k">"personality"</span><span class="p">:</span> <span class="v">"Friendly exclusive"</span><span class="p">,</span>
   <span class="k">"traits"</span><span class="p">: [</span>
@@ -3393,7 +3475,7 @@ Rules:
 <!-- ═══ PAGE FOOTER ═══ -->
 <footer class="page-footer">
   <div class="container">
-    <p class="page-footer__text">Privé Design System v2.1.0 — Updated 2026-04-22 — Source of truth for all Privé Perfumes brand assets</p>
+    <p class="page-footer__text">Privé Design System v2.2.0 — Updated 2026-06-25 — Source of truth for all Privé Perfumes brand assets</p>
   </div>
 </footer>
 

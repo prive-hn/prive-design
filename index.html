@@ -11,10 +11,10 @@
 /* ═══════════════════════════════════════════════════════════════
    PRIVÉ DESIGN SYSTEM — LIVE STYLEGUIDE v2.1.0
    Source: DESIGN.md
-   Last updated: 2026-04-22
+   Last updated: 2026-06-25
 
    Audit fixes applied:
-   - CTA contrast: #C96518 for interactive (WCAG AA)
+   - CTA contrast: #A85310 for interactive (WCAG AA 5.37:1)
    - Muted text: #6E6E6E (5.13:1 on white)
    - Focus-visible global styles
    - Complete accent + navy shade scales (50–900)
@@ -38,7 +38,7 @@
   --accent-light: #FFF3ED;
 
   /* ── Accent CTA (interactive — buttons, links, white text on it) ── */
-  --accent-cta: #C96518;
+  --accent-cta: #A85310;
   --accent-cta-hover: #A85310;
 
   /* ── Accent shade scale ── */
@@ -96,7 +96,7 @@
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
   --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
-  --shadow-accent: 0 4px 12px rgba(201,101,24,0.25);
+  --shadow-accent: 0 4px 12px rgba(168,83,16,0.25);
 }
 
 /* ── Reset ── */
@@ -1875,7 +1875,7 @@ body {
   <div class="container">
     <div class="section__label">03</div>
     <h2 class="section__title">Color System</h2>
-    <p class="section__desc">High-contrast neutrals with warm undertones. Navy anchors authority, pumpkin brings warmth. Two accent roles: display (#E87722) for visual impact, CTA (#C96518) for interactive elements meeting WCAG AA contrast.</p>
+    <p class="section__desc">High-contrast neutrals with warm undertones. Navy anchors authority, pumpkin brings warmth. Two accent roles: display (#E87722) for visual impact, CTA (#A85310) for interactive elements meeting WCAG AA contrast.</p>
 
     <!-- Core palette -->
     <div class="subsection">
@@ -1895,7 +1895,7 @@ body {
         <div class="swatch">
           <div class="swatch__fill swatch__fill--dark" style="background:#E87722">
             #E87722
-            <span class="swatch__contrast swatch__contrast--fail">2.8:1</span>
+            <span class="swatch__contrast swatch__contrast--fail">2.96:1</span>
           </div>
           <div class="swatch__info">
             <div class="swatch__name">Accent — Display</div>
@@ -1906,23 +1906,23 @@ body {
         <div class="swatch">
           <div class="swatch__fill swatch__fill--dark" style="background:#C96518">
             #C96518
-            <span class="swatch__contrast swatch__contrast--pass">4.52:1 AA</span>
+            <span class="swatch__contrast swatch__contrast--fail">3.9:1</span>
           </div>
           <div class="swatch__info">
-            <div class="swatch__name">Accent — CTA</div>
+            <div class="swatch__name">Accent 600 — intermediate shade</div>
             <div class="swatch__hex">#C96518 · rgb(201,101,24)</div>
-            <div class="swatch__role">Buttons, text links, interactive with white text</div>
+            <div class="swatch__role">Scale step only — NOT a CTA, fails AA for white text</div>
           </div>
         </div>
         <div class="swatch">
           <div class="swatch__fill swatch__fill--dark" style="background:#A85310">
             #A85310
-            <span class="swatch__contrast swatch__contrast--pass">6.2:1 AA</span>
+            <span class="swatch__contrast swatch__contrast--pass">5.37:1 AA</span>
           </div>
           <div class="swatch__info">
-            <div class="swatch__name">Accent — CTA Hover</div>
+            <div class="swatch__name">Accent — CTA</div>
             <div class="swatch__hex">#A85310 · rgb(168,83,16)</div>
-            <div class="swatch__role">CTA button hover/pressed state</div>
+            <div class="swatch__role">Buttons, badges, interactive elements with white text (also hover/pressed)</div>
           </div>
         </div>
         <div class="swatch">
@@ -2130,7 +2130,7 @@ body {
           <div class="colorblind-strip">
             <div style="background:#192E49"></div>
             <div style="background:#E87722"></div>
-            <div style="background:#C96518"></div>
+            <div style="background:#A85310"></div>
             <div style="background:#B8956A"></div>
             <div style="background:#5A7A6F"></div>
             <div style="background:#B3332B"></div>
@@ -2142,7 +2142,7 @@ body {
           <div class="colorblind-strip filter-protanopia">
             <div style="background:#192E49"></div>
             <div style="background:#E87722"></div>
-            <div style="background:#C96518"></div>
+            <div style="background:#A85310"></div>
             <div style="background:#B8956A"></div>
             <div style="background:#5A7A6F"></div>
             <div style="background:#B3332B"></div>
@@ -2154,7 +2154,7 @@ body {
           <div class="colorblind-strip filter-deuteranopia">
             <div style="background:#192E49"></div>
             <div style="background:#E87722"></div>
-            <div style="background:#C96518"></div>
+            <div style="background:#A85310"></div>
             <div style="background:#B8956A"></div>
             <div style="background:#5A7A6F"></div>
             <div style="background:#B3332B"></div>
@@ -2445,7 +2445,7 @@ body {
   <div class="container">
     <div class="section__label">06</div>
     <h2 class="section__title">Components</h2>
-    <p class="section__desc">Every component shows default, hover, focus, active, and disabled states. All interactive elements use --accent-cta (#C96518) for WCAG AA compliance with white text.</p>
+    <p class="section__desc">Every component shows default, hover, focus, active, and disabled states. All interactive elements use --accent-cta (#A85310) for WCAG AA compliance with white text.</p>
 
     <!-- BUTTONS -->
     <div class="subsection">
@@ -3014,8 +3014,8 @@ body {
   <span class="k">--accent</span><span class="p">:</span> <span class="v">#E87722</span><span class="p">;</span>
   <span class="k">--accent-light</span><span class="p">:</span> <span class="v">#FFF3ED</span><span class="p">;</span>
 
-  <span class="c">/* Accent — CTA (interactive, meets WCAG AA) */</span>
-  <span class="k">--accent-cta</span><span class="p">:</span> <span class="v">#C96518</span><span class="p">;</span>
+  <span class="c">/* Accent — CTA (interactive, meets WCAG AA 5.37:1) */</span>
+  <span class="k">--accent-cta</span><span class="p">:</span> <span class="v">#A85310</span><span class="p">;</span>
   <span class="k">--accent-cta-hover</span><span class="p">:</span> <span class="v">#A85310</span><span class="p">;</span>
 
   <span class="c">/* Accent scale */</span>
@@ -3109,7 +3109,7 @@ body {
           <span class="n">800</span><span class="p">:</span> <span class="v">'#8A420D'</span><span class="p">,</span>
           <span class="n">900</span><span class="p">:</span> <span class="v">'#6E340A'</span><span class="p">,</span>
           <span class="k">DEFAULT</span><span class="p">:</span> <span class="v">'#E87722'</span><span class="p">,</span>
-          <span class="k">cta</span><span class="p">:</span> <span class="v">'#C96518'</span><span class="p">,</span>
+          <span class="k">cta</span><span class="p">:</span> <span class="v">'#A85310'</span><span class="p">,</span>
           <span class="k">gold</span><span class="p">:</span> <span class="v">'#B8956A'</span>
         <span class="p">},</span>
         <span class="k">surface</span><span class="p">:</span> <span class="v">'#F5F1EC'</span><span class="p">,</span>
@@ -3151,7 +3151,7 @@ body {
     <span class="k">"surface"</span><span class="p">:</span> <span class="v">"#F5F1EC"</span><span class="p">,</span>
     <span class="k">"border"</span><span class="p">:</span> <span class="v">"#E0E0E0"</span><span class="p">,</span>
     <span class="k">"accent"</span><span class="p">:</span> <span class="v">"#E87722"</span><span class="p">,</span>
-    <span class="k">"accent-cta"</span><span class="p">:</span> <span class="v">"#C96518"</span><span class="p">,</span>
+    <span class="k">"accent-cta"</span><span class="p">:</span> <span class="v">"#A85310"</span><span class="p">,</span>
     <span class="k">"accent-cta-hover"</span><span class="p">:</span> <span class="v">"#A85310"</span><span class="p">,</span>
     <span class="k">"accent-light"</span><span class="p">:</span> <span class="v">"#FFF3ED"</span><span class="p">,</span>
     <span class="k">"accent-gold"</span><span class="p">:</span> <span class="v">"#B8956A"</span><span class="p">,</span>
@@ -3187,7 +3187,7 @@ body {
     <span class="k">"variables"</span><span class="p">: [</span>
       <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"color/primary"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"COLOR"</span><span class="p">,</span> <span class="k">"value"</span><span class="p">:</span> <span class="v">"#192E49"</span> <span class="p">},</span>
       <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"color/accent"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"COLOR"</span><span class="p">,</span> <span class="k">"value"</span><span class="p">:</span> <span class="v">"#E87722"</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"color/accent-cta"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"COLOR"</span><span class="p">,</span> <span class="k">"value"</span><span class="p">:</span> <span class="v">"#C96518"</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"color/accent-cta"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"COLOR"</span><span class="p">,</span> <span class="k">"value"</span><span class="p">:</span> <span class="v">"#A85310"</span> <span class="p">},</span>
       <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"color/surface"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"COLOR"</span><span class="p">,</span> <span class="k">"value"</span><span class="p">:</span> <span class="v">"#F5F1EC"</span> <span class="p">},</span>
       <span class="p">{</span> <span class="k">"name"</span><span class="p">:</span> <span class="v">"radius/default"</span><span class="p">,</span> <span class="k">"type"</span><span class="p">:</span> <span class="v">"FLOAT"</span><span class="p">,</span>
         <span class="k">"valuesByMode"</span><span class="p">: {</span> <span class="v">"Storefront"</span><span class="p">:</span> <span class="n">0</span><span class="p">,</span> <span class="v">"Internal"</span><span class="p">:</span> <span class="n">14</span> <span class="p">}</span>
@@ -3233,7 +3233,7 @@ body {
   <span class="k">"palette"</span><span class="p">: {</span>
     <span class="k">"primary"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#192E49"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(25,46,73)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(214,49%,19%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.28 0.05 254)"</span> <span class="p">},</span>
     <span class="k">"accent"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#E87722"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(232,119,34)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(26,82%,52%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.66 0.16 52)"</span> <span class="p">},</span>
-    <span class="k">"accentCta"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#C96518"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(201,101,24)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(26,79%,44%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.58 0.15 48)"</span> <span class="p">},</span>
+    <span class="k">"accentCta"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#A85310"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(168,83,16)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(25,83%,36%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.52 0.12 48)"</span> <span class="p">},</span>
     <span class="k">"surface"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#F5F1EC"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(245,241,236)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(33,35%,94%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.96 0.01 80)"</span> <span class="p">},</span>
     <span class="k">"gold"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hex"</span><span class="p">:</span> <span class="v">"#B8956A"</span><span class="p">,</span> <span class="k">"rgb"</span><span class="p">:</span> <span class="v">"rgb(184,149,106)"</span><span class="p">,</span> <span class="k">"hsl"</span><span class="p">:</span> <span class="v">"hsl(33,35%,57%)"</span><span class="p">,</span> <span class="k">"oklch"</span><span class="p">:</span> <span class="v">"oklch(0.67 0.07 72)"</span> <span class="p">}</span>
   <span class="p">},</span>
@@ -3248,7 +3248,7 @@ body {
     <span class="v">"Max 2 emojis per asset, zero in editorial"</span><span class="p">,</span>
     <span class="v">"Gold only for exclusivity signals, never CTAs"</span><span class="p">,</span>
     <span class="v">"Mood over notes in product descriptions"</span><span class="p">,</span>
-    <span class="v">"Use #C96518 for CTA buttons (WCAG AA), #E87722 for display only"</span>
+    <span class="v">"Use #A85310 for CTA buttons (WCAG AA), #E87722 for display only"</span>
   <span class="p">]</span>
 <span class="p">}</span></div>
       </div>
@@ -3290,7 +3290,7 @@ Rules:
 - Font headings: Jost, uppercase, letter-spacing 0.18em, weight 400-500
 - Font body: Barlow, sentence case, weight 400, line-height 1.55
 - Primary: #192E49 (headings, primary buttons)
-- CTA buttons: #C96518 background, white text (WCAG AA)
+- CTA buttons: #A85310 background, white text (WCAG AA)
 - Display accent: #E87722 (stars, decorative fills, badges)
 - Surface: #F5F1EC (warm cream, never cold grey)
 - Border radius: 0px (storefront) or 14px (internal)
@@ -3308,7 +3308,7 @@ Rules:
           <div style="font-family:var(--font-mono);font-size:0.75rem;line-height:2;color:var(--text-body)">
             Navy: #192E49<br>
             Pumpkin (display): #E87722<br>
-            Pumpkin (CTA): #C96518<br>
+            Pumpkin (CTA): #A85310<br>
             Pumpkin (hover): #A85310<br>
             Surface: #F5F1EC<br>
             Body text: #2E2E2E<br>

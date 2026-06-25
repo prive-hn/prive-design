@@ -12,9 +12,14 @@ Single source of truth for Privé Perfumes visual identity. This repo uses Googl
 | `banners.html` | Shopify/banner styleguide and export source |
 | `render-banners.py` | Playwright renderer for Shopify banner JPG exports |
 
-## Live
+## Viewing the styleguide
 
-Deployed at **https://prive-design.fly.dev**
+Open `index.html` in a browser, or run a quick local server:
+
+```bash
+python3 -m http.server 8080
+# → http://localhost:8080/index.html
+```
 
 ## Colors
 

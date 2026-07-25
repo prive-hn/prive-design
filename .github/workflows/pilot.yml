@@ -180,7 +180,7 @@ jobs:
       - name: Run Claude-Pilot
         id: claude
         if: steps.pr.outputs.skip != 'true'
-        uses: anthropics/claude-code-action@567fe954a4527e81f132d87d1bdbcc94f7737434  # v1
+        uses: anthropics/claude-code-action@80b31826338489861333dc17217865dfe8085cdc  # v1
         env:
           # Event context — referenced from prompts/pr-pilot.md decision table.
           EVENT_NAME: ${{ github.event_name }}
